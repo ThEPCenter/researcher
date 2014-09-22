@@ -21,11 +21,5 @@
         <script src="<?php echo base_url(); ?>script.js"></script> 
     </head>
     <body>
-        <div class="nav navbar-inverse" style="color: #f9f8f7; padding: 10px; font-size: 18px;">
-            <i class="glyphicon glyphicon-flag"></i>
-            <?php echo $title; ?>            
-        </div>
-    </body>
-</html>
 
 

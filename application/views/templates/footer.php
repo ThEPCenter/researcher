@@ -1,6 +1,6 @@
 
 <footer style="text-align: center;">
-    <small>Fisca Design & Development. Power by <a target="_blank" href="http://codeigniter.com">CodeIgniter</a></small>
+    <small>&copy; 2014 thep-center.com. Power by <a target="_blank" href="http://codeigniter.com">CodeIgniter</a></small>
 </footer>
 
 </body>

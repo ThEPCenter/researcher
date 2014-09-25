@@ -36,7 +36,7 @@ class Admin extends CI_Controller {
     }
 
     public function search() {
-        $data['title'] = 'Admin Home ค้นหา';
+        $data['title'] = 'Search researcher';
         $data['username'] = $this->session->userdata('username');
         $data['recent_login'] = date("F j, Y. g:i:s a.", strtotime($this->session->userdata('recent_login')));
         $data['last_login'] = date("F j, Y. g:i:s a.", strtotime($this->session->userdata('last_login')));
@@ -71,6 +71,48 @@ class Admin extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/result', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function profile($research_id) {
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_profile($research_id);
+        $data['title'] = 'Profile';
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/profile', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function edit_profile() {
+        $researcher_id = $this->security->xss_clean($this->input->post('researcher_id'));
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_profile($researcher_id);
+        $data['title'] = 'Edit Profile';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/edit_profile', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function edit_profile_process() {
+        $this->load->model('admin_model');
+        $this->admin_model->update_profile();
+        $data['title'] = 'Edit researcher profile success.';
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/result', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function researcher_list(){
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_researcher_list();
+        $data['title'] = 'Researcher List.';
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/researcher_list', $data);
         $this->load->view('templates/footer');
     }
 

@@ -1,7 +1,20 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$(function () {
+    $("#lastname_en").focusout(function () {
+        // var txt = $("#firstname_en").val() + ' ' + $("#lastname_en").val();
+        // $("#check_name").html(txt);
+        // $("#check_name").css("color", "green");
 
+        $.ajax({
+            url: 'http://localhost/researcher/index.php/admin/check_name',
+            data: {
+                firstname_en: $("#firstname_en").val(),
+                lastname_en: $("#lastname_en").val()
+            },
+            success: function (data) {
+                $("#check_name").html(data);
+            }
+        });
 
+    });
+
+});

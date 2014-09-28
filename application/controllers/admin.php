@@ -105,14 +105,64 @@ class Admin extends CI_Controller {
         $this->load->view('admin/result', $data);
         $this->load->view('templates/footer');
     }
-    
-    public function researcher_list(){
+
+    public function researcher_list() {
         $this->load->model('admin_model');
         $data['query'] = $this->admin_model->get_researcher_list();
         $data['title'] = 'Researcher List.';
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/researcher_list', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function education($research_id) {
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_education($research_id);
+        $data['title'] = 'Education';
+        $data['researcher_id'] = $research_id;
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/education', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function add_education() {
+        $data['title'] = "Add education";
+        $data['researcher_id'] = $this->input->post('researcher_id');
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/add_education', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function add_education_process() {
+        $this->load->model('admin_model');
+        $this->admin_model->add_new_education();
+        $data['title'] = 'Add education success.';
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/result', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function edit_education() {
+        $data['title'] = 'Edit education.';
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_edit_education();
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/edit_education', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function edit_education_process() {
+        $this->load->model('admin_model');
+        $this->admin_model->update_education();
+        $data['title'] = 'Edit education success.';
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/result', $data);
         $this->load->view('templates/footer');
     }
 

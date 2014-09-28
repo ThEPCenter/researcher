@@ -105,4 +105,68 @@ class Admin_model extends CI_Model {
         $this->db->update('res_profile', $data);
     }
 
+    public function get_education($researcher_id) {
+        $this->db->where('researcher_id', $researcher_id);
+        $this->db->order_by("grad_year", "asc");
+        $query = $this->db->get('res_education');
+        return $query->result();
+    }
+
+    public function add_new_education() {
+        $researcher_id = $this->security->xss_clean($this->input->post('researcher_id'));
+        $grad_year = $this->security->xss_clean($this->input->post('grad_year'));
+        $degree = $this->security->xss_clean($this->input->post('degree'));
+        $institute = $this->security->xss_clean($this->input->post('institute'));
+        $major = $this->security->xss_clean($this->input->post('major'));
+        $country = $this->security->xss_clean($this->input->post('country'));
+        $thesis_title = $this->security->xss_clean($this->input->post('thesis_title'));
+        $keyword = $this->security->xss_clean($this->input->post('keyword'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'grad_year' => $grad_year,
+            'degree' => $degree,
+            'institute' => $institute,
+            'major' => $major,
+            'country' => $country,
+            'thesis_title' => $thesis_title,
+            'keyword' => $keyword
+        );
+
+        $this->db->insert('res_education', $data);
+    }
+
+    public function get_edit_education() {
+        $education_id = $this->input->post('education_id');
+        $sql = "SELECT * FROM res_education WHERE education_id = '$education_id';";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function update_education() {
+        $education_id = $this->input->post('education_id');
+        $researcher_id = $this->security->xss_clean($this->input->post('researcher_id'));
+        $grad_year = $this->security->xss_clean($this->input->post('grad_year'));
+        $degree = $this->security->xss_clean($this->input->post('degree'));
+        $institute = $this->security->xss_clean($this->input->post('institute'));
+        $major = $this->security->xss_clean($this->input->post('major'));
+        $country = $this->security->xss_clean($this->input->post('country'));
+        $thesis_title = $this->security->xss_clean($this->input->post('thesis_title'));
+        $keyword = $this->security->xss_clean($this->input->post('keyword'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'grad_year' => $grad_year,
+            'degree' => $degree,
+            'institute' => $institute,
+            'major' => $major,
+            'country' => $country,
+            'thesis_title' => $thesis_title,
+            'keyword' => $keyword
+        );
+
+        $this->db->where('education_id', $education_id);
+        $this->db->update('res_education', $data);
+    }
+
 }

@@ -5,7 +5,7 @@ $(function () {
         // $("#check_name").css("color", "green");
 
         $.ajax({
-            url: 'http://localhost/researcher/index.php/admin/check_name',
+            url: 'check_name',
             data: {
                 firstname_en: $("#firstname_en").val(),
                 lastname_en: $("#lastname_en").val()

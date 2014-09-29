@@ -97,13 +97,10 @@ class Admin extends CI_Controller {
     }
 
     public function edit_profile_process() {
+        $researcher_id = $this->input->post('researcher_id');
         $this->load->model('admin_model');
         $this->admin_model->update_profile();
-        $data['title'] = 'Edit researcher profile success.';
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/navbar');
-        $this->load->view('admin/result', $data);
-        $this->load->view('templates/footer');
+        redirect(site_url() . "/admin/profile/$researcher_id");
     }
 
     public function researcher_list() {
@@ -116,11 +113,12 @@ class Admin extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function education($research_id) {
+    public function education($researcher_id) {
         $this->load->model('admin_model');
-        $data['query'] = $this->admin_model->get_education($research_id);
+        $data['query'] = $this->admin_model->get_education($researcher_id);
+        $data['profile'] = $this->admin_model->get_profile($researcher_id);
         $data['title'] = 'Education';
-        $data['researcher_id'] = $research_id;
+        $data['researcher_id'] = $researcher_id;
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/education', $data);
@@ -137,33 +135,110 @@ class Admin extends CI_Controller {
     }
 
     public function add_education_process() {
+        $researcher_id = $this->input->post('researcher_id');
         $this->load->model('admin_model');
         $this->admin_model->add_new_education();
-        $data['title'] = 'Add education success.';
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/navbar');
-        $this->load->view('admin/result', $data);
-        $this->load->view('templates/footer');
+        redirect(site_url() . "/admin/education/$researcher_id");
     }
-    
-    public function edit_education() {
+
+    public function edit_education($education_id) {
         $data['title'] = 'Edit education.';
         $this->load->model('admin_model');
-        $data['query'] = $this->admin_model->get_edit_education();
+        $data['query'] = $this->admin_model->get_edit_education($education_id);
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/edit_education', $data);
         $this->load->view('templates/footer');
     }
-    
+
     public function edit_education_process() {
+        $researcher_id = $this->input->post('researcher_id');
         $this->load->model('admin_model');
         $this->admin_model->update_education();
-        $data['title'] = 'Edit education success.';
+        redirect(site_url() . "/admin/education/$researcher_id");
+    }
+
+    public function delete_education($education_id) {
+        $this->load->model('admin_model');
+        $researcher_id = $this->admin_model->remove_education($education_id);
+        if (!empty($researcher_id)) {
+            redirect(site_url() . "/admin/education/$researcher_id");
+        } else {
+            redirect(site_url() . "/admin");
+        }
+    }
+
+    public function employment($researcher_id) {
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_employment($researcher_id);
+        $data['profile'] = $this->admin_model->get_profile($researcher_id);
+        $data['title'] = 'Employment Position';
+        $data['researcher_id'] = $researcher_id;
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/result', $data);
+        $this->load->view('admin/employment', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function add_employment() {
+        $data['title'] = "Add Employment";
+        $data['researcher_id'] = $this->input->post('researcher_id');
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/add_employment', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function add_employment_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $this->admin_model->add_new_employment();
+        redirect(site_url() . "/admin/education/$researcher_id");
+    }
+
+    public function edit_employment() {
+        $data['title'] = 'Edit employment.';
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_edit_employment();
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/edit_employment', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function edit_employment_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $this->admin_model->update_employment();
+        redirect(site_url() . "/admin/employment/$researcher_id");
+    }
+
+    public function research_training($researcher_id) {
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_research_training($researcher_id);
+        $data['profile'] = $this->admin_model->get_profile($researcher_id);
+        $data['title'] = 'Research training';
+        $data['researcher_id'] = $researcher_id;
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/research_training', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function add_research_training() {
+        $data['title'] = "Add research training";
+        $data['researcher_id'] = $this->input->post('researcher_id');
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/add_research_training', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function add_research_training_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $this->admin_model->add_new_research_training();
+        redirect(site_url() . "/admin/research_training/$researcher_id");
     }
 
 }

@@ -23,7 +23,7 @@
                 <li><a href="<?php echo site_url(); ?>/admin/add_researcher"><span class="glyphicon glyphicon-plus"></span> Add researcher</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo site_url(); ?>/logout">Logout</a></li>
+                <li><a href="<?php echo site_url(); ?>/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

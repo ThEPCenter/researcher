@@ -1,14 +1,14 @@
 <div class="container">
-    <div class="row well">
-
-        <h2 style="text-align: center;">Profile <span class="glyphicon glyphicon-user"></span></h2>
-        <h4 style="text-align: center;">(ข้อมูลประวัติส่วนตัว)</h4>
+    <div class="row well">       
 
         <?php if (!$query) : redirect('admin/index'); ?>
 
         <?php else: ?>
 
             <?php foreach ($query as $row) : ?>
+
+                <h2 style="text-align: center;"><span class="glyphicon glyphicon-user"></span> <?php echo $row->firstname_en . ' ' . $row->lastname_en; ?>'s Profile</h2>
+                <h4 style="text-align: center;">(ข้อมูลประวัติส่วนตัว)</h4>
 
                 <div class="col-md-2"><strong style="color: #89919c;">Name: </strong></div>
                 <div class="col-md-10">

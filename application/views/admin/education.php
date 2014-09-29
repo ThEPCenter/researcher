@@ -1,8 +1,12 @@
 
 <div class="container">
     <div class="row well">
-        <h2 style="text-align: center;">Education <span class="glyphicon glyphicon-book"></span></h2>
-        <h4 style="text-align: center;">(ข้อมูลประวัติการศึกษา)</h4>
+
+        <?php foreach ($profile as $pro) : ?>
+            <h2 style="text-align: center;"><span class="glyphicon glyphicon-book"></span> <?php echo $pro->firstname_en . ' ' . $pro->lastname_en; ?>'s Education</h2>
+            <h4 style="text-align: center;">(ข้อมูลประวัติการศึกษา)</h4>
+        <?php endforeach; ?>
+
 
         <?php if (!$query) : ?>
             <div class="row">
@@ -33,10 +37,15 @@
                         <td style="text-align: center;"><?php echo ucfirst($row->degree) . "'s degree"; ?></td>
                         <td style="text-align: center;"><?php echo $row->major; ?></td>
                         <td style="text-align: center;">
-                            <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_education">
-                                <input type="hidden" name="education_id" value="<?php echo $row->education_id; ?>">
-                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                            </form>
+                            <a href="<?php echo site_url() ?>/admin/edit_education/<?php echo $row->education_id; ?>"
+                               class="btn btn-primary">
+                                Edit
+                            </a>
+                            <a href="#"
+                               onclick="return deleteEducation(<?php echo $row->education_id; ?>)"
+                               class="btn btn-danger">
+                                Delete
+                            </a>                            
                         </td>
                     </tr>
                     <?php
@@ -44,7 +53,13 @@
                 endforeach;
                 ?>
             </table>
-
+            <script>
+                function deleteEducation(education_id) {
+                    if (confirm("ต้องการลบข้อมูลการศึกษา?") === true) {
+                        window.location = "<?php echo site_url() ?>/admin/delete_education/" + education_id;
+                    }
+                }
+            </script>
             <form role="form" method="post" action="<?php echo site_url(); ?>/admin/add_education">
                 <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add</button>
@@ -53,8 +68,6 @@
             <p>&nbsp;</p>
 
         <?php endif; ?>
-
-
 
     </div>
 </div>

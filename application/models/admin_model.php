@@ -113,7 +113,7 @@ class Admin_model extends CI_Model {
     }
 
     public function add_new_education() {
-        $researcher_id = $this->security->xss_clean($this->input->post('researcher_id'));
+        $researcher_id = $this->input->post('researcher_id');
         $grad_year = $this->security->xss_clean($this->input->post('grad_year'));
         $degree = $this->security->xss_clean($this->input->post('degree'));
         $institute = $this->security->xss_clean($this->input->post('institute'));
@@ -136,16 +136,16 @@ class Admin_model extends CI_Model {
         $this->db->insert('res_education', $data);
     }
 
-    public function get_edit_education() {
-        $education_id = $this->input->post('education_id');
-        $sql = "SELECT * FROM res_education WHERE education_id = '$education_id';";
-        $query = $this->db->query($sql);
+    public function get_edit_education($education_id) {
+        $education_id = $this->security->xss_clean($education_id);
+        $this->db->where('education_id', $education_id);
+        $query = $this->db->get('res_education');
         return $query->result();
     }
 
     public function update_education() {
         $education_id = $this->input->post('education_id');
-        $researcher_id = $this->security->xss_clean($this->input->post('researcher_id'));
+        $researcher_id = $this->input->post('researcher_id');
         $grad_year = $this->security->xss_clean($this->input->post('grad_year'));
         $degree = $this->security->xss_clean($this->input->post('degree'));
         $institute = $this->security->xss_clean($this->input->post('institute'));
@@ -167,6 +167,140 @@ class Admin_model extends CI_Model {
 
         $this->db->where('education_id', $education_id);
         $this->db->update('res_education', $data);
+    }
+
+    public function remove_education($education_id) {
+        $this->db->where('education_id', $education_id);
+        $query = $this->db->get('res_education');
+
+        if ($query->num_rows == 1) {
+            $row = $query->row();
+            $researcher_id = $row->researcher_id;
+            $this->db->delete('res_education', array('education_id' => $education_id));
+
+            return $researcher_id;
+        }
+    }
+
+    public function get_employment($researcher_id) {
+        $this->db->where('researcher_id', $researcher_id);
+        $query = $this->db->get('res_employment');
+        return $query->result();
+    }
+
+    public function add_new_employment() {
+        $researcher_id = $this->input->post('researcher_id');
+        $academic = $this->security->xss_clean($this->input->post('academic'));
+        $administrative = $this->security->xss_clean($this->input->post('administrative'));
+        $research = $this->security->xss_clean($this->input->post('research'));
+        $institute = $this->security->xss_clean($this->input->post('institute'));
+        $faculty = $this->security->xss_clean($this->input->post('faculty'));
+        $department = $this->security->xss_clean($this->input->post('department'));
+        $street_en = $this->security->xss_clean($this->input->post('street_en'));
+        $sub_district_en = $this->input->post('sub_district_en');
+        $district_en = $this->security->xss_clean($this->input->post('district_en'));
+        $province_en = $this->security->xss_clean($this->input->post('province_en'));
+        $postal_code = $this->security->xss_clean($this->input->post('postal_code'));
+        $phone = $this->security->xss_clean($this->input->post('phone'));
+        $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));
+        $email = $this->security->xss_clean($this->input->post('email'));
+        $website = $this->security->xss_clean($this->input->post('website'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'academic' => $academic,
+            'administrative' => $administrative,
+            'research' => $research,
+            'institute' => $institute,
+            'faculty' => $faculty,
+            'department' => $department,
+            'street_en' => $street_en,
+            'sub_district_en' => $sub_district_en,
+            'district_en' => $district_en,
+            'province_en' => $province_en,
+            'postal_code' => $postal_code,
+            'phone' => $phone,
+            'mobile_phone' => $mobile_phone,
+            'email' => $email,
+            'website' => $website
+        );
+
+        $this->db->insert('res_employment', $data);
+    }
+
+    public function get_edit_employment() {
+        $employment_id = $this->input->post('employment_id');
+        $this->db->where('employment_id', $employment_id);
+        $query = $this->db->get('res_employment');
+        return $query->result();
+    }
+
+    public function update_employment() {
+        $employment_id = $this->input->post('employment_id');
+        $researcher_id = $this->input->post('researcher_id');
+        $academic = $this->security->xss_clean($this->input->post('academic'));
+        $administrative = $this->security->xss_clean($this->input->post('administrative'));
+        $research = $this->security->xss_clean($this->input->post('research'));
+        $institute = $this->security->xss_clean($this->input->post('institute'));
+        $faculty = $this->security->xss_clean($this->input->post('faculty'));
+        $department = $this->security->xss_clean($this->input->post('department'));
+        $street_en = $this->security->xss_clean($this->input->post('street_en'));
+        $sub_district_en = $this->input->post('sub_district_en');
+        $district_en = $this->security->xss_clean($this->input->post('district_en'));
+        $province_en = $this->security->xss_clean($this->input->post('province_en'));
+        $postal_code = $this->security->xss_clean($this->input->post('postal_code'));
+        $phone = $this->security->xss_clean($this->input->post('phone'));
+        $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));
+        $email = $this->security->xss_clean($this->input->post('email'));
+        $website = $this->security->xss_clean($this->input->post('website'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'academic' => $academic,
+            'administrative' => $administrative,
+            'research' => $research,
+            'institute' => $institute,
+            'faculty' => $faculty,
+            'department' => $department,
+            'street_en' => $street_en,
+            'sub_district_en' => $sub_district_en,
+            'district_en' => $district_en,
+            'province_en' => $province_en,
+            'postal_code' => $postal_code,
+            'phone' => $phone,
+            'mobile_phone' => $mobile_phone,
+            'email' => $email,
+            'website' => $website
+        );
+
+        $this->db->where('employment_id', $employment_id);
+        $this->db->update('res_employment', $data);
+    }
+
+    public function get_research_training($researcher_id) {
+        $this->db->where('researcher_id', $researcher_id);
+        $query = $this->db->get('res_research_training');
+        return $query->result();
+    }
+
+    public function add_new_research_training() {
+        $researcher_id = $this->input->post('researcher_id');
+        $training_type = $this->security->xss_clean($this->input->post('training_type'));
+        $institute = $this->security->xss_clean($this->input->post('institute'));
+        $training_start = $this->security->xss_clean($this->input->post('training_start'));
+        $training_end = $this->security->xss_clean($this->input->post('training_end'));
+        $supervisor = $this->security->xss_clean($this->input->post('supervisor'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'training_type' => $training_type,
+            'institute' => $institute,
+            'training_start' => $training_start,
+            'training_end' => $training_end,
+            'supervisor' => $supervisor
+        );
+
+        $this->db->insert('res_research_training', $data);
     }
 
 }

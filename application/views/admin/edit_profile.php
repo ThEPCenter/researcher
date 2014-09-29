@@ -143,8 +143,8 @@
 
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-saved"></span> Submit</button>                                 
-                            &nbsp;<a href="<?php echo site_url() . "/admin" ; ?>"><strong>Cancel</strong></a>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-saved"></span> Submit</button> &nbsp;
+                            <a href="<?php echo site_url() . '/admin/profile/' . $row->researcher_id; ?>"><strong>Cancel</strong></a>
                         </div>
                     </div>
                 </fieldset>

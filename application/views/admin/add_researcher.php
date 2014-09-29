@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row well">
 
-        <h2 style="text-align: center;">Add Researcher</h2>
+        <h2 style="text-align: center;"><span class="glyphicon glyphicon-plus"></span> Add Researcher</h2>
         <h4 style="text-align: center;">&nbsp;</h4>
 
         <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/add_researcher_process">

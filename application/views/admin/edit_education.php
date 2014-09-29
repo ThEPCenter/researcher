@@ -91,7 +91,7 @@
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <button type="submit" class="btn btn-default">Submit</button> &nbsp;
-                            <a href="index"><strong>Cancel</strong></a>                            
+                            <a href="<?php echo site_url(); ?>/admin/education/<?php echo $row->researcher_id; ?>"><strong>Cancel</strong></a>                            
                         </div>
                     </div>
 

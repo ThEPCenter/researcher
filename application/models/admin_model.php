@@ -81,6 +81,7 @@ class Admin_model extends CI_Model {
         $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));
         $email = $this->security->xss_clean($this->input->post('email'));
         $website = $this->security->xss_clean($this->input->post('website'));
+        $pic_url = $this->security->xss_clean($this->input->post('pic_url'));
 
         $data = array(
             'firstname_en' => $firstname_en,
@@ -98,7 +99,8 @@ class Admin_model extends CI_Model {
             'phone' => $phone,
             'mobile_phone' => $mobile_phone,
             'email' => $email,
-            'website' => $website
+            'website' => $website,
+            'pic_url' => $pic_url
         );
 
         $this->db->where('researcher_id', $researcher_id);
@@ -381,6 +383,45 @@ class Admin_model extends CI_Model {
 
         $this->db->where('expertise_id', $expertise_id);
         $this->db->update('res_expertise', $data);
+    }
+
+    public function get_publication($researcher_id) {
+        $this->db->where('researcher_id', $researcher_id);
+        $query = $this->db->get('res_publication');
+        return $query->result();
+    }
+
+    public function add_new_publication() {
+        $researcher_id = $this->input->post('researcher_id');
+        $content = htmlspecialchars($this->input->post('content'), ENT_QUOTES);
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'content' => $content
+        );
+
+        $this->db->insert('res_publication', $data);
+    }
+    
+    public function get_edit_publication() {
+        $publication_id = $this->input->post('publication_id');
+        $this->db->where('publication_id', $publication_id);
+        $query = $this->db->get('res_publication');
+        return $query->result();
+    }
+    
+    public function update_publication() {
+        $publication_id = $this->input->post('publication_id');
+        $researcher_id = $this->input->post('researcher_id');
+        $content = htmlspecialchars($this->input->post('content'), ENT_QUOTES);
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'content' => $content
+        );
+
+        $this->db->where('publication_id', $publication_id);
+        $this->db->update('res_publication', $data);
     }
 
 }

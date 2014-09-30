@@ -142,6 +142,23 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="website" class="col-lg-2 control-label">Picture's Url</label>
+                        <div class="col-lg-10">                            
+                            <input type="text" class="form-control" name="pic_url" id="pic_url" value="<?php echo $row->pic_url; ?>" placeholder="http://www.example.com/pic.jpg">
+                            <div id="show-pic"><img src="<?php echo $row->pic_url; ?>"></div>
+                        </div>
+                        <script>
+                            $(function () {
+                                $("#pic_url").blur(function () {
+                                    var pic_url = $("#pic_url").val();
+                                    $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
+                                });
+
+                            });
+                        </script>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-saved"></span> Submit</button> &nbsp;
                             <a href="<?php echo site_url() . '/admin/profile/' . $row->researcher_id; ?>"><strong>Cancel</strong></a>

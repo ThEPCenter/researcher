@@ -295,7 +295,7 @@ class Admin extends CI_Controller {
         $this->admin_model->add_new_expertise();
         redirect(site_url() . "/admin/expertise/$researcher_id");
     }
-    
+
     public function edit_expertise() {
         $data['title'] = 'Edit expertise';
         $this->load->model('admin_model');
@@ -305,12 +305,57 @@ class Admin extends CI_Controller {
         $this->load->view('admin/edit_expertise', $data);
         $this->load->view('templates/footer');
     }
-    
+
     public function edit_expertise_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->load->model('admin_model');
         $this->admin_model->update_expertise();
         redirect(site_url() . "/admin/expertise/$researcher_id");
+    }
+
+    public function publication($researcher_id) {
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_publication($researcher_id);
+        $data['profile'] = $this->admin_model->get_profile($researcher_id);
+        $data['title'] = 'Publication';
+        $data['researcher_id'] = $researcher_id;
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/publication', $data);
+        $this->load->view('templates/footer', $data);
+    }
+    
+    public function add_publication() {
+        $data['title'] = "Add Publication";
+        $data['researcher_id'] = $this->input->post('researcher_id');
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/add_publication', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function add_publication_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $this->admin_model->add_new_publication();
+        redirect(site_url() . "/admin/publication/$researcher_id");
+    }
+    
+    public function edit_publication() {
+        $data['title'] = 'Edit publication';
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_edit_publication();
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/edit_publication', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function edit_publication_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $this->admin_model->update_publication();
+        redirect(site_url() . "/admin/publication/$researcher_id");
     }
 
 }

@@ -19,6 +19,7 @@
         <script src="<?php echo base_url(); ?>jquery-ui/jquery-ui.js"></script>
         <script src="<?php echo base_url(); ?>bootstrap/js/bootstrap.js"></script>
         <script src="<?php echo base_url(); ?>script.js"></script> 
+        <script src="<?php echo base_url(); ?>ckeditor/ckeditor.js"></script>
     </head>
     <body>
 

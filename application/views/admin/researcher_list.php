@@ -13,11 +13,12 @@
             foreach ($query as $row) :
                 ?>
                 <p><?php echo $i . '. ' . $row->firstname_en . ' ' . $row->lastname_en; ?> &nbsp;
-                    <a href="<?php echo site_url(); ?>/admin/profile/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-user"></span> Profile</a> | 
-                    <a href="<?php echo site_url(); ?>/admin/education/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-book"></span> Education</a> | 
-                    <a href="<?php echo site_url(); ?>/admin/employment/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-briefcase"></span> Employment</a> | 
-                    <a href="<?php echo site_url(); ?>/admin/training/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-fire"></span> Training</a> | 
-                    <a href="<?php echo site_url(); ?>/admin/expertise/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-flash"></span> Expertise</a> | 
+                    <a class="btn btn-success" href="<?php echo site_url(); ?>/admin/profile/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-user"></span> Profile</a> | 
+                    <a class="btn btn-success" href="<?php echo site_url(); ?>/admin/education/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-book"></span> Education</a> | 
+                    <a class="btn btn-success" href="<?php echo site_url(); ?>/admin/employment/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-briefcase"></span> Employment</a> | 
+                    <a class="btn btn-success" href="<?php echo site_url(); ?>/admin/training/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-fire"></span> Training</a> | 
+                    <a class="btn btn-success" href="<?php echo site_url(); ?>/admin/expertise/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-flash"></span> Expertise</a> | 
+                    <a class="btn btn-success" href="<?php echo site_url(); ?>/admin/publication/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-globe"></span> Publication</a>
                 </p>
                 <?php
                 $i++;

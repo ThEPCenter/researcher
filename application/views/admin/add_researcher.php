@@ -40,7 +40,7 @@
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-default">Submit</button> &nbsp;<a href="index">Cancel</a>
+                        <button type="submit" class="btn btn-success">Submit</button> &nbsp;<a href="index">Cancel</a>
                     </div>
                 </div>
             </fieldset>

@@ -213,32 +213,104 @@ class Admin extends CI_Controller {
         redirect(site_url() . "/admin/employment/$researcher_id");
     }
 
-    public function research_training($researcher_id) {
+    public function training($researcher_id) {
         $this->load->model('admin_model');
-        $data['query'] = $this->admin_model->get_research_training($researcher_id);
+        $data['query'] = $this->admin_model->get_training($researcher_id);
         $data['profile'] = $this->admin_model->get_profile($researcher_id);
-        $data['title'] = 'Research training';
+        $data['title'] = 'Training';
         $data['researcher_id'] = $researcher_id;
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/research_training', $data);
+        $this->load->view('admin/training', $data);
         $this->load->view('templates/footer', $data);
     }
 
-    public function add_research_training() {
-        $data['title'] = "Add research training";
+    public function add_training() {
+        $data['title'] = "Add training";
         $data['researcher_id'] = $this->input->post('researcher_id');
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/add_research_training', $data);
+        $this->load->view('admin/add_training', $data);
         $this->load->view('templates/footer');
     }
 
-    public function add_research_training_process() {
+    public function add_training_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->load->model('admin_model');
-        $this->admin_model->add_new_research_training();
-        redirect(site_url() . "/admin/research_training/$researcher_id");
+        $this->admin_model->add_new_training();
+        redirect(site_url() . "/admin/training/$researcher_id");
+    }
+
+    public function edit_training($training_id) {
+        $data['title'] = 'Edit Training';
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_edit_training($training_id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/edit_training', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function edit_training_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $this->admin_model->update_training();
+        redirect(site_url() . "/admin/training/$researcher_id");
+    }
+
+    public function delete_training($training_id) {
+        $this->load->model('admin_model');
+        $researcher_id = $this->admin_model->remove_training($training_id);
+        if (!empty($researcher_id)) {
+            redirect(site_url() . "/admin/training/$researcher_id");
+        } else {
+            redirect(site_url() . "/admin");
+        }
+    }
+
+    public function expertise($researcher_id) {
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_expertise($researcher_id);
+        $data['profile'] = $this->admin_model->get_profile($researcher_id);
+        $data['title'] = 'Expertise';
+        $data['researcher_id'] = $researcher_id;
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/expertise', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function add_expertise() {
+        $data['title'] = "Add Expertise";
+        $data['researcher_id'] = $this->input->post('researcher_id');
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/add_expertise', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function add_expertise_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $this->admin_model->add_new_expertise();
+        redirect(site_url() . "/admin/expertise/$researcher_id");
+    }
+    
+    public function edit_expertise() {
+        $data['title'] = 'Edit expertise';
+        $this->load->model('admin_model');
+        $data['query'] = $this->admin_model->get_edit_expertise();
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/edit_expertise', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function edit_expertise_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $this->admin_model->update_expertise();
+        redirect(site_url() . "/admin/expertise/$researcher_id");
     }
 
 }

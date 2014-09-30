@@ -277,13 +277,13 @@ class Admin_model extends CI_Model {
         $this->db->update('res_employment', $data);
     }
 
-    public function get_research_training($researcher_id) {
+    public function get_training($researcher_id) {
         $this->db->where('researcher_id', $researcher_id);
-        $query = $this->db->get('res_research_training');
+        $query = $this->db->get('res_training');
         return $query->result();
     }
 
-    public function add_new_research_training() {
+    public function add_new_training() {
         $researcher_id = $this->input->post('researcher_id');
         $training_type = $this->security->xss_clean($this->input->post('training_type'));
         $institute = $this->security->xss_clean($this->input->post('institute'));
@@ -300,7 +300,87 @@ class Admin_model extends CI_Model {
             'supervisor' => $supervisor
         );
 
-        $this->db->insert('res_research_training', $data);
+        $this->db->insert('res_training', $data);
+    }
+
+    public function get_edit_training($training_id) {
+        $this->db->where('training_id', $training_id);
+        $query = $this->db->get('res_training');
+        return $query->result();
+    }
+
+    public function update_training() {
+        $training_id = $this->input->post('training_id');
+        $researcher_id = $this->input->post('researcher_id');
+        $training_type = $this->security->xss_clean($this->input->post('training_type'));
+        $institute = $this->security->xss_clean($this->input->post('institute'));
+        $training_start = $this->security->xss_clean($this->input->post('training_start'));
+        $training_end = $this->security->xss_clean($this->input->post('training_end'));
+        $supervisor = $this->security->xss_clean($this->input->post('supervisor'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'training_type' => $training_type,
+            'institute' => $institute,
+            'training_start' => $training_start,
+            'training_end' => $training_end,
+            'supervisor' => $supervisor
+        );
+
+        $this->db->where('training_id', $training_id);
+        $this->db->update('res_training', $data);
+    }
+
+    public function remove_training($training_id) {
+        $this->db->where('training_id', $training_id);
+        $query = $this->db->get('res_training');
+
+        if ($query->num_rows == 1) {
+            $row = $query->row();
+            $researcher_id = $row->researcher_id;
+            $this->db->delete('res_training', array('training_id' => $training_id));
+
+            return $researcher_id;
+        }
+    }
+
+    public function get_expertise($researcher_id) {
+        $this->db->where('researcher_id', $researcher_id);
+        $query = $this->db->get('res_expertise');
+        return $query->result();
+    }
+
+    public function add_new_expertise() {
+        $researcher_id = $this->input->post('researcher_id');
+        $topic = $this->security->xss_clean($this->input->post('topic'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'topic' => $topic
+        );
+
+        $this->db->insert('res_expertise', $data);
+    }
+
+    public function get_edit_expertise() {
+        $expertise_id = $this->input->post('expertise_id');
+        $this->db->where('expertise_id', $expertise_id);
+        $query = $this->db->get('res_expertise');
+        return $query->result();
+    }
+
+    public function update_expertise() {
+        $expertise_id = $this->input->post('expertise_id');
+        $researcher_id = $this->input->post('researcher_id');
+        $topic = $this->security->xss_clean($this->input->post('topic'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'topic' => $topic
+        );
+
+        $this->db->where('expertise_id', $expertise_id);
+        $this->db->update('res_expertise', $data);
     }
 
 }

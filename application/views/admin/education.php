@@ -36,16 +36,12 @@
                         <td style="text-align: center;"><?php echo $row->grad_year; ?></td>
                         <td style="text-align: center;"><?php echo ucfirst($row->degree) . "'s degree"; ?></td>
                         <td style="text-align: center;"><?php echo $row->major; ?></td>
-                        <td style="text-align: center;">
+                        <td  style="text-align: center; min-width: 138px;">
                             <a href="<?php echo site_url() ?>/admin/edit_education/<?php echo $row->education_id; ?>"
                                class="btn btn-primary">
                                 Edit
                             </a>
-                            <a href="#"
-                               onclick="return deleteEducation(<?php echo $row->education_id; ?>)"
-                               class="btn btn-danger">
-                                Delete
-                            </a>                            
+                            <a class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</a>
                         </td>
                     </tr>
                     <?php
@@ -53,13 +49,7 @@
                 endforeach;
                 ?>
             </table>
-            <script>
-                function deleteEducation(education_id) {
-                    if (confirm("ต้องการลบข้อมูลการศึกษา?") === true) {
-                        window.location = "<?php echo site_url() ?>/admin/delete_education/" + education_id;
-                    }
-                }
-            </script>
+            
             <form role="form" method="post" action="<?php echo site_url(); ?>/admin/add_education">
                 <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add</button>
@@ -68,6 +58,25 @@
             <p>&nbsp;</p>
 
         <?php endif; ?>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Delete <?php echo $title; ?>!</h4>
+                        </div>
+                        <div class="modal-body">
+                            Do you really want to delete the <?php echo $title; ?> data?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>                            
+                            <button type="button" class="btn btn-primary" onclick="window.location = '<?php echo site_url(); ?>/admin/delete_education/<?php echo $row->education_id; ?>'">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- END Modal -->
 
     </div>
 </div>

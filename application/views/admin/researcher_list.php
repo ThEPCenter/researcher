@@ -16,7 +16,8 @@
                     <a href="<?php echo site_url(); ?>/admin/profile/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-user"></span> Profile</a> | 
                     <a href="<?php echo site_url(); ?>/admin/education/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-book"></span> Education</a> | 
                     <a href="<?php echo site_url(); ?>/admin/employment/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-briefcase"></span> Employment</a> | 
-                    <a href="<?php echo site_url(); ?>/admin/research_training/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-fire"></span> Research training</a> | 
+                    <a href="<?php echo site_url(); ?>/admin/training/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-fire"></span> Training</a> | 
+                    <a href="<?php echo site_url(); ?>/admin/expertise/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-flash"></span> Expertise</a> | 
                 </p>
                 <?php
                 $i++;

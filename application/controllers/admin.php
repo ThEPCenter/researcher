@@ -193,7 +193,7 @@ class Admin extends CI_Controller {
         $researcher_id = $this->input->post('researcher_id');
         $this->load->model('admin_model');
         $this->admin_model->add_new_employment();
-        redirect(site_url() . "/admin/education/$researcher_id");
+        redirect(site_url() . "/admin/employment/$researcher_id");
     }
 
     public function edit_employment() {

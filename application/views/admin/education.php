@@ -36,7 +36,7 @@
                         <td style="text-align: center;"><?php echo $row->grad_year; ?></td>
                         <td style="text-align: center;"><?php echo ucfirst($row->degree) . "'s degree"; ?></td>
                         <td style="text-align: center;"><?php echo $row->major; ?></td>
-                        <td  style="text-align: center; min-width: 138px;">
+                        <td  style="text-align: center; width: 138px;">
                             <a href="<?php echo site_url() ?>/admin/edit_education/<?php echo $row->education_id; ?>"
                                class="btn btn-primary">
                                 Edit

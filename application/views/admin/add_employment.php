@@ -122,7 +122,12 @@
                     </div>
                 </div>
 
-
+                <div class="form-group">
+                    <label for="thep_lab_code" class="col-lg-2 control-label">ThEP Lab Code</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="thep_lab_code" id="thep_lab_code">
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">

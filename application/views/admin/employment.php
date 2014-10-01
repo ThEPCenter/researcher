@@ -83,6 +83,10 @@
                     <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">Website</strong></div>
                     <div class="col-sm-9 col-md-9"><?php echo $row->website; ?></div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">ThEP Lab code</strong></div>
+                    <div class="col-sm-9 col-md-9"><?php echo $row->thep_lab_code; ?></div>
+                </div>
 
             <?php endforeach; ?>
 

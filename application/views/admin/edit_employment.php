@@ -54,7 +54,7 @@
                             <input type="text" class="form-control" name="department" id="department" value="<?php echo $row->department; ?>">
                         </div>
                     </div>                    
-                    
+
                     <div class="form-group">
                         <label for="street_en" class="col-lg-2 control-label">ที่ติดต่อที่ทำงาน (Office's address)</label>
                         <div class="col-lg-10">
@@ -128,6 +128,13 @@
                         <label for="website" class="col-lg-2 control-label">Website</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" name="website" id="website" value="<?php echo $row->website; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thep_lab_code" class="col-lg-2 control-label">ThEP Lab Code</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="thep_lab_code" id="thep_lab_code" value="<?php echo $row->thep_lab_code; ?>">
                         </div>
                     </div>
 

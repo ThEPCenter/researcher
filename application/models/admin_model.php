@@ -207,6 +207,7 @@ class Admin_model extends CI_Model {
         $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));
         $email = $this->security->xss_clean($this->input->post('email'));
         $website = $this->security->xss_clean($this->input->post('website'));
+        $thep_lab_code = $this->security->xss_clean($this->input->post('thep_lab_code'));
 
         $data = array(
             'researcher_id' => $researcher_id,
@@ -224,7 +225,8 @@ class Admin_model extends CI_Model {
             'phone' => $phone,
             'mobile_phone' => $mobile_phone,
             'email' => $email,
-            'website' => $website
+            'website' => $website,
+            'thep_lab_code' => $thep_lab_code
         );
 
         $this->db->insert('res_employment', $data);
@@ -255,6 +257,7 @@ class Admin_model extends CI_Model {
         $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));
         $email = $this->security->xss_clean($this->input->post('email'));
         $website = $this->security->xss_clean($this->input->post('website'));
+        $thep_lab_code = $this->security->xss_clean($this->input->post('thep_lab_code'));
 
         $data = array(
             'researcher_id' => $researcher_id,
@@ -272,7 +275,8 @@ class Admin_model extends CI_Model {
             'phone' => $phone,
             'mobile_phone' => $mobile_phone,
             'email' => $email,
-            'website' => $website
+            'website' => $website,
+            'thep_lab_code' => $thep_lab_code
         );
 
         $this->db->where('employment_id', $employment_id);
@@ -402,14 +406,14 @@ class Admin_model extends CI_Model {
 
         $this->db->insert('res_publication', $data);
     }
-    
+
     public function get_edit_publication() {
         $publication_id = $this->input->post('publication_id');
         $this->db->where('publication_id', $publication_id);
         $query = $this->db->get('res_publication');
         return $query->result();
     }
-    
+
     public function update_publication() {
         $publication_id = $this->input->post('publication_id');
         $researcher_id = $this->input->post('researcher_id');

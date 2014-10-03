@@ -16,16 +16,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="firstname_th" class="col-lg-2 control-label">ชื่อ<span style="color: red;">**</span></label>
+                        <label for="firstname_th" class="col-lg-2 control-label">ชื่อ</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="firstname_th" id="firstname_th" required value="<?php echo $row->firstname_th; ?>" placeholder="ชื่อภาษาไทย">
+                            <input type="text" class="form-control" name="firstname_th" id="firstname_th" value="<?php echo $row->firstname_th; ?>" placeholder="ชื่อภาษาไทย">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="lastname_th" class="col-lg-2 control-label">สกุล<span style="color: red;">**</span></label>
+                        <label for="lastname_th" class="col-lg-2 control-label">สกุล</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="lastname_th" id="lastname_th" required value="<?php echo $row->lastname_th; ?>" placeholder="สกุลภาษาไทย">
+                            <input type="text" class="form-control" name="lastname_th" id="lastname_th" value="<?php echo $row->lastname_th; ?>" placeholder="สกุลภาษาไทย">
                         </div>
                     </div>
 
@@ -127,9 +127,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="col-lg-2 control-label">Email<span style="color: red;">**</span></label>
+                        <label for="email" class="col-lg-2 control-label">Email</label>
                         <div class="col-lg-10">
-                            <input type="email" class="form-control" name="email" id="email" multiple required value="<?php echo $row->email; ?>" placeholder="email1@example.com, email2@example">
+                            <input type="email" class="form-control" name="email" id="email" multiple value="<?php echo $row->email; ?>" placeholder="email1@example.com, email2@example">
                             <span class="help-block">สามารถกรอก email ได้หลาย email โดยใช้เครื่องหมาย comma (,) คั่น เช่น email1@example.com, email2@example เป็นต้น</span>
                         </div>
                     </div>

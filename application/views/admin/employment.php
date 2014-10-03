@@ -47,26 +47,29 @@
                     <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">Department/School/Division</strong></div>
                     <div class="col-sm-9 col-md-9"><?php echo $row->department; ?></div>
                 </div>
+                <h4>ที่ติดต่อที่ทำงาน</h4>
                 <div class="row">
-                    <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">ที่ติดต่อที่ทำงาน (Office's address)</strong></div>
-                    <div class="col-sm-9 col-md-9"><?php echo $row->street_en; ?></div>
+                    <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">Office's address (English)</strong></div>
+                    <div class="col-sm-9 col-md-9">
+                        <?php echo $row->street_en; ?>
+                        <?php echo $row->sub_district_en; ?>
+                        <?php echo $row->district_en; ?>
+                        <?php echo $row->province_en; ?>
+                        <?php echo $row->postal_code; ?>
+                    </div>
                 </div>
+                
                 <div class="row">
-                    <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">แขวง/ตำบล</strong></div>
-                    <div class="col-sm-9 col-md-9"><?php echo $row->sub_district_en; ?></div>
+                    <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">ที่อยู่ที่ทำงาน (Thai)</strong></div>
+                    <div class="col-sm-9 col-md-9">
+                        <?php echo $row->street_th; ?>
+                        <?php echo $row->sub_district_th; ?>
+                        <?php echo $row->district_th; ?>
+                        <?php echo $row->province_th; ?>
+                        <?php echo $row->postal_code; ?>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">เขต/อำเภอ</strong></div>
-                    <div class="col-sm-9 col-md-9"><?php echo $row->district_en; ?></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">จังหวัด</strong></div>
-                    <div class="col-sm-9 col-md-9"><?php echo $row->province_en; ?></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">รหัสไปรษณีย์</strong></div>
-                    <div class="col-sm-9 col-md-9"><?php echo $row->postal_code; ?></div>
-                </div>
+                
                 <div class="row">
                     <div class="col-sm-3 col-md-3"><strong style="color: #89919c;">โทรศัพท์</strong></div>
                     <div class="col-sm-9 col-md-9"><?php echo $row->phone; ?></div>

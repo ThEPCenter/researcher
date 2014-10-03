@@ -23,20 +23,28 @@
         <?php else: ?>
 
             <table class="table table-bordered">
-                <tr>
-                    <td style="width: 230px;"><strong>Field of Expertise/ Competency</strong></td>
-                    <?php foreach ($query as $r) : ?>
+
+
+                <?php foreach ($query as $r) : ?>
+                    <tr>
+                        <td style="width: 230px;"><strong>Field of Expertise / Competency</strong></td>
                         <td>
                             <?php echo $r->topic; ?>
                         </td>
-                        <td style="text-align: center; width: 90px;">
+                        <td rowspan="2" style="text-align: center; width: 90px;">
                             <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_expertise">
                                 <input type="hidden" name="expertise_id" value="<?php echo $r->expertise_id; ?>">
-                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                             </form>
                         </td>
-                    <?php endforeach; ?>
-                </tr>
+                    </tr>
+                    <tr>
+                        <td><strong>Specific</strong></td>
+                        <td><?php echo $r->specific_topic; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+
+
             </table>
 
 

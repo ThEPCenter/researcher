@@ -87,7 +87,7 @@
             <p>&nbsp;</p>
             <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_profile">
                 <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit profile</button>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit profile</button>
             </form>
 
 

@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label for="academic" class="col-lg-2 control-label">Academic position</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="academic" id="academic" value="<?php echo $row->academic; ?>">
+                            <input type="text" class="form-control" name="academic" id="academic" value="<?php echo $row->academic; ?>" placeholder="Lecturer, Asst.Prof., Assoc.Prof., Prof., ...">
                         </div>
                     </div>
 
@@ -53,31 +53,33 @@
                         <div class="col-lg-10">
                             <input type="text" class="form-control" name="department" id="department" value="<?php echo $row->department; ?>">
                         </div>
-                    </div>                    
-
+                    </div>
+                    
+                    <h3>ที่ติดต่อที่ทำงาน</h3>
+                    
                     <div class="form-group">
-                        <label for="street_en" class="col-lg-2 control-label">ที่ติดต่อที่ทำงาน (Office's address)</label>
+                        <label for="street_en" class="col-lg-2 control-label">Office's address (English)</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="street_en" id="street_en" value="<?php echo $row->street_en; ?>">
+                            <input type="text" class="form-control" name="street_en" id="street_en" value="<?php echo $row->street_en; ?>" placeholder="Room No., Building / House No., Lane / Alley, Street / Road, ...">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="sub_district_en" class="col-lg-2 control-label">แขวง/ตำบล</label>
+                        <label for="sub_district_en" class="col-lg-2 control-label">Sub-area / Sub-district (English)</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" name="sub_district_en" id="sub_district_en" value="<?php echo $row->sub_district_en; ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="district_en" class="col-lg-2 control-label">เขต/อำเภอ</label>
+                        <label for="district_en" class="col-lg-2 control-label">Area / District (English)</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" name="district_en" id="district_en" value="<?php echo $row->district_en; ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="province_en" class="col-lg-2 control-label">Province</label>
+                        <label for="province_en" class="col-lg-2 control-label">Province (English)</label>
                         <div class="col-lg-10">
                             <?php
                             include 'province.php';
@@ -87,7 +89,7 @@
                                 $pro_en = $row->province_en;
                             }
                             ?>
-                            <select class="form-control" name="province_en" id="province_en" required>
+                            <select class="form-control" name="province_en" id="province_en">
                                 <option value="">---- Select Province ----</option>
                                 <?php foreach ($province_en as $value): ?>                                    
                                     <option value="<?php echo $value; ?>"<?php echo pro_select($value, $pro_en); ?>><?php echo $value; ?></option>
@@ -95,32 +97,60 @@
                             </select>
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="street_th" class="col-lg-2 control-label">ที่อยู่ที่ทำงาน (Thai)</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="street_th" id="street_th" value="<?php echo $row->street_th; ?>" placeholder="เลขที่, อาคาร, ตรอก, ซอย, ถนน, ...">
+                        </div>
+                    </div>
 
                     <div class="form-group">
-                        <label for="postal_code" class="col-lg-2 control-label">รหัสไปรษณีย์</label>
+                        <label for="sub_district_th" class="col-lg-2 control-label">แขวง / ตำบล (Thai)</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="sub_district_th" id="sub_district_th" value="<?php echo $row->sub_district_th; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="district_th" class="col-lg-2 control-label">เขต / อำเภอ (Thai)</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="district_th" id="district_th" value="<?php echo $row->district_th; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="province_th" class="col-lg-2 control-label">จังหวัด (Thai)</label>
+                        <div class="col-lg-10">
+                            <?php echo pro_list_th($row->province_th); ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postal_code" class="col-lg-2 control-label">รหัสไปรษณีย์ (Postal code)</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" name="postal_code" id="postal_code" value="<?php echo $row->postal_code; ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="phone" class="col-lg-2 control-label">โทรศัพท์</label>
+                        <label for="phone" class="col-lg-2 control-label">โทรศัพท์ (Phone)</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $row->phone; ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="mobile_phone" class="col-lg-2 control-label">โทรศัพท์มือถือ</label>
+                        <label for="mobile_phone" class="col-lg-2 control-label">โทรศัพท์มือถือ (Mobile phone)</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" name="mobile_phone" id="mobile_phone" value="<?php echo $row->mobile_phone; ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="col-lg-2 control-label">Email<span style="color: red;">**</span></label>
+                        <label for="email" class="col-lg-2 control-label">Email</label>
                         <div class="col-lg-10">
-                            <input type="email" class="form-control" name="email" id="email" required multiple value="<?php echo $row->email; ?>">
+                            <input type="email" class="form-control" name="email" id="email" multiple value="<?php echo $row->email; ?>">
                         </div>
                     </div>
 

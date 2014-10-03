@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <label for="academic" class="col-lg-2 control-label">Academic position</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="academic" id="academic">
+                        <input type="text" class="form-control" name="academic" id="academic" placeholder="Lecturer, Asst.Prof., Assoc.Prof., Prof., ...">
                     </div>
                 </div>
 
@@ -109,9 +109,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="col-lg-2 control-label">Email<span style="color: red;">**</span></label>
+                    <label for="email" class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control" name="email" id="email" required multiple>
+                        <input type="email" class="form-control" name="email" id="email" multiple>
                     </div>
                 </div>
 

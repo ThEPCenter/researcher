@@ -11,9 +11,9 @@
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
 
                 <div class="form-group">
-                    <label for="expertise">Field of Expertise/ Competency<span style="color: red;">**</span></label>                        
+                    <label for="expertise">Field of Expertise/ Competency</label>                        
                     <?php include 'expertise_array.php'; ?>
-                    <select class="form-control" id="expertise" name="topic" required>
+                    <select class="form-control" id="expertise" name="topic">
                         <option value="">---- Select Field of Expertise ----</option>
 
                         <option disabled>General physics</option>
@@ -68,6 +68,12 @@
 
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="specific_topic">Specific</label>                        
+                    <input class="form-control" type="text" name="specific_topic" id="specific_topic">
+                </div>
+                
                 <button type="submit" class="btn btn-default">Submit</button> &nbsp;
                 <a href="<?php echo site_url(); ?>/admin/expertise/<?php echo $researcher_id; ?>">Cancel</a>
 

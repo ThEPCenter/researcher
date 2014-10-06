@@ -54,8 +54,8 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label"></label>
                     <div class="col-lg-10">
-                        <button type="submit" class="btn btn-default">Submit</button> &nbsp;
-                        <a href="<?php echo site_url() . '/admin/research_training/' . $researcher_id; ?>">Cancel</a>
+                        <button type="submit" class="btn btn-success">Submit</button> &nbsp;
+                        <a href="<?php echo site_url() . '/admin/training/' . $researcher_id; ?>">Cancel</a>
                     </div>
                 </div>
 

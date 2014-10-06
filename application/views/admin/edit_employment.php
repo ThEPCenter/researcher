@@ -1,7 +1,10 @@
 <div class="container">
     <div class="row well">
-
-        <h2 style="text-align: center;">Edit Employment Position <span class="glyphicon glyphicon-briefcase"></span></h2>
+        <?php foreach ($profile as $pro) : ?>
+            <h2 style="text-align: center;">Edit <?php echo $pro->firstname_en . ' ' . $pro->lastname_en; ?>'s Employment Position
+                <span class="glyphicon glyphicon-briefcase"></span>
+            </h2>
+        <?php endforeach; ?>
         <p>&nbsp;</p>
 
         <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_employment_process">
@@ -54,9 +57,9 @@
                             <input type="text" class="form-control" name="department" id="department" value="<?php echo $row->department; ?>">
                         </div>
                     </div>
-                    
+
                     <h3>ที่ติดต่อที่ทำงาน</h3>
-                    
+
                     <div class="form-group">
                         <label for="street_en" class="col-lg-2 control-label">Office's address (English)</label>
                         <div class="col-lg-10">
@@ -97,7 +100,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="street_th" class="col-lg-2 control-label">ที่อยู่ที่ทำงาน (Thai)</label>
                         <div class="col-lg-10">

@@ -12,7 +12,7 @@
 
                 <div class="form-group">
                     <label for="content">International Publication <span style="color: red;">**</span> (in the last 10 years in order of most recent work)</label>                        
-                    <textarea name="content" id="content" class="form-control" rows="4" required></textarea>
+                    <textarea name="content" id="content" class="form-control" rows="10" required></textarea>
                     <script>
                         CKEDITOR.replace('content');
                     </script>

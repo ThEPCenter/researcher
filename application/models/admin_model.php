@@ -25,10 +25,8 @@ class Admin_model extends CI_Model {
     }
 
     public function add_new_researcher() {
-        $title_en = $this->security->xss_clean($this->input->post('title_en'));
         $firstname_en = $this->security->xss_clean($this->input->post('firstname_en'));
         $lastname_en = $this->security->xss_clean($this->input->post('lastname_en'));
-        $email = $this->security->xss_clean($this->input->post('email'));
 
         $this->db->where('firstname_en', $firstname_en);
         $this->db->where('lastname_en', $lastname_en);
@@ -41,10 +39,8 @@ class Admin_model extends CI_Model {
                 return FALSE;
             } else {
                 $data = array(
-                    "title_en" => $title_en,
                     "firstname_en" => $firstname_en,
-                    "lastname_en" => $lastname_en,
-                    "email" => $email
+                    "lastname_en" => $lastname_en
                 );
                 $this->db->insert('res_profile', $data);
                 return TRUE;
@@ -108,6 +104,10 @@ class Admin_model extends CI_Model {
     }
 
     public function get_education($researcher_id) {
+        $q_pro = $this->get_profile($researcher_id);
+        if (!$q_pro) {
+            redirect('admin');
+        }
         $this->db->where('researcher_id', $researcher_id);
         $this->db->order_by("grad_year", "asc");
         $query = $this->db->get('res_education');
@@ -185,6 +185,10 @@ class Admin_model extends CI_Model {
     }
 
     public function get_employment($researcher_id) {
+        $q_pro = $this->get_profile($researcher_id);
+        if (!$q_pro) {
+            redirect('admin');
+        }
         $this->db->where('researcher_id', $researcher_id);
         $query = $this->db->get('res_employment');
         return $query->result();
@@ -251,11 +255,11 @@ class Admin_model extends CI_Model {
         $street_en = $this->security->xss_clean($this->input->post('street_en'));
         $street_th = $this->security->xss_clean($this->input->post('street_th'));
         $sub_district_en = $this->security->xss_clean($this->input->post('sub_district_en'));
-        $sub_district_th = $this->security->xss_clean($this->input->post('sub_district_th'));        
+        $sub_district_th = $this->security->xss_clean($this->input->post('sub_district_th'));
         $district_en = $this->security->xss_clean($this->input->post('district_en'));
         $district_th = $this->security->xss_clean($this->input->post('district_th'));
         $province_en = $this->security->xss_clean($this->input->post('province_en'));
-        $province_th = $this->security->xss_clean($this->input->post('province_th'));        
+        $province_th = $this->security->xss_clean($this->input->post('province_th'));
         $postal_code = $this->security->xss_clean($this->input->post('postal_code'));
         $phone = $this->security->xss_clean($this->input->post('phone'));
         $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));

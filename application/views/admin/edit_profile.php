@@ -1,12 +1,41 @@
 <div class="container">
     <div class="row well">
+        <?php foreach ($query as $row) : ?>
+            <h2 style="text-align: center;">Edit Profile : <?php echo $row->firstname_en . ' ' . $row->lastname_en; ?></h2>
+            <p>&nbsp;</p>       
 
-        <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_profile_process">
-            <?php foreach ($query as $row) : ?>
+            <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_profile_process">
+
                 <fieldset>
-                    <legend class="text-center">Edit Profile : <?php echo $row->firstname_en . ' ' . $row->lastname_en; ?></legend>
-
+                    <legend class="text-center"></legend>
                     <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Profile picture</label>
+                        <div class="col-lg-10">
+                            <div id="show-pic">
+                                <img src="<?php echo $row->pic_url; ?>">
+                            </div>                            
+                        </div>
+                    </div>
+
+                    <script>
+                        $(function () {
+                            $("#pic_url").blur(function () {
+                                var pic_url = $("#pic_url").val();
+                                $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
+                            });
+
+                        });
+                    </script>
+
+                    <div class="form-group">
+                        <label for="website" class="col-lg-2 control-label">Picture's url</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="pic_url" id="pic_url" value="<?php echo $row->pic_url; ?>" placeholder="เช่น http://www.example.com/pic.jpg">
+                        </div>
+
+                    </div>
 
                     <div class="form-group">
                         <label for="title_th" class="col-lg-2 control-label">คำนำหน้าชื่อ</label>
@@ -141,22 +170,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="website" class="col-lg-2 control-label">Picture's Url</label>
-                        <div class="col-lg-10">                            
-                            <input type="text" class="form-control" name="pic_url" id="pic_url" value="<?php echo $row->pic_url; ?>" placeholder="http://www.example.com/pic.jpg">
-                            <div id="show-pic"><img src="<?php echo $row->pic_url; ?>"></div>
-                        </div>
-                        <script>
-                            $(function () {
-                                $("#pic_url").blur(function () {
-                                    var pic_url = $("#pic_url").val();
-                                    $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
-                                });
 
-                            });
-                        </script>
-                    </div>
 
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
@@ -165,8 +179,9 @@
                         </div>
                     </div>
                 </fieldset>
-            <?php endforeach; ?>
-        </form>
+
+            </form>
+        <?php endforeach; ?>
 
         <script>
             $(function () {

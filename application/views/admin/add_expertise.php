@@ -1,7 +1,7 @@
 
 <div class="container">
     <div class="row well">
-        <h2 style="text-align: center;">Add Field of Expertise <span class="glyphicon glyphicon-flash"></span></h2>
+        <h2 style="text-align: center;"><?php echo $title; ?> <span class="glyphicon glyphicon-flash"></span></h2>
         <p>&nbsp;</p>
 
 
@@ -73,7 +73,7 @@
                     <label for="specific_topic">Specific</label>                        
                     <input class="form-control" type="text" name="specific_topic" id="specific_topic">
                 </div>
-                
+
                 <button type="submit" class="btn btn-default">Submit</button> &nbsp;
                 <a href="<?php echo site_url(); ?>/admin/expertise/<?php echo $researcher_id; ?>">Cancel</a>
 

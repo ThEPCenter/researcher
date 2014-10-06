@@ -1,8 +1,10 @@
 
 <div class="container">
     <div class="row well">
-        <h2 style="text-align: center;">Edit Education <span class="glyphicon glyphicon-book"></span></h2>
-        <h4 style="text-align: center;">(แก้ไขข้อมูลประวัติการศึกษา)</h4>
+        <?php foreach ($profile as $pro) : ?>
+            <h2 style="text-align: center;">Edit <?php echo $pro->firstname_en . ' ' . $pro->lastname_en; ?>'s Education <span class="glyphicon glyphicon-book"></span></h2>
+        <?php endforeach; ?>
+        <p>&nbsp;</p>
 
         <div class="col-md-12">
             <?php
@@ -11,6 +13,10 @@
                 if ($value == $data) {
                     return ' selected';
                 }
+            }
+
+            if (empty($query)) {
+                redirect('admin');
             }
             ?>
 
@@ -90,7 +96,7 @@
 
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-default">Submit</button> &nbsp;
+                            <button type="submit" class="btn btn-success">Submit</button> &nbsp;
                             <a href="<?php echo site_url(); ?>/admin/education/<?php echo $row->researcher_id; ?>"><strong>Cancel</strong></a>                            
                         </div>
                     </div>

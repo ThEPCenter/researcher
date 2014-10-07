@@ -15,12 +15,11 @@
                 <div class="col-xs-6 col-sm-4 col-md-3">
 
                     <a href="<?php echo site_url(); ?>/admin/profile/<?php echo $row->researcher_id; ?>">
-                        <div style="width: 60px; height: 80px;">
-                            <img style="max-width: 60px" src="<?php echo $row->pic_url; ?>">
+                        <div style="max-width: 60px; height: 80px;">
+                            <img alt="profile's picture" style="max-width: 60px;" src="<?php echo $row->pic_url; ?>">
                         </div>                        
-                        <?php echo '<strong>' . $row->firstname_en . ' ' . $row->lastname_en . '</strong>'; ?>
-                    </a>
-                    <br>
+                        <div style="margin-top: 5px;"><?php echo $row->firstname_en . ' ' . $row->lastname_en; ?></div>
+                    </a>                    
                     <a title="Education" href="<?php echo site_url(); ?>/admin/education/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-book"></span></a>
                     <a title="Employment" href="<?php echo site_url(); ?>/admin/employment/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-briefcase"></span></a>
                     <a title="Training" href="<?php echo site_url(); ?>/admin/training/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-fire"></span></a>
@@ -35,8 +34,8 @@
             ?>
 
         <?php endif; ?>       
-        
+
     </div>
-    
+
     <p>จำนวนนักวิจัยทั้งหมด <?php echo --$i; ?> คน</p>
 </div>

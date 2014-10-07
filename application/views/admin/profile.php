@@ -8,7 +8,7 @@
             <?php foreach ($query as $row) : ?>
 
                 <h2 style="text-align: center;"><span class="glyphicon glyphicon-user"></span> <?php echo $row->firstname_en . ' ' . $row->lastname_en; ?>'s Profile</h2>
-                <h4 style="text-align: center;">(ข้อมูลประวัติส่วนตัว)</h4>
+                <h4 style="text-align: center;">&nbsp;</h4>
                 <?php if (!empty($row->pic_url)): ?>
                 <div class="col-md-2">&nbsp;</div>                
                 <div class="col-md-10">                    

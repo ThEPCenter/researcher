@@ -1,10 +1,8 @@
 <div class="container">
     <div class="row well">
-        <?php foreach ($profile as $pro) : ?>
-            <h2 style="text-align: center;">Edit <?php echo $pro->firstname_en . ' ' . $pro->lastname_en; ?>'s Employment Position
-                <span class="glyphicon glyphicon-briefcase"></span>
-            </h2>
-        <?php endforeach; ?>
+
+        <h2 style="text-align: center;"><?php echo $title; ?> <span class="glyphicon glyphicon-briefcase"></span></h2>
+
         <p>&nbsp;</p>
 
         <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_employment_process">

@@ -1,7 +1,7 @@
 
 <div class="container">
     <div class="row well">
-        <h2 style="text-align: center;"><?php echo ucfirst($title) ?> <span class="glyphicon glyphicon-fire"></span></h2>
+        <h2 style="text-align: center;"><?php echo $title; ?> <span class="glyphicon glyphicon-fire"></span></h2>
         <p>&nbsp;</p>        
 
         <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/add_training_process">

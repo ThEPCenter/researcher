@@ -4,7 +4,6 @@
         <h2 style="text-align: center;"><?php echo $title; ?> <span class="glyphicon glyphicon-flash"></span></h2>
         <p>&nbsp;</p>
 
-
         <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_expertise_process">
             <fieldset>
                 <?php
@@ -15,12 +14,16 @@
                     }
                 }
 
+                if (!$query) {
+                    redirect('admin');
+                }
+
                 foreach ($query as $r) :
                     ?>
-                
+
                     <input type="hidden" name="expertise_id" value="<?php echo $r->expertise_id; ?>">
                     <input type="hidden" name="researcher_id" value="<?php echo $r->researcher_id; ?>">
-                    
+
                     <div class="form-group">
                         <label for="expertise">Field of Expertise/ Competency</label>                        
                         <?php include 'expertise_array.php'; ?>
@@ -80,10 +83,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                    <label for="specific_topic">Specific</label>                        
-                    <input class="form-control" type="text" name="specific_topic" id="specific_topic" value="<?php echo $r->specific_topic; ?>">
-                </div>
-                    
+                        <label for="specific_topic">Specific</label>                        
+                        <input class="form-control" type="text" name="specific_topic" id="specific_topic" value="<?php echo $r->specific_topic; ?>">
+                    </div>
+
                     <button type="submit" class="btn btn-success">Submit</button> &nbsp;
                     <a href="<?php echo site_url(); ?>/admin/expertise/<?php echo $r->researcher_id; ?>">Cancel</a>
 

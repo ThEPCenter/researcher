@@ -1,11 +1,8 @@
 
 <div class="container">
     <div class="row well">
-
-        <?php foreach ($profile as $pro) : ?>
-            <h2 style="text-align: center;"><span class="glyphicon glyphicon-flash"></span> <?php echo $pro->firstname_en . ' ' . $pro->lastname_en; ?>'s <?php echo $title; ?></h2>
-            <p>&nbsp;</p>
-        <?php endforeach; ?>
+        <h2 style="text-align: center;"><span class="glyphicon glyphicon-flash"></span> <?php echo $title; ?></h2>
+        <p>&nbsp;</p>
 
         <?php if (!$query) : ?>
             <div class="row">
@@ -16,15 +13,13 @@
             <form method="post" action="<?php echo site_url(); ?>/admin/add_expertise">
                 <div style="text-align: center;">
                     <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
-                    <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> เพิ่มข้อมูล <?php echo $title; ?></button>
+                    <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> เพิ่มข้อมูล Expertise</button>
                 </div>
             </form>
 
         <?php else: ?>
 
             <table class="table table-bordered">
-
-
                 <?php foreach ($query as $r) : ?>
                     <tr>
                         <td style="width: 230px;"><strong>Field of Expertise / Competency</strong></td>
@@ -34,6 +29,7 @@
                         <td rowspan="2" style="text-align: center; width: 90px;">
                             <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_expertise">
                                 <input type="hidden" name="expertise_id" value="<?php echo $r->expertise_id; ?>">
+                                <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
                                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                             </form>
                         </td>
@@ -43,15 +39,10 @@
                         <td><?php echo $r->specific_topic; ?></td>
                     </tr>
                 <?php endforeach; ?>
-
-
             </table>
-
-
-
         <?php endif; ?>
-
-
     </div>
+
+    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/researcher_list"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
 
 </div> <!-- /.container -->

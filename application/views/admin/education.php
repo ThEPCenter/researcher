@@ -1,12 +1,8 @@
 
 <div class="container">
-    <div class="row well">
-
-        <?php foreach ($profile as $pro) : ?>
-            <h2 style="text-align: center;"><span class="glyphicon glyphicon-book"></span> <?php echo $pro->firstname_en . ' ' . $pro->lastname_en; ?>'s Education</h2>
-            <h4 style="text-align: center;">(ข้อมูลประวัติการศึกษา)</h4>
-        <?php endforeach; ?>
-
+    <div class="row well">        
+        <h2 style="text-align: center;"><span class="glyphicon glyphicon-book"></span> <?php echo $title; ?></h2>
+        <h4 style="text-align: center;">(ข้อมูลประวัติการศึกษา)</h4>
 
         <?php if (!$query) : ?>
             <div class="row">
@@ -17,7 +13,7 @@
             <form method="post" action="<?php echo site_url(); ?>/admin/add_education">
                 <div style="text-align: center;">
                     <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
-                    <button class="btn btn-default">กรอกข้อมูลประวัติการศึกษา</button>
+                    <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> เพิ่มข้อมูล Education</button>
                 </div>
             </form>
         <?php else: ?>
@@ -41,42 +37,42 @@
                                class="btn btn-primary">
                                 Edit
                             </a>
-                            <a class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</a>
+                            <a class="btn btn-danger" data-toggle="modal" data-target="#myModal_<?php echo $row->education_id; ?>">Delete</a>
                         </td>
+                        <!-- Modal -->
+                    <div class="modal fade" id="myModal_<?php echo $row->education_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel_<?php echo $row->education_id; ?>">Delete <?php echo $title; ?>!</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Do you really want to delete the <?php echo $title; ?> data?
+                                    <br>=> Year: <?php echo $row->grad_year; ?>, Degree: <?php echo ucfirst($row->degree) . "'s degree"; ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>                            
+                                    <button type="button" class="btn btn-danger" onclick="window.location = '<?php echo site_url(); ?>/admin/delete_education/<?php echo $row->education_id; ?>'">Confirm Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- END Modal -->
                     </tr>
                     <?php
                     $i++;
                 endforeach;
                 ?>
             </table>
-            
+
             <form role="form" method="post" action="<?php echo site_url(); ?>/admin/add_education">
                 <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add</button>
             </form>
 
-            <p>&nbsp;</p>
-
         <?php endif; ?>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Delete <?php echo $title; ?>!</h4>
-                        </div>
-                        <div class="modal-body">
-                            Do you really want to delete the <?php echo $title; ?> data?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>                            
-                            <button type="button" class="btn btn-primary" onclick="window.location = '<?php echo site_url(); ?>/admin/delete_education/<?php echo $row->education_id; ?>'">Confirm</button>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- END Modal -->
-
     </div>
+    
+    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/researcher_list"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+
 </div>

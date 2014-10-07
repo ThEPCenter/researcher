@@ -1,12 +1,7 @@
 
 <div class="container">
-    <div class="row well">
-        <?php foreach ($profile as $pro) : ?>
-            <h2 style="text-align: center;">
-                <span class="glyphicon glyphicon-fire"></span> <?php echo $pro->firstname_en . ' ' . $pro->lastname_en; ?>'s <?php echo $title; ?>
-            </h2>
-        <?php endforeach; ?>
-
+    <div class="row well">       
+        <h2 style="text-align: center;"><span class="glyphicon glyphicon-fire"></span> <?php echo $title; ?></h2>
         <p>&nbsp;</p>
 
         <?php if (!$query) : ?>
@@ -70,8 +65,27 @@
                                class="btn btn-primary">
                                 Edit
                             </a>                            
-                            <a class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</a>                            
+                            <a class="btn btn-danger" data-toggle="modal" data-target="#myModal_<?php echo $row->training_id; ?>">Delete</a>                            
                         </td>
+                        <!-- Modal -->
+                    <div class="modal fade" id="myModal_<?php echo $row->training_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel_<?php echo $row->training_id; ?>">Delete <?php echo $title; ?>!</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Do you really want to delete the <?php echo $title; ?> data?
+                                    <br><?php training_type($row->training_type); ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>                            
+                                    <button type="button" class="btn btn-danger" onclick="window.location = '<?php echo site_url(); ?>/admin/delete_training/<?php echo $row->training_id; ?>'">Confirm Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- END Modal -->
                     </tr>
                 <?php endforeach; ?>
 
@@ -82,27 +96,10 @@
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add</button>
             </form>
 
-        <?php endif; ?> 
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Delete <?php echo $title; ?>!</h4>
-                    </div>
-                    <div class="modal-body">
-                        Do you really want to delete the <?php echo $title; ?> data?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>                            
-                        <button type="button" class="btn btn-primary" onclick="window.location = '<?php echo site_url(); ?>/admin/delete_training/<?php echo $row->training_id; ?>'">Confirm</button>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- END Modal -->
+        <?php endif; ?>
 
     </div>
+
+    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/researcher_list"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
 
 </div> <!-- /.container -->

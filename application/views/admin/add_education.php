@@ -1,8 +1,7 @@
 
 <div class="container">
-    <div class="row well">       
-        <h2 style="text-align: center;">Add Education <span class="glyphicon glyphicon-book"></span></h2>        
-
+    <div class="row well">
+        <h2 style="text-align: center;"><?php echo $title; ?> <span class="glyphicon glyphicon-book"></span></h2>
 
         <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/add_education_process">
             <fieldset>             

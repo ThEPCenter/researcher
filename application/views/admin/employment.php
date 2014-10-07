@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row well">
 
-        <?php foreach ($profile as $pro) : ?>
-            <h2 style="text-align: center;"><span class="glyphicon glyphicon-briefcase"></span> <?php echo $pro->firstname_en . ' ' . $pro->lastname_en; ?>'s Employment Position</h2>
-            <p>&nbsp;</p>
-        <?php endforeach; ?>
+
+        <h2 style="text-align: center;"><span class="glyphicon glyphicon-briefcase"></span> <?php echo $title; ?></h2>
+        <p>&nbsp;</p>
+
 
         <?php if (!$query) : ?>
             <div class="row">
@@ -100,13 +100,10 @@
                 <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
             </form>
-
-
-
         <?php endif; ?>
-
-
     </div>
+
+    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/researcher_list"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
 
 </div> <!-- /.container -->
 

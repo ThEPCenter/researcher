@@ -74,6 +74,19 @@ class Admin extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+    public function researcher_list() {
+        $this->load->model('admin_model');
+        $data['query_list'] = $this->admin_model->get_researcher_list();
+        $data['title'] = 'Researcher List.';
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar');
+        $this->load->view('admin/researcher_list', $data);
+        $this->load->view('templates/footer');
+    }
+
+    // ---------------------------------------------------------------------
+    // ========================= Profile ===================================
+
     public function profile($research_id) {
         $this->load->model('admin_model');
         $data['query'] = $this->admin_model->get_profile($research_id);
@@ -85,7 +98,7 @@ class Admin extends CI_Controller {
     }
 
     public function edit_profile() {
-        $researcher_id = $this->security->xss_clean($this->input->post('researcher_id'));
+        $researcher_id = $this->input->post('researcher_id');
         $this->load->model('admin_model');
         $data['query'] = $this->admin_model->get_profile($researcher_id);
         $data['title'] = 'Edit Profile';
@@ -103,22 +116,16 @@ class Admin extends CI_Controller {
         redirect(site_url() . "/admin/profile/$researcher_id");
     }
 
-    public function researcher_list() {
-        $this->load->model('admin_model');
-        $data['query_list'] = $this->admin_model->get_researcher_list();
-        $data['title'] = 'Researcher List.';
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/navbar');
-        $this->load->view('admin/researcher_list', $data);
-        $this->load->view('templates/footer');
-    }
-
+    // ---------------------------------------------------------------------
+    // ======================= Education ===================================
     public function education($researcher_id = '') {
+        $data['researcher_id'] = $researcher_id;
         $this->load->model('admin_model');
         $data['query'] = $this->admin_model->get_education($researcher_id);
-        $data['profile'] = $this->admin_model->get_profile($researcher_id);
-        $data['title'] = 'Education';
-        $data['researcher_id'] = $researcher_id;
+        $profile = $this->admin_model->get_profile($researcher_id);
+        foreach ($profile as $pro) {
+            $data['title'] = "$pro->firstname_en $pro->lastname_en's Education";
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/education', $data);
@@ -126,8 +133,12 @@ class Admin extends CI_Controller {
     }
 
     public function add_education() {
-        $data['title'] = "Add education";
         $data['researcher_id'] = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $profile = $this->admin_model->get_profile($data['researcher_id']);
+        foreach ($profile as $pro) {
+            $data['title'] = "Add $pro->firstname_en $pro->lastname_en's education";
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/add_education', $data);
@@ -171,12 +182,17 @@ class Admin extends CI_Controller {
         }
     }
 
+    // ---------------------------------------------------------------------
+    // ========================= Employment ================================
+
     public function employment($researcher_id) {
+        $data['researcher_id'] = $researcher_id;
         $this->load->model('admin_model');
         $data['query'] = $this->admin_model->get_employment($researcher_id);
-        $data['profile'] = $this->admin_model->get_profile($researcher_id);
-        $data['title'] = 'Employment Position';
-        $data['researcher_id'] = $researcher_id;
+        $profile = $this->admin_model->get_profile($researcher_id);
+        foreach ($profile as $pro) {
+            $data['title'] = "$pro->firstname_en $pro->lastname_en's Employment";
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/employment', $data);
@@ -184,8 +200,12 @@ class Admin extends CI_Controller {
     }
 
     public function add_employment() {
-        $data['title'] = "Add Employment";
         $data['researcher_id'] = $this->input->post('researcher_id');
+        $this->load->model('admin_model');
+        $profile = $this->admin_model->get_profile($data['researcher_id']);
+        foreach ($profile as $pro) {
+            $data['title'] = "Add $pro->firstname_en $pro->lastname_en's Employment";
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/add_employment', $data);
@@ -201,9 +221,11 @@ class Admin extends CI_Controller {
 
     public function edit_employment() {
         $researcher_id = $this->input->post('researcher_id');
-        $data['title'] = 'Edit employment.';
         $this->load->model('admin_model');
-        $data['profile'] = $this->admin_model->get_profile($researcher_id);
+        $profile = $this->admin_model->get_profile($researcher_id);
+        foreach ($profile as $pro) {
+            $data['title'] = "Edit $pro->firstname_en $pro->lastname_en's Employment";
+        }
         $data['query'] = $this->admin_model->get_edit_employment();
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
@@ -218,12 +240,17 @@ class Admin extends CI_Controller {
         redirect(site_url() . "/admin/employment/$researcher_id");
     }
 
+    // ---------------------------------------------------------------------
+    // ========================== Training =================================
+
     public function training($researcher_id) {
+        $data['researcher_id'] = $researcher_id;
         $this->load->model('admin_model');
         $data['query'] = $this->admin_model->get_training($researcher_id);
-        $data['profile'] = $this->admin_model->get_profile($researcher_id);
-        $data['title'] = 'Training';
-        $data['researcher_id'] = $researcher_id;
+        $profile = $this->admin_model->get_profile($researcher_id);
+        foreach ($profile as $pro) {
+            $data['title'] = "$pro->firstname_en $pro->lastname_en's Training";
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/training', $data);
@@ -237,7 +264,6 @@ class Admin extends CI_Controller {
         foreach ($profile as $pro) {
             $data['title'] = "Add $pro->firstname_en $pro->lastname_en's training";
         }
-
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/add_training', $data);
@@ -283,12 +309,17 @@ class Admin extends CI_Controller {
         }
     }
 
+    // ---------------------------------------------------------------------
+    // ========================== Expertise ================================
+
     public function expertise($researcher_id) {
+        $data['researcher_id'] = $researcher_id;
         $this->load->model('admin_model');
         $data['query'] = $this->admin_model->get_expertise($researcher_id);
-        $data['profile'] = $this->admin_model->get_profile($researcher_id);
-        $data['title'] = 'Expertise';
-        $data['researcher_id'] = $researcher_id;
+        $profile = $this->admin_model->get_profile($researcher_id);
+        foreach ($profile as $pro) {
+            $data['title'] = "$pro->firstname_en $pro->lastname_en's Expertise";
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/expertise', $data);
@@ -316,9 +347,13 @@ class Admin extends CI_Controller {
     }
 
     public function edit_expertise() {
-        $data['title'] = 'Edit expertise';
+        $data['researcher_id'] = $this->input->post('researcher_id');
         $this->load->model('admin_model');
         $data['query'] = $this->admin_model->get_edit_expertise();
+        $profile = $this->admin_model->get_profile($data['researcher_id']);
+        foreach ($profile as $pro) {
+            $data['title'] = "Edit $pro->firstname_en $pro->lastname_en's Field of Expertise";
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/edit_expertise', $data);
@@ -331,6 +366,9 @@ class Admin extends CI_Controller {
         $this->admin_model->update_expertise();
         redirect(site_url() . "/admin/expertise/$researcher_id");
     }
+
+    // ---------------------------------------------------------------------
+    // ========================= Publication ===============================
 
     public function publication($researcher_id) {
         $this->load->model('admin_model');
@@ -386,4 +424,5 @@ class Admin extends CI_Controller {
         redirect(site_url() . "/admin/publication/$researcher_id");
     }
 
+    // ---------------------------------------------------------------------
 }

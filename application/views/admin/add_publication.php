@@ -17,7 +17,7 @@
                         CKEDITOR.replace('content');
                     </script>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button> &nbsp;
+                <button type="submit" class="btn btn-success">Submit</button> &nbsp;
                 <a href="<?php echo site_url(); ?>/admin/publication/<?php echo $researcher_id; ?>">Cancel</a>
 
             </fieldset>

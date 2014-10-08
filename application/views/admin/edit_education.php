@@ -58,9 +58,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="major" class="col-lg-2 control-label">สาขาวิชา (major)<span style="color: red;">**</span></label>
+                            <label for="major" class="col-lg-2 control-label">สาขาวิชา (major)</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" name="major" id="major" required value="<?php echo $row->major; ?>">
+                                <input type="text" class="form-control" name="major" id="major" value="<?php echo $row->major; ?>">
                             </div>
                         </div>
 

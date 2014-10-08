@@ -203,9 +203,13 @@ class Admin_model extends CI_Model {
         $faculty = $this->security->xss_clean($this->input->post('faculty'));
         $department = $this->security->xss_clean($this->input->post('department'));
         $street_en = $this->security->xss_clean($this->input->post('street_en'));
+        $street_th = $this->security->xss_clean($this->input->post('street_th'));
         $sub_district_en = $this->input->post('sub_district_en');
+        $sub_district_th = $this->input->post('sub_district_th');
         $district_en = $this->security->xss_clean($this->input->post('district_en'));
+        $district_th = $this->security->xss_clean($this->input->post('district_th'));
         $province_en = $this->security->xss_clean($this->input->post('province_en'));
+        $province_th = $this->security->xss_clean($this->input->post('province_th'));
         $postal_code = $this->security->xss_clean($this->input->post('postal_code'));
         $phone = $this->security->xss_clean($this->input->post('phone'));
         $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));
@@ -222,9 +226,13 @@ class Admin_model extends CI_Model {
             'faculty' => $faculty,
             'department' => $department,
             'street_en' => $street_en,
+            'street_th' => $street_th,
             'sub_district_en' => $sub_district_en,
+            'sub_district_th' => $sub_district_th,
             'district_en' => $district_en,
+            'district_th' => $district_th,
             'province_en' => $province_en,
+            'province_th' => $province_th,
             'postal_code' => $postal_code,
             'phone' => $phone,
             'mobile_phone' => $mobile_phone,

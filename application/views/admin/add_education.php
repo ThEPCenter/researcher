@@ -39,9 +39,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="major" class="col-lg-2 control-label">สาขาวิชา (major)<span style="color: red;">**</span></label>
+                    <label for="major" class="col-lg-2 control-label">สาขาวิชา (major)</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="major" id="major" required placeholder="Physics, Applied Physics, Material Science, Chemistry, etc.">
+                        <input type="text" class="form-control" name="major" id="major" placeholder="Physics, Applied Physics, Material Science, Chemistry, etc.">
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-default">Submit</button> &nbsp;
+                        <button type="submit" class="btn btn-success">Submit</button> &nbsp;
                         <a href="<?php echo site_url() . '/admin/education/' . $researcher_id; ?>"><strong>Cancel</strong></a>
                     </div>
                 </div>

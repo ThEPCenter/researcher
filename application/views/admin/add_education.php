@@ -8,9 +8,9 @@
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
 
                 <div class="form-group">
-                    <label for="grad_year" class="col-lg-2 control-label">ปีที่จบการศึกษา<span style="color: red;">**</span></label>
+                    <label for="grad_year" class="col-lg-2 control-label">ปีที่จบการศึกษา</label>
                     <div class="col-lg-10">
-                        <select class="form-control" name="grad_year" id="grad_year" required>
+                        <select class="form-control" name="grad_year" id="grad_year">
                             <option value="">---- Select Year ----</option>
                             <?php for ($y = 1950; $y <= date("Y"); $y++) : ?>
                                 <option value="<?php echo $y; ?>"><?php echo $y; ?></option>

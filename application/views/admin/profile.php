@@ -10,10 +10,10 @@
                 <h2 style="text-align: center;"><span class="glyphicon glyphicon-user"></span> <?php echo $row->firstname_en . ' ' . $row->lastname_en; ?>'s Profile</h2>
                 <h4 style="text-align: center;">&nbsp;</h4>
                 <?php if (!empty($row->pic_url)): ?>
-                <div class="col-md-2">&nbsp;</div>                
-                <div class="col-md-10">                    
-                    <img title="Profile's picture" src="<?php echo $row->pic_url; ?>">                    
-                </div>
+                    <div class="col-md-2">&nbsp;</div>                
+                    <div class="col-md-10">                    
+                        <img title="Profile's picture" src="<?php echo $row->pic_url; ?>">                    
+                    </div>
                 <?php endif; ?>
                 <div class="col-md-2"><strong style="color: #89919c;">Name: </strong></div>
                 <div class="col-md-10">
@@ -90,7 +90,13 @@
                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit profile</button>
             </form>
 
-
+            <p>&nbsp;</p>
+            <a title="Education" href="<?php echo site_url(); ?>/admin/education/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-book"></span></a>
+            <a title="Employment" href="<?php echo site_url(); ?>/admin/employment/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-briefcase"></span></a>
+            <a title="Training" href="<?php echo site_url(); ?>/admin/training/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-fire"></span></a>
+            <a title="Expertise" href="<?php echo site_url(); ?>/admin/expertise/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-flash"></span></a>
+            <a title="Publication" href="<?php echo site_url(); ?>/admin/publication/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-globe"></span></a>
+            <p>&nbsp;</p>
 
         <?php endif; ?>
 

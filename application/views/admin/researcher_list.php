@@ -19,13 +19,7 @@
                             <img alt="profile's picture" style="max-width: 60px;" src="<?php echo $row->pic_url; ?>">
                         </div>                        
                         <div style="margin-top: 5px;"><?php echo $row->firstname_en . ' ' . $row->lastname_en; ?></div>
-                    </a>                    
-                    <a title="Education" href="<?php echo site_url(); ?>/admin/education/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-book"></span></a>
-                    <a title="Employment" href="<?php echo site_url(); ?>/admin/employment/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-briefcase"></span></a>
-                    <a title="Training" href="<?php echo site_url(); ?>/admin/training/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-fire"></span></a>
-                    <a title="Expertise" href="<?php echo site_url(); ?>/admin/expertise/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-flash"></span></a>
-                    <a title="Publication" href="<?php echo site_url(); ?>/admin/publication/<?php echo $row->researcher_id; ?>"><span class="glyphicon glyphicon-globe"></span></a>
-                    <p>&nbsp;</p>
+                    </a>
                 </div>
 
                 <?php

@@ -31,14 +31,16 @@
                 <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_publication">
                     <input type="hidden" name="publication_id" value="<?php echo $row->publication_id; ?>">
                     <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
-                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit Publication</button>
                 </form>
 
             <?php endforeach; ?>
 
-        <?php endif; ?>
-
+        <?php endif; ?>       
 
     </div>
+
+    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
+
 
 </div> <!-- /.container -->

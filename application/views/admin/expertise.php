@@ -43,6 +43,6 @@
         <?php endif; ?>
     </div>
 
-    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/researcher_list"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
 
 </div> <!-- /.container -->

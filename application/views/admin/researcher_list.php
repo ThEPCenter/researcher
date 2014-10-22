@@ -14,12 +14,14 @@
                 ?>
                 <div class="col-xs-6 col-sm-4 col-md-3">
 
-                    <a href="<?php echo site_url(); ?>/admin/profile/<?php echo $row->researcher_id; ?>">
+                    <a title="<?php echo $row->firstname_en . ' ' . $row->lastname_en; ?>" href="<?php echo site_url(); ?>/admin/profile/<?php echo $row->researcher_id; ?>">
                         <div style="max-width: 60px; height: 80px;">
                             <img alt="profile's picture" style="max-width: 60px;" src="<?php echo $row->pic_url; ?>">
                         </div>                        
                         <div style="margin-top: 5px;"><?php echo $row->firstname_en . ' ' . $row->lastname_en; ?></div>
                     </a>
+                    <p>&nbsp;</p>
+
                 </div>
 
                 <?php

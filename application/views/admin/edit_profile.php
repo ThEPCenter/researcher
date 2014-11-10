@@ -6,105 +6,106 @@
 
             <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_profile_process">
 
-                <fieldset>
-                    <legend class="text-center"></legend>
-                    <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
 
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label">Profile picture</label>
-                        <div class="col-lg-10">
-                            <div id="show-pic">
-                                <img src="<?php echo $row->pic_url; ?>">
-                            </div>                            
-                        </div>
+                <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
+
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Profile picture</label>
+                    <div class="col-lg-10">
+                        <div id="show-pic">
+                            <img src="<?php echo $row->pic_url; ?>">
+                        </div>                            
                     </div>
+                </div>
 
-                    <script>
-                        $(function () {
-                            $("#pic_url").blur(function () {
-                                var pic_url = $("#pic_url").val();
-                                $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
-                            });
-
+                <script>
+                    $(function () {
+                        $("#pic_url").blur(function () {
+                            var pic_url = $("#pic_url").val();
+                            $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
                         });
-                    </script>
 
-                    <div class="form-group">
-                        <label for="website" class="col-lg-2 control-label">Picture's url</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="pic_url" id="pic_url" value="<?php echo $row->pic_url; ?>" placeholder="เช่น http://www.example.com/pic.jpg">
-                        </div>
+                    });
+                </script>
 
+                <div class="form-group">
+                    <label for="website" class="col-lg-2 control-label">Picture's url</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="pic_url" id="pic_url" value="<?php echo $row->pic_url; ?>" placeholder="เช่น http://www.example.com/pic.jpg">
                     </div>
 
-                    <div class="form-group">
-                        <label for="title_th" class="col-lg-2 control-label">คำนำหน้าชื่อ</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="title_th" id="title_th" value="<?php echo $row->title_th; ?>" placeholder="เช่น ดร., ผศ.ดร., ศ.ดร., นพ., ร.ต., นาย เป็นต้น">
+                </div>
+
+                <div class="form-group">
+                    <label for="title_th" class="col-lg-2 control-label">คำนำหน้าชื่อ</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="title_th" id="title_th" value="<?php echo $row->title_th; ?>" placeholder="เช่น ดร., ผศ.ดร., ศ.ดร., นพ., ร.ต., นาย เป็นต้น">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstname_th" class="col-lg-2 control-label">ชื่อ</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="firstname_th" id="firstname_th" value="<?php echo $row->firstname_th; ?>" placeholder="ชื่อภาษาไทย">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname_th" class="col-lg-2 control-label">สกุล</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="lastname_th" id="lastname_th" value="<?php echo $row->lastname_th; ?>" placeholder="สกุลภาษาไทย">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title_en" class="col-lg-2 control-label">Title</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="title_en" id="title_en" value="<?php echo $row->title_en; ?>" placeholder="Dr., Prof.Dr., Mr., Ms. etc.">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstname_en" class="col-lg-2 control-label">Firstname<span style="color: red;">**</span></label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="firstname_en" id="firstname_en" required value="<?php echo $row->firstname_en; ?>" placeholder="Your firstname in English.">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname_en" class="col-lg-2 control-label">Lastname<span style="color: red;">**</span></label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="lastname_en" id="lastname_en" required value="<?php echo $row->lastname_en; ?>" placeholder="Your lastname in English.">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">เพศ (gender)</label>
+                    <div class="col-lg-10">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="gender" id="male" value="male"<?php
+                                if ($row->gender == 'male') {
+                                    echo ' checked';
+                                }
+                                ?>>
+                                ชาย (male)
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="gender" id="female" value="female"<?php
+                                if ($row->gender == 'female') {
+                                    echo ' checked';
+                                }
+                                ?>>
+                                หญิง (female)
+                            </label>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="firstname_th" class="col-lg-2 control-label">ชื่อ</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="firstname_th" id="firstname_th" value="<?php echo $row->firstname_th; ?>" placeholder="ชื่อภาษาไทย">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lastname_th" class="col-lg-2 control-label">สกุล</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="lastname_th" id="lastname_th" value="<?php echo $row->lastname_th; ?>" placeholder="สกุลภาษาไทย">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="title_en" class="col-lg-2 control-label">Title</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="title_en" id="title_en" value="<?php echo $row->title_en; ?>" placeholder="Dr., Prof.Dr., Mr., Ms. etc.">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="firstname_en" class="col-lg-2 control-label">Firstname<span style="color: red;">**</span></label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="firstname_en" id="firstname_en" required value="<?php echo $row->firstname_en; ?>" placeholder="Your firstname in English.">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lastname_en" class="col-lg-2 control-label">Lastname<span style="color: red;">**</span></label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="lastname_en" id="lastname_en" required value="<?php echo $row->lastname_en; ?>" placeholder="Your lastname in English.">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label">เพศ (gender)</label>
-                        <div class="col-lg-10">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="gender" id="male" value="male"<?php
-                                    if ($row->gender == 'male') {
-                                        echo ' checked';
-                                    }
-                                    ?>>
-                                    ชาย (male)
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="gender" id="female" value="female"<?php
-                                    if ($row->gender == 'female') {
-                                        echo ' checked';
-                                    }
-                                    ?>>
-                                    หญิง (female)
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
+                <fieldset>
+                    <legend class="text-center">ที่ติดต่อส่วนตัว (ไม่จำเป็นต้องกรอก)</legend>
                     <div class="form-group">
                         <label for="street_th" class="col-lg-2 control-label">ที่อยู่</label>
                         <div class="col-lg-10">
@@ -169,16 +170,15 @@
                             <input type="text" class="form-control" name="website" id="website" value="<?php echo $row->website; ?>" placeholder="http://www.example.com">
                         </div>
                     </div>
-
-
-
-                    <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-saved"></span> Submit</button> &nbsp;
-                            <a href="<?php echo site_url() . '/admin/profile/' . $row->researcher_id; ?>"><strong>Cancel</strong></a>
-                        </div>
-                    </div>
                 </fieldset>
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Submit</button> &nbsp;
+                        <a href="<?php echo site_url() . '/admin/profile/' . $row->researcher_id; ?>"><strong>Cancel</strong></a>
+                    </div>
+                </div>
+
 
             </form>
         <?php endforeach; ?>

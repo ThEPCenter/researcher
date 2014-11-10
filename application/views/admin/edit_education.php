@@ -88,7 +88,6 @@
                             <label for="keyword" class="col-lg-2 control-label">Keywords วิทยานิพนธ์</label>
                             <div class="col-lg-10">
                                 <textarea class="form-control" name="keyword" rows="3" id="keyword"><?php echo $row->keyword; ?></textarea>
-                                <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
                             </div>
                         </div>
 

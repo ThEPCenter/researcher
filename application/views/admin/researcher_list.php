@@ -11,6 +11,7 @@
             <?php
             $i = 1;
             foreach ($query_list as $row) :
+                $c_num[$i] = $row->researcher_id;
                 ?>
                 <div class="col-xs-6 col-sm-4 col-md-3">
 
@@ -23,15 +24,29 @@
                     <p>&nbsp;</p>
 
                 </div>
-
                 <?php
                 $i++;
             endforeach;
             ?>
 
-        <?php endif; ?>       
+        <?php endif; ?>
 
     </div>
 
-    <p>จำนวนนักวิจัยทั้งหมด <?php echo --$i; ?> คน</p>
+    <p>แสดงข้อมูลลำดับที่ <?php echo $c_num[1]; ?> - 
+        <?php
+        $last_order = $c_num[1] + $per_page - 1;
+        if ($last_order > $num):
+            echo $num;
+        else:
+            echo $last_order;
+        endif;
+        ?> 
+        จากจำนวนนักวิจัยทั้งหมด <?php echo $num; ?> คน</p>
+    <nav>
+        <ul class="pagination">
+            <?php echo $pagination_data; ?>
+        </ul>
+    </nav>
+
 </div>

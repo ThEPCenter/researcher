@@ -48,7 +48,12 @@ class Admin_model extends CI_Model {
         }
     }
 
-    public function get_researcher_list() {
+    public function get_researcher_list($page_num, $per_page) {        
+        
+        $start_at = $per_page * ($page_num - 1);       
+        
+        $this->db->limit($per_page, $start_at);
+        $this->db->order_by("researcher_id", "asc");
         $query = $this->db->get('res_profile');
         return $query->result();
     }

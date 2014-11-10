@@ -15,6 +15,9 @@ class Admin extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper('html');
 
+        // ======== Class ========//
+        $this->load->library('pagination');
+
         if (!($this->session->userdata('validated'))) {
             redirect('login');
         }
@@ -74,9 +77,54 @@ class Admin extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function researcher_list() {
+    public function researcher_list($page_num = "") {
+        // ========== Pagination ===================== //
+        $data['num'] = $this->db->count_all_results('res_profile');
+        $config['base_url'] = site_url() . '/admin/researcher_list/';
+        $config['total_rows'] = $data['num'];
+        $config['per_page'] = 20;       // rows per page
+        $data['per_page'] = $config['per_page'];
+        $config['use_page_numbers'] = TRUE;     // If you prefer to show the the actual page number, set this to TRUE.
+        
+        // Customizing the "Digit" Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+
+        // Customizing the "Current Page" Link
+        $config['cur_tag_open'] = '<li><a style="background-color:#eee;" href="#"><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+
+        // Customizing the First Link
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+
+        // Customizing the Last Link
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+
+        // Customizing the "Next" Link
+        $config['next_link'] = '&gt;';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+
+        // Customizing the "Previous" Link
+        $config['prev_link'] = '&lt;';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+
+
+        $this->pagination->initialize($config);
+        $data['pagination_data'] = $this->pagination->create_links();
+        // =========================================== //
+
         $this->load->model('admin_model');
-        $data['query_list'] = $this->admin_model->get_researcher_list();
+        if (!isset($page_num) || $page_num < 1 || $page_num == "") :
+            $page_num = 1;
+        endif;
+        $data['query_list'] = $this->admin_model->get_researcher_list($page_num, $config['per_page']);
+
         $data['title'] = 'Researcher List.';
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');

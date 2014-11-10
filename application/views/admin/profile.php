@@ -15,8 +15,8 @@
                         <img title="Profile's picture" src="<?php echo $row->pic_url; ?>">                    
                     </div>
                 <?php endif; ?>
-                <div class="col-md-2"><strong style="color: #89919c;">Name: </strong></div>
-                <div class="col-md-10">
+                <div class="col-sm-2 col-md-2"><strong style="color: #89919c;">Name: </strong></div>
+                <div class="col-sm-10 col-md-10" style="margin-top: 5px;">
                     <?php
                     if (!empty($row->title_en)) {
                         echo $row->title_en;
@@ -24,8 +24,8 @@
                     ?>
                 </div>
                 <?php if (!empty($row->firstname_th)) : ?>
-                    <div class="col-md-2"><strong style="color: #89919c;">ชื่อ-นามสกุล</strong></div>
-                    <div class="col-md-10">
+                    <div class="col-sm-2 col-md-2"><strong style="color: #89919c;">ชื่อ-นามสกุล</strong></div>
+                    <div class="col-sm-10 col-md-10">
                         <?php
                         if ($row->title_th) {
                             echo $row->title_th;

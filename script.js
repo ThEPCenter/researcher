@@ -1,5 +1,5 @@
 $(function () {
-    $("#lastname_en").focusout(function () {
+    $("#firstname_en, #lastname_en").focusout(function () {
         $.ajax({
             url: 'check_name',
             data: {

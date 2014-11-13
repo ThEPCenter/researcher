@@ -13,15 +13,19 @@ class Admin_model extends CI_Model {
         $this->db->where('lastname_en', $lastname_en);
         $query = $this->db->get('res_profile');
 
-        if (empty($firstname_en) || empty($lastname_en)) {
+        if (empty($firstname_en) && empty($lastname_en)):
             return '<span style="color: red" class="glyphicon glyphicon-remove"></span> <b style="color: red">กรุณากรอกชื่อและนามสกุล</b>';
-        } else {
-            if ($query->num_rows == 1) {
-                return '<span style="color: red" class="glyphicon glyphicon-remove"></span> <b style="color: red">' . ucfirst($firstname_en) . ' ' . $lastname_en . ' ชื่อและนามสกุลนี้ซ้ำ.</b>';
-            } else {
+        elseif (empty($firstname_en) && !empty($lastname_en)):
+            return '<span style="color: red" class="glyphicon glyphicon-remove"></span> <b style="color: red">กรุณากรอกชื่อ</b>';
+        elseif (!empty($firstname_en) && empty($lastname_en)):
+            return '<span style="color: red" class="glyphicon glyphicon-remove"></span> <b style="color: red">กรุณากรอกนามสกุล</b>';
+        else:
+            if ($query->num_rows == 1):
+                return '<span style="color: red" class="glyphicon glyphicon-remove"></span> <b style="color: red">' . $firstname_en . ' ' . $lastname_en . ' ชื่อและนามสกุลนี้ซ้ำ.</b>';
+            else:
                 return '<span style="color: green" class="glyphicon glyphicon-ok"></span> <b style="color: green">ชื่อและนามสกุลนี้สามารถใช้ได้</b>';
-            }
-        }
+            endif;
+        endif;
     }
 
     public function add_new_researcher() {
@@ -48,10 +52,10 @@ class Admin_model extends CI_Model {
         }
     }
 
-    public function get_researcher_list($page_num, $per_page) {        
-        
-        $start_at = $per_page * ($page_num - 1);       
-        
+    public function get_researcher_list($page_num, $per_page) {
+
+        $start_at = $per_page * ($page_num - 1);
+
         $this->db->limit($per_page, $start_at);
         $this->db->order_by("researcher_id", "asc");
         $query = $this->db->get('res_profile');

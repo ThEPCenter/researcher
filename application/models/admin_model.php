@@ -47,7 +47,8 @@ class Admin_model extends CI_Model {
                     "lastname_en" => $lastname_en
                 );
                 $this->db->insert('res_profile', $data);
-                return TRUE;
+                $insert_id = $this->db->insert_id();
+                return $insert_id;
             }
         }
     }
@@ -77,6 +78,7 @@ class Admin_model extends CI_Model {
         $title_en = $this->security->xss_clean($this->input->post('title_en'));
         $title_th = $this->security->xss_clean($this->input->post('title_th'));
         $gender = $this->security->xss_clean($this->input->post('gender'));
+        $dob = strtotime($this->input->post('dob'));
         $street_th = $this->security->xss_clean($this->input->post('street_th'));
         $sub_district_th = $this->security->xss_clean($this->input->post('sub_district_th'));
         $district_th = $this->security->xss_clean($this->input->post('district_th'));
@@ -87,6 +89,7 @@ class Admin_model extends CI_Model {
         $email = $this->security->xss_clean($this->input->post('email'));
         $website = $this->security->xss_clean($this->input->post('website'));
         $pic_url = $this->security->xss_clean($this->input->post('pic_url'));
+        $updated = time();
 
         $data = array(
             'firstname_en' => $firstname_en,
@@ -96,6 +99,7 @@ class Admin_model extends CI_Model {
             'title_en' => $title_en,
             'title_th' => $title_th,
             'gender' => $gender,
+            'dob' => $dob,
             'street_th' => $street_th,
             'sub_district_th' => $sub_district_th,
             'district_th' => $district_th,
@@ -105,7 +109,8 @@ class Admin_model extends CI_Model {
             'mobile_phone' => $mobile_phone,
             'email' => $email,
             'website' => $website,
-            'pic_url' => $pic_url
+            'pic_url' => $pic_url,
+            'updated' => $updated
         );
 
         $this->db->where('researcher_id', $researcher_id);
@@ -459,6 +464,16 @@ class Admin_model extends CI_Model {
 
         $this->db->where('publication_id', $publication_id);
         $this->db->update('res_publication', $data);
+    }
+
+    public function search_researcher($keyword) {
+        $kw = $this->security->xss_clean($keyword);
+        $this->db->like('firstname_en', $kw);
+        $this->db->or_like('firstname_th', $kw);
+        $this->db->or_like('lastname_en', $kw);
+        $this->db->or_like('lastname_th', $kw);
+        $query = $this->db->get('res_profile');
+        return $query->result();
     }
 
 }

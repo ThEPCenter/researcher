@@ -33,9 +33,24 @@
                         ?>
                     </div>
                 <?php endif; ?>
+                    
+                <?php if(!empty($row->dob)): ?>
+                    <div class="col-sm-2 col-md-2"><strong style="color: #89919c;">วันเกิด  (date of birth)</strong></div>
+                    <div class="col-sm-10 col-md-10">
+                        <?php echo date("M d, Y", $row->dob); ?>
+                    </div>
+                <?php endif; ?>
+                    
+                <?php if(!empty($age)): ?>
+                    <div class="col-sm-2 col-md-2"><strong style="color: #89919c;">อายุ (age)</strong></div>
+                    <div class="col-sm-10 col-md-10">
+                        <?php echo $age; ?>
+                    </div>
+                <?php endif; ?>    
 
+                    
                 <?php if (!empty($row->province_th)) : ?>
-                    <div class="col-md-2"><strong style="color: #89919c;">ที่อยู่ที่ติดต่อได้</strong></div>
+                    <div class="col-md-2"><strong style="color: #89919c;">ที่อยู่/ที่ติดต่อส่วนตัว</strong></div>
                     <?php
                     if ($row->province_th == "กรุงเทพมหานคร") {
                         $sub_didt_th = $row->sub_district_th;

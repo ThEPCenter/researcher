@@ -46,6 +46,21 @@ class Admin extends CI_Controller {
         $data['username'] = $this->session->userdata('username');
         $data['recent_login'] = date("F j, Y. g:i:s a.", strtotime($this->session->userdata('recent_login')));
         $data['last_login'] = date("F j, Y. g:i:s a.", strtotime($this->session->userdata('last_login')));
+        $keyword = $this->input->post('keyword');
+        if(!empty($keyword)):
+           $data['query'] = $this->admin_model->search_researcher($keyword);
+        endif;
+        
+        $data['keyword'] = $keyword;
+        
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/navbar', $data);
+        $this->load->view('admin/search');
+        $this->load->view('templates/footer', $data);
+    }
+    
+    public function search_process(){
+        $data['title'] = 'Search result.';
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar', $data);
         $this->load->view('admin/search');
@@ -66,16 +81,12 @@ class Admin extends CI_Controller {
     }
 
     public function add_researcher_process() {
-        $result = $this->admin_model->add_new_researcher();
-        if ($result) {
-            $data['title'] = 'Add new research success.';
-        } else {
-            $data['title'] = 'Add new research Fail!';
-        }
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/navbar');
-        $this->load->view('admin/result', $data);
-        $this->load->view('templates/footer');
+        $insert_id = $this->admin_model->add_new_researcher();
+        if (!empty($insert_id)):
+            header("Location: profile/$insert_id");
+        else:
+            header("Location: index");
+        endif;
     }
 
     public function researcher_list($page_num = "") {
@@ -137,6 +148,12 @@ class Admin extends CI_Controller {
     public function profile($research_id) {
         $data['query'] = $this->admin_model->get_profile($research_id);
         $data['title'] = 'Profile';
+        foreach ($data['query'] as $pro) {
+            $dob = $pro->dob;
+        }
+        if (!empty($dob)):
+            $data['age'] = $this->cal_age($dob);
+        endif;
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/profile', $data);
@@ -442,4 +459,13 @@ class Admin extends CI_Controller {
     }
 
     // ---------------------------------------------------------------------
+
+    public function cal_age($dob_timestamp) {
+        $birth_time = date("Y-m-d", $dob_timestamp);
+        $from = new DateTime($birth_time);
+        $to = new DateTime('today');
+        return $from->diff($to)->y;
+    }
+
+    
 }

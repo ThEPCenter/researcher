@@ -47,19 +47,19 @@ class Admin extends CI_Controller {
         $data['recent_login'] = date("F j, Y. g:i:s a.", strtotime($this->session->userdata('recent_login')));
         $data['last_login'] = date("F j, Y. g:i:s a.", strtotime($this->session->userdata('last_login')));
         $keyword = $this->input->post('keyword');
-        if(!empty($keyword)):
-           $data['query'] = $this->admin_model->search_researcher($keyword);
+        if (!empty($keyword)):
+            $data['query'] = $this->admin_model->search_researcher($keyword);
         endif;
-        
+
         $data['keyword'] = $keyword;
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar', $data);
         $this->load->view('admin/search');
         $this->load->view('templates/footer', $data);
     }
-    
-    public function search_process(){
+
+    public function search_process() {
         $data['title'] = 'Search result.';
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar', $data);
@@ -461,11 +461,19 @@ class Admin extends CI_Controller {
     // ---------------------------------------------------------------------
 
     public function cal_age($dob_timestamp) {
-        $birth_time = date("Y-m-d", $dob_timestamp);
-        $from = new DateTime($birth_time);
-        $to = new DateTime('today');
-        return $from->diff($to)->y;
+        if (version_compare(PHP_VERSION, '5.3.0') >= 0):
+            $birth_time = date("Y-m-d", $dob_timestamp);
+            $from = new DateTime($birth_time);
+            $to = new DateTime('today');
+            return $from->diff($to)->y;
+        else:
+            //date in mm/dd/yyyy format; or it can be in other formats as well
+            $birth_time = date("m/d/Y", $dob_timestamp);
+            //explode the date to get month, day and year
+            $birthDate = explode("/", $birth_time);
+            //get age from date or birthdate
+            return (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md") ? ((date("Y") - $birthDate[2]) - 1) : (date("Y") - $birthDate[2]));
+        endif;
     }
 
-    
 }

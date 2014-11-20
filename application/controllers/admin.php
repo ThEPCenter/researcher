@@ -49,18 +49,12 @@ class Admin extends CI_Controller {
         $keyword = $this->input->post('keyword');
         if (!empty($keyword)):
             $data['query'] = $this->admin_model->search_researcher($keyword);
+        $data['search_num_rows'] = $this->admin_model->get_search_numrow($keyword);
         endif;
 
         $data['keyword'] = $keyword;
+        
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/navbar', $data);
-        $this->load->view('admin/search');
-        $this->load->view('templates/footer', $data);
-    }
-
-    public function search_process() {
-        $data['title'] = 'Search result.';
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar', $data);
         $this->load->view('admin/search');

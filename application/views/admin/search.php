@@ -25,7 +25,7 @@
             <?php if (empty($query)): ?>
                 <strong>ขออภัย ไม่พบข้อมูล</strong>
             <?php else: ?>
-                <p>พบทั้งหมด  </p>
+                <p>พบทั้งหมด <strong><?php echo $search_num_rows; ?></strong> คน</p>
 
                 <table class="table table-bordered">
                     <tr><th>No.</th><th>Name</th>

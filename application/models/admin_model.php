@@ -475,5 +475,15 @@ class Admin_model extends CI_Model {
         $query = $this->db->get('res_profile');
         return $query->result();
     }
+    
+    public function get_search_numrow($keyword) {
+        $kw = $this->security->xss_clean($keyword);
+        $this->db->like('firstname_en', $kw);
+        $this->db->or_like('firstname_th', $kw);
+        $this->db->or_like('lastname_en', $kw);
+        $this->db->or_like('lastname_th', $kw);
+        $query = $this->db->get('res_profile');
+        return $query->num_rows();
+    }
 
 }

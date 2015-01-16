@@ -8,22 +8,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo site_url(); ?>/home">Home</a>
+            <a class="navbar-brand" href="home">Home</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo site_url(); ?>/profile">Profile</a></li>
+                <li><a href="profile">Profile</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo site_url() ?>/education">Education</a></li>
+                <li><a href="education">Education</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo site_url(); ?>/employment">Employment</a></li>
+                <li><a href="employment">Employment</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo site_url(); ?>/logout">Logout</a></li>
+                <li><a href="logout">Logout</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

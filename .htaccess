@@ -1,0 +1,10 @@
+#REWRITE index.php 
+#START USING REWRITE ENGINE
+RewriteEngine On
+
+#REWRITE CONDITON 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#WHEN YOU FOUND index.php IT WILL REWRITE To / AUTOMATICALLY
+RewriteRule .* index.php/$0 [PT,L]

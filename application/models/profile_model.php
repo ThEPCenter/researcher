@@ -11,9 +11,8 @@ class profile_model extends CI_Model {
         $query = $this->db->get('res_profile');
         return $query->result();
     }
-    
+
     public function get_user_profile($username) {
-        $username = $this->security->xss_clean($username);
         $this->db->where('username', $username);
         $query = $this->db->get('tb_new_user');
 

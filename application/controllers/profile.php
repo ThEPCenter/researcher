@@ -29,12 +29,26 @@ class Profile extends CI_Controller {
         if ($query) {
             foreach ($query as $profile):
                 $data['researcher_id'] = $profile->researcher_id;
+                $data['pic_url'] = $profile->pic_url;
+                $data['title_th'] = $profile->title_th;
+                $data['title_en'] = $profile->title_en;
+                $data['firstname_th'] = $profile->firstname_th;
+                $data['lastname_th'] = $profile->lastname_th;
                 $data['firstname_en'] = $profile->firstname_en;
                 $data['lastname_en'] = $profile->lastname_en;
+                $data['dob'] = $profile->dob;
+                $data['gender'] = $profile->gender;
             endforeach;
         } else {
             $data['no_user'] = "ขออภัยไม่พบผู้ใช้ $username";
         }
+
+        $data['q_education'] = $this->profile_model->get_education($data['researcher_id']);
+        $data['q_employment'] = $this->profile_model->get_employment($data['researcher_id']);
+        $data['q_training'] = $this->profile_model->get_training($data['researcher_id']);
+        $data['q_expertise'] = $this->profile_model->get_expertise($data['researcher_id']);
+        $data['q_publication'] = $this->profile_model->get_publication($data['researcher_id']);
+
         $data['title'] = $username . "'s profile";
         $data['username'] = $this->session->userdata('username');
 

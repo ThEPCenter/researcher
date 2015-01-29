@@ -46,6 +46,7 @@
                                     <option value="bachelor"<?php echo option_select('bachelor', $row->degree); ?>>Bachelor's degree</option>
                                     <option value="master"<?php echo option_select('master', $row->degree); ?>>Master's degree</option>
                                     <option value="doctoral"<?php echo option_select('doctoral', $row->degree); ?>>Doctoral's degree</option>
+                                    <option value="doctoral"<?php echo option_select('diploma', $row->degree); ?>>Diploma</option>
                                 </select>
                             </div>
                         </div>

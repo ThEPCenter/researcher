@@ -27,6 +27,7 @@
                             <option value="bachelor">Bachelor's degree</option>
                             <option value="master">Master's degree</option>
                             <option value="doctoral">Doctoral's degree</option>
+                            <option valur="diploma">Diploma</option>
                         </select>
                     </div>
                 </div>

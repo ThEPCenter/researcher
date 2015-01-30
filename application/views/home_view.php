@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row">
         <div class="jumbotron">
@@ -10,6 +11,4 @@
             </ul>
         </div>
     </div>
-
-
 </div> <!-- /.container -->

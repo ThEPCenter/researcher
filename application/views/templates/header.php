@@ -21,6 +21,5 @@
         <script src="<?php echo base_url(); ?>script.js"></script> 
         <script src="<?php echo base_url(); ?>ckeditor/ckeditor.js"></script>
     </head>
+
     <body>
-
-

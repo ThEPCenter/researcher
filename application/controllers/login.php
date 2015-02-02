@@ -37,12 +37,12 @@ class Login extends CI_Controller {
             // If user did not validate, then show them login page again
             // $msg = $this->login_model->error_msg;
             // $this->index($msg);
-            redirect('login');
+            redirect(site_url() . 'login');
         } else {
             // If user did validate, 
             // Send them to members area
             // redirect(base_url() . 'index.php/login/home', 'location');
-            redirect('home');
+            redirect(site_url() . 'home');
         }
     }
 

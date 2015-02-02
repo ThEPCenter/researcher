@@ -35,7 +35,7 @@ class Profile extends CI_Controller {
         $data['q_expertise'] = $this->profile_model->get_expertise($data['researcher_id']);
         $data['q_publication'] = $this->profile_model->get_publication($data['researcher_id']);
         $data['title'] = $username . "'s profile";
-        $data['username'] = $this->session->userdata('username');
+        $data['username'] = $username;
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
         $this->load->view('basic_view');

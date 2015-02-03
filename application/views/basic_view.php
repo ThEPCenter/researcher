@@ -1,6 +1,7 @@
 
-<div class="container">
-    <h3 id="basic">ข้อมูลพื้นฐาน</h3>
+<div class="container" id="basic">
+
+    <h3>ข้อมูลพื้นฐาน</h3>
 
     <?php if (empty($q_profile)): ?>
 
@@ -15,13 +16,116 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">เพิ่มข้อมูลพื้นฐาน</h4>
                     </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm Add</button>
-                    </div>
+                    <form class="form-horizontal" role="form" method="post" action="profile/add_basic_process">
+
+                        <div class="modal-body">                                
+
+                            <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
+
+                            <div class="form-group">
+                                <label class="col-md-2 col-lg-2 control-label">Profile picture</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <div id="show-pic">
+                                        <img src="">
+                                    </div>                            
+                                </div>
+                            </div> 
+                            <script>
+                                $(function () {
+                                    $("#pic_url").blur(function () {
+                                        var pic_url = $("#pic_url").val();
+                                        $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
+                                    });
+
+                                });
+                            </script>                
+
+                            <div class="form-group">
+                                <label for="website" class="col-md-2 col-lg-2 control-label">Picture's url</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="text" class="form-control" name="pic_url" id="pic_url" placeholder="เช่น http://www.example.com/pic.jpg">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 col-lg-2 control-label">Date of birth</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="text" class="dob form-date" name="dob" placeholder=" Month/Date/Year">
+                                    <script>
+                                        $(function () {
+                                            // Date Picker                               
+                                            $(".dob").datepicker();
+                                        }); /* END jQuery */
+                                    </script>
+                                    <span class="help-block">สามารถกรอกวันเกิด ในรูปแบบ เดือน/วัน/ปี (ค.ศ.) เช่น 11/25/1960 หมายถึง 25 November 1960 </span>                        
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title_th" class="col-md-2 col-lg-2 control-label">คำนำหน้าชื่อ (Thai)</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="text" class="form-control" name="title_th" id="title_th" placeholder="เช่น ดร., ผศ.ดร., ศ.ดร., นพ., ร.ต., นาย เป็นต้น">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="firstname_th" class="col-md-2 col-lg-2 control-label">ชื่อ (Thai)</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="text" class="form-control" name="firstname_th" id="firstname_th" placeholder="ชื่อ">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastname_th" class="col-md-2 col-lg-2 control-label">สกุล (Thai)</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="text" class="form-control" name="lastname_th" id="lastname_th" placeholder="นามสกุล">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title_en" class="col-md-2 col-lg-2 control-label">Title (English)</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="text" class="form-control" name="title_en" id="title_en" placeholder="Dr., Prof.Dr., Mr., Ms. etc.">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="firstname_en" class="col-md-2 col-lg-2 control-label">First name<span style="color: red;">**</span></label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="text" class="form-control" name="firstname_en" id="firstname_en" required placeholder="first name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastname_en" class="col-md-2 col-lg-2 control-label">Last name<span style="color: red;">**</span></label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="text" class="form-control" name="lastname_en" id="lastname_en" required placeholder="last name">
+                                    <span id="check_name" class="help-block">Check Firstname and Lastname.</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 col-lg-2 control-label">เพศ (gender)</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="gender" id="male" value="male">ชาย (male)
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="gender" id="female" value="female">หญิง (female)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Confirm Add</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div> <!-- END Modal --> 
@@ -66,9 +170,10 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Edit ข้อมูลพื้นฐาน</h4>
                             </div>
-                            <div class="modal-body">
 
-                                <form class="form-horizontal" role="form" method="post" action="">
+                            <form class="form-horizontal" role="form" method="post" action="profile/edit_profile_process">
+
+                                <div class="modal-body">                                
 
                                     <input type="hidden" name="researcher_id" value="<?php echo $profile->researcher_id; ?>">
 
@@ -189,15 +294,15 @@
                                         if (!empty($profile->updated)) {
                                             echo date("M j, Y. H:i:s", $profile->updated);
                                         }
-                                        ?></p>                               
+                                        ?>
+                                    </p>
 
-                                </form>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-warning">Confirm edit</button>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Confirm edit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div> <!-- END Modal -->

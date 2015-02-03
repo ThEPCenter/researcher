@@ -5,17 +5,17 @@ class Profile extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        // ======== Library ========//
+// ======== Library ========//
         $this->load->library('session');
 
-        // ======== Driver ======== //
+// ======== Driver ======== //
         $this->load->database();
 
-        // ======== Helper ======== //
+// ======== Helper ======== //
         $this->load->helper('url');
         $this->load->helper('html');
 
-        // ======== Models ======== //
+// ======== Models ======== //
         $this->load->model('profile_model');
 
         if (!($this->session->userdata('validated'))) {
@@ -47,12 +47,38 @@ class Profile extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function user($username) {
-        
+    public function check_name() {
+        $data['msg'] = $this->profile_model->get_fullname();
+        $this->load->view('check_name', $data);
     }
 
-    public function add() {
-        
+    public function add_basic_process() {
+        $this->profile_model->update_profile();
+        redirect(site_url() . "profile#basic");
+    }
+
+    public function edit_profile_process() {
+        $this->profile_model->update_profile();
+        redirect(site_url() . "profile#basic");
+    }
+
+    public function add_education_process() {
+        $this->profile_model->add_new_education();
+        redirect(site_url() . "profile#education");
+    }
+
+    public function edit_education_process() {
+        $this->profile_model->update_education();
+        redirect(site_url() . "profile#education");
+    }
+
+    public function delete_education() {
+        $this->profile_model->remove_education();
+    }
+
+    public function edit_employment_process() {
+        $this->profile_model->update_employment();
+        redirect(site_url() . "profile#employment");
     }
 
 }

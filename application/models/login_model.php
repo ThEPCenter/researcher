@@ -15,7 +15,7 @@ class Login_model extends CI_Model {
         $this->db->where('username', $username);
         $this->db->where('password', sha1($password));
         // Run the query
-        $query = $this->db->get('tb_new_user');
+        $query = $this->db->get('res_user');
 
         // Let's check if there are any results        
         if ($query->num_rows == 1) {

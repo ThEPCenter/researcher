@@ -15,6 +15,8 @@ class Profile extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper('html');
 
+        $this->load->helper(array('form', 'url'));
+
 // ======== Models ======== //
         $this->load->model('profile_model');
 
@@ -76,9 +78,50 @@ class Profile extends CI_Controller {
         $this->profile_model->remove_education();
     }
 
+    public function add_employment_process() {
+        $this->profile_model->add_new_employment();
+        redirect(site_url() . "profile#employment");
+    }
+
     public function edit_employment_process() {
         $this->profile_model->update_employment();
         redirect(site_url() . "profile#employment");
     }
 
+    public function add_training_process() {
+        $this->profile_model->add_new_training();
+        redirect(site_url() . "profile#training");
+    }
+
+    public function edit_training_process() {
+        $this->profile_model->update_training();
+        redirect(site_url() . "profile#training");
+    }
+
+    public function delete_training() {
+        $this->profile_model->remove_training();
+    }
+
+    public function add_expertise_process() {
+        $this->profile_model->add_new_expertise();
+        redirect(site_url() . "profile#expertise");
+    }
+
+    public function edit_expertise_process() {
+        $this->profile_model->update_expertise();
+        redirect(site_url() . "profile#expertise");
+    }
+
+    public function add_publication_process() {
+        $this->profile_model->add_new_publication();
+        redirect(site_url() . "profile#publication");
+    }
+
+    public function edit_publication_process() {
+        $this->profile_model->update_publication();
+        redirect(site_url() . "profile#publication");
+    }
+
+    // ========================================================================
+    // ============= Upload picture ========================= //
 }

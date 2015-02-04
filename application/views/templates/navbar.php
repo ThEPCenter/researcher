@@ -15,13 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="profile">Profile</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="education">Education</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="employment">Employment</a></li>
-            </ul>
+            </ul>            
             <ul class="nav navbar-nav">
                 <li><a href="logout">Logout</a></li>
             </ul>

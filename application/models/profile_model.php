@@ -1,6 +1,6 @@
 <?php
 
-class profile_model extends CI_Model {
+class Profile_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -175,6 +175,66 @@ class profile_model extends CI_Model {
         return $query->result();
     }
 
+    public function add_new_employment() {
+        $researcher_id = $this->input->post('researcher_id');
+        $academic = $this->security->xss_clean($this->input->post('academic'));
+        $administrative = $this->security->xss_clean($this->input->post('administrative'));
+        $research = $this->security->xss_clean($this->input->post('research'));
+        $institute = $this->security->xss_clean($this->input->post('institute'));
+        $faculty = $this->security->xss_clean($this->input->post('faculty'));
+        $department = $this->security->xss_clean($this->input->post('department'));
+        $street_en = $this->security->xss_clean($this->input->post('street_en'));
+        $street_th = $this->security->xss_clean($this->input->post('street_th'));
+        $sub_district_en = $this->input->post('sub_district_en');
+        $sub_district_th = $this->input->post('sub_district_th');
+        $district_en = $this->security->xss_clean($this->input->post('district_en'));
+        $district_th = $this->security->xss_clean($this->input->post('district_th'));
+        $province_en = $this->security->xss_clean($this->input->post('province_en'));
+        $province_th = $this->security->xss_clean($this->input->post('province_th'));
+        $postal_code = $this->security->xss_clean($this->input->post('postal_code'));
+        $phone = $this->security->xss_clean($this->input->post('phone'));
+        $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));
+        $email = $this->security->xss_clean($this->input->post('email'));
+        $website = $this->security->xss_clean($this->input->post('website'));
+        $thep_lab_code = $this->security->xss_clean($this->input->post('thep_lab_code'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'academic' => $academic,
+            'administrative' => $administrative,
+            'research' => $research,
+            'institute' => $institute,
+            'faculty' => $faculty,
+            'department' => $department,
+            'street_en' => $street_en,
+            'street_th' => $street_th,
+            'sub_district_en' => $sub_district_en,
+            'sub_district_th' => $sub_district_th,
+            'district_en' => $district_en,
+            'district_th' => $district_th,
+            'province_en' => $province_en,
+            'province_th' => $province_th,
+            'postal_code' => $postal_code,
+            'phone' => $phone,
+            'mobile_phone' => $mobile_phone,
+            'email' => $email,
+            'website' => $website,
+            'thep_lab_code' => $thep_lab_code
+        );
+
+        $this->db->where('researcher_id', $researcher_id);
+        $query = $this->db->get('res_employment');
+        if ($query->num_rows > 0) {
+            foreach ($query->result() as $em):
+                $employment_id = $em->employment_id;
+            endforeach;
+            $this->db->where('employment_id', $employment_id);
+            $this->db->update('res_employment', $data);
+        } else {
+            $this->db->insert('res_employment', $data);
+        }
+    }
+
     public function update_employment() {
         $employment_id = $this->input->post('employment_id');
         $researcher_id = $this->input->post('researcher_id');
@@ -233,16 +293,131 @@ class profile_model extends CI_Model {
         return $query->result();
     }
 
+    public function add_new_training() {
+        $researcher_id = $this->input->post('researcher_id');
+        $training_type = $this->security->xss_clean($this->input->post('training_type'));
+        $institute = $this->security->xss_clean($this->input->post('institute'));
+        $training_start = $this->security->xss_clean($this->input->post('training_start'));
+        $training_end = $this->security->xss_clean($this->input->post('training_end'));
+        $supervisor = $this->security->xss_clean($this->input->post('supervisor'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'training_type' => $training_type,
+            'institute' => $institute,
+            'training_start' => $training_start,
+            'training_end' => $training_end,
+            'supervisor' => $supervisor
+        );
+
+        $this->db->insert('res_training', $data);
+    }
+
+    public function update_training() {
+        $training_id = $this->input->post('training_id');
+        $training_type = $this->security->xss_clean($this->input->post('training_type'));
+        $institute = $this->security->xss_clean($this->input->post('institute'));
+        $training_start = $this->security->xss_clean($this->input->post('training_start'));
+        $training_end = $this->security->xss_clean($this->input->post('training_end'));
+        $supervisor = $this->security->xss_clean($this->input->post('supervisor'));
+
+        $data = array(
+            'training_type' => $training_type,
+            'institute' => $institute,
+            'training_start' => $training_start,
+            'training_end' => $training_end,
+            'supervisor' => $supervisor
+        );
+
+        $this->db->where('training_id', $training_id);
+        $this->db->update('res_training', $data);
+    }
+
+    public function remove_training() {
+        $training_id = $this->input->post('training_id');
+        $this->db->where('training_id', $training_id);
+        $query = $this->db->get('res_training');
+        if ($query->num_rows == 1) {
+            $this->db->delete('res_training', array('training_id' => $training_id));
+        }
+        redirect(site_url() . "profile#training");
+    }
+
     public function get_expertise($researcher_id) {
         $this->db->where('researcher_id', $researcher_id);
         $query = $this->db->get('res_expertise');
         return $query->result();
     }
 
+    public function add_new_expertise() {
+        $researcher_id = $this->input->post('researcher_id');
+        $topic = $this->security->xss_clean($this->input->post('topic'));
+        $specific_topic = $this->security->xss_clean($this->input->post('specific_topic'));
+
+        $this->db->where('researcher_id', $researcher_id);
+        $query = $this->db->get('res_expertise');
+        if ($query->num_rows > 0) {
+            redirect(site_url() . "profile#expertise");
+        } else {
+            $data = array(
+                'researcher_id' => $researcher_id,
+                'topic' => $topic,
+                'specific_topic' => $specific_topic
+            );
+            $this->db->insert('res_expertise', $data);
+        }
+    }
+
+    public function update_expertise() {
+        $expertise_id = $this->input->post('expertise_id');
+        $researcher_id = $this->input->post('researcher_id');
+        $topic = $this->security->xss_clean($this->input->post('topic'));
+        $specific_topic = $this->security->xss_clean($this->input->post('specific_topic'));
+
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'topic' => $topic,
+            'specific_topic' => $specific_topic
+        );
+
+        $this->db->where('expertise_id', $expertise_id);
+        $this->db->update('res_expertise', $data);
+    }
+
     public function get_publication($researcher_id) {
         $this->db->where('researcher_id', $researcher_id);
         $query = $this->db->get('res_publication');
         return $query->result();
+    }
+
+    public function add_new_publication() {
+        $researcher_id = $this->input->post('researcher_id');
+        $content = htmlspecialchars($this->input->post('add_content'), ENT_QUOTES);
+
+        $this->db->where('researcher_id', $researcher_id);
+        $query = $this->db->get('res_publication');
+        if ($query->num_rows > 0) {
+            redirect(site_url() . "profile#publication");
+        } else {
+            $data = array(
+                'researcher_id' => $researcher_id,
+                'content' => $content
+            );
+
+            $this->db->insert('res_publication', $data);
+        }
+    }
+
+    public function update_publication() {
+        $publication_id = $this->input->post('publication_id');
+        $researcher_id = $this->input->post('researcher_id');
+        $content = htmlspecialchars($this->input->post('content'), ENT_QUOTES);
+        $data = array(
+            'researcher_id' => $researcher_id,
+            'content' => $content
+        );
+        $this->db->where('publication_id', $publication_id);
+        $this->db->update('res_publication', $data);
     }
 
 }

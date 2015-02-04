@@ -33,7 +33,7 @@ class Login_model extends CI_Model {
             $this->db->where('username', $username);
             $this->db->where('password', sha1($password));
 
-            $query = $this->db->get('tb_new_user');
+            $query = $this->db->get('res_user');
             $row = $query->row();
             $data = array(
                 'user_id' => $row->id,

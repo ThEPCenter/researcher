@@ -1,9 +1,10 @@
 
+<?php include 'province.php'; ?>
 <div class="container" id="employment">
 
     <h3>ข้อมูลการทำงาน (employment)</h3>
 
-    <?php if (!empty($q_employment)): ?>
+    <?php if (empty($q_employment)): ?>
 
         <p class="bg-warning" style="padding: 15px;">ขออภัย ไม่พบข้อมูลการทำงาน</p>
 
@@ -16,7 +17,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">เพิ่มข้อมูลการทำงาน</h4>
                     </div>
-                    <form class="form-horizontal" role="form" method="post" action="">
+                    <form class="form-horizontal" role="form" method="post" action="profile/add_employment_process">
                         <div class="modal-body">
                             <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
 
@@ -88,7 +89,7 @@
                             <div class="form-group">
                                 <label for="province_th" class="col-sm-2 col-md-2 col-lg-2 control-label">จังหวัด (Thai)</label>
                                 <div class="col-sm-10 col-md-10 col-lg-10">
-                                    <?php include 'province.php'; ?>
+                                    
                                     <select class="form-control" name="province_th">
                                         <?php echo $province; ?>
                                     </select>                                    
@@ -345,7 +346,7 @@
                                     <label for="province_th" class="col-sm-2 col-md-2 col-lg-2 control-label">จังหวัด (Thai)</label>
                                     <div class="col-sm-10 col-md-10 col-lg-10">
                                         <?php
-                                        include 'province.php';
+                                        
                                         echo pro_list_th($em->province_th);
                                         ?>
                                     </div>

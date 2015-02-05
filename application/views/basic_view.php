@@ -136,7 +136,8 @@
             <div class="row">
                 <div class="col-xs-2 col-sm-2 col-md-2">
                     <p><img style="max-width: 100%;" src="<?php echo $profile->pic_url; ?>"></p>
-                    <p><a type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editPicture">แก้ไขรูป</a></p>
+                    <p><a taget="_blank" href="upload"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> เปลี่ยนรูป</a></p>
+                    
                     <!-- #editPicture Modal -->
                     <div class="modal fade" id="editPicture" tabindex="-1" role="dialog" aria-labelledby="editPictureLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">

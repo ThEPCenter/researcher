@@ -420,4 +420,18 @@ class Profile_model extends CI_Model {
         $this->db->update('res_publication', $data);
     }
 
+    public function update_pic_url() {
+        $researcher_id = $this->input->post('researcher_id');
+        $pic_url = $this->security->xss_clean($this->input->post('pic_url'));
+        $updated = time();
+
+        $data = array(
+            'pic_url' => $pic_url,
+            'updated' => $updated
+        );
+
+        $this->db->where('researcher_id', $researcher_id);
+        $this->db->update('res_profile', $data);
+    }
+
 }

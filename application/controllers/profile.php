@@ -124,4 +124,10 @@ class Profile extends CI_Controller {
 
     // ========================================================================
     // ============= Upload picture ========================= //
+
+    public function edit_pic_url() {
+        $this->profile_model->update_pic_url();
+        redirect(site_url() . "profile#basic");
+    }
+
 }

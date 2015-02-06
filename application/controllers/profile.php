@@ -14,6 +14,7 @@ class Profile extends CI_Controller {
 // ======== Helper ======== //
         $this->load->helper('url');
         $this->load->helper('html');
+        $this->load->helper('file');
 
         $this->load->helper(array('form', 'url'));
 
@@ -126,6 +127,12 @@ class Profile extends CI_Controller {
     // ============= Upload picture ========================= //
 
     public function edit_pic_url() {
+        $this->profile_model->update_pic_url();
+        redirect(site_url() . "profile#basic");
+    }
+
+    public function edit_pic_by_upload() {
+        $this->profile_model->delete_old_pic();
         $this->profile_model->update_pic_url();
         redirect(site_url() . "profile#basic");
     }

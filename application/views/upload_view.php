@@ -54,7 +54,9 @@
             <?php echo form_open_multipart('upload/do_upload'); ?>
 
             <input type="file" name="userfile" size="20" required>
-            <p class="help-block">**ควร upload รูปแนวตั้ง และ มีความกว้าง (width) ไม่เกิน 500 พิกเซล (pixel) และ ความสูง (height) ไม่เกิน 750 พิกเซล</p>
+            <p class="help-block">**ควร ใช้รูปแนวตั้ง และ มีความกว้าง (width) ไม่เกิน 600 พิกเซล (pixel) และ ความสูง (height) ไม่เกิน 800 พิกเซล และขนาดไฟล์ไม่เกิน 800 kB
+                <br>**ไฟล์ภาพต้องมีสกุลเป็น jpg, png หรือ gif เท่านั้น
+            </p>
 
             <p>&nbsp;</p>
 

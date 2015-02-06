@@ -17,35 +17,8 @@
                         <h4 class="modal-title" id="myModalLabel">เพิ่มข้อมูลพื้นฐาน</h4>
                     </div>
                     <form class="form-horizontal" role="form" method="post" action="profile/add_basic_process">
-
-                        <div class="modal-body">                                
-
-                            <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
-
-                            <div class="form-group">
-                                <label class="col-md-2 col-lg-2 control-label">Profile picture</label>
-                                <div class="col-md-10 col-lg-10">
-                                    <div id="show-pic">
-                                        <img src="">
-                                    </div>                            
-                                </div>
-                            </div> 
-                            <script>
-                                $(function () {
-                                    $("#pic_url").blur(function () {
-                                        var pic_url = $("#pic_url").val();
-                                        $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
-                                    });
-
-                                });
-                            </script>                
-
-                            <div class="form-group">
-                                <label for="website" class="col-md-2 col-lg-2 control-label">Picture's url</label>
-                                <div class="col-md-10 col-lg-10">
-                                    <input type="text" class="form-control" name="pic_url" id="pic_url" placeholder="เช่น http://www.example.com/pic.jpg">
-                                </div>
-                            </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">                           
 
                             <div class="form-group">
                                 <label class="col-md-2 col-lg-2 control-label">Date of birth</label>
@@ -137,68 +110,6 @@
                 <div class="col-xs-2 col-sm-2 col-md-2">
                     <p><img style="max-width: 100%;" src="<?php echo $profile->pic_url; ?>"></p>
                     <p><a taget="_blank" href="upload"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> เปลี่ยนรูป</a></p>
-                    
-                    <!-- #editPicture Modal -->
-                    <div class="modal fade" id="editPicture" tabindex="-1" role="dialog" aria-labelledby="editPictureLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h3 class="modal-title" id="myModalLabel">Edit Picture</h3>
-                                </div>
-
-                                <div class="modal-body">
-                                    <h4>- คุณสามารถ upload รูปจากคอมพิวเตอร์ได้โดยตรง</h4>
-                                    <?php echo form_open_multipart('upload/do_upload'); ?>
-                                    <label>File input</label>
-                                    <input type="file" name="userfile" size="20" />
-                                    <p class="help-block">**ควร upload รูปแนวตั้ง และ มีความกว้าง (width) ไม่เกิน 300 พิกเซล (pixel)</p>
-
-                                    <br /><br />
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> &nbsp;
-                                    <input type="submit" class="btn btn-primary" value="upload">
-
-                                    </form>
-
-                                </div>
-                                <div class="modal-footer"></div>
-
-                                <div class="modal-body">
-                                    <h4>หรือ</h4>
-                                    <h4>- แก้ไขโดยกรอกลิงค์ของรูป (picture's url) ในอินเทอร์เน็ต</h4>
-                                    <form>                                                       
-
-                                        <div class="form-group">
-                                            <label>Picture's url</label>
-                                            <input type="text" class="form-control" name="pic_url" id="pic_url" value="<?php echo $profile->pic_url; ?>" placeholder="เช่น http://www.example.com/pic.jpg">
-
-                                        </div>                                       
-                                        <div class="form-group">
-                                            <label>Profile picture</label>
-                                            <div id="show-pic">
-                                                <img src="<?php echo $profile->pic_url; ?>">
-                                            </div>
-                                        </div> 
-                                        <script>
-                                            $(function () {
-                                                $("#pic_url").blur(function () {
-                                                    var pic_url = $("#pic_url").val();
-                                                    $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
-                                                });
-
-                                            });
-                                        </script>
-
-                                    </form>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div> <!-- /.col-md-2 -->
 
                 <div class="col-xs-10 col-sm-10 col-md-10">

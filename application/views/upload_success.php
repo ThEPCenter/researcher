@@ -44,25 +44,20 @@
         </nav>
 
         <div class="container">
-            <h3>Your file was successfully uploaded!</h3>
-
-            <ul>
-                <?php foreach ($upload_data as $item => $value): ?>
-                    <li><?php echo $item; ?>: <?php echo $value; ?></li>
-                <?php endforeach; ?>
-            </ul>
-
-            <p><?php echo anchor('upload', 'Upload Another File!'); ?></p>
-
-            <p>&nbsp;</p>
+            <h3>Upload สำเร็จ</h3>
 
             <p><strong>File name: </strong><?php echo $upload_data['file_name']; ?></p>
-            <p>&nbsp;</p>
+                       
             <?php $new_pic_url = base_url() . 'picture_upload/' . $upload_data['file_name']; ?>
+            <p><strong>Url: </strong><?php echo $new_pic_url; ?></p>
+            
+            <p><strong>Picture sample: </strong></p>
+            
             <img src="<?php echo $new_pic_url; ?>">
             <p>&nbsp;</p>
-
-            <form method="post" action="<?php echo site_url(); ?>profile/edit_pic_url">
+            
+            <h3>คุณแน่ใจที่จะใช้รูปที่ upload นี้ แทนรูปเดิมหรือไม่</h3>
+            <form method="post" action="<?php echo site_url(); ?>profile/edit_pic_by_upload">
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
                 <input type="hidden" name="pic_url" value="<?php echo $new_pic_url; ?>">
                 <a href="<?php echo site_url(); ?>profile#basic" type="button" class="btn btn-default">Cancel</a> &nbsp;

@@ -434,4 +434,16 @@ class Profile_model extends CI_Model {
         $this->db->update('res_profile', $data);
     }
 
+    public function delete_old_pic() {
+        $researcher_id = $this->input->post('researcher_id');
+        $q_profile = $this->get_profile($researcher_id);
+        foreach ($q_profile as $profile):
+            $pic_url = $profile->pic_url;
+        endforeach;
+        $file_name = basename($pic_url);
+        if (!empty($pic_url)):
+            delete_files('./upload_picture/' . $file_name);
+        endif;
+    }
+
 }

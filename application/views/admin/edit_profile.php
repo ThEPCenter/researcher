@@ -4,7 +4,7 @@
             <h2 style="text-align: center;">Edit Profile : <?php echo $row->firstname_en . ' ' . $row->lastname_en; ?></h2>
             <p>&nbsp;</p>       
 
-            <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_profile_process">
+            <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>admin/edit_profile_process">
 
                 <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
 
@@ -125,7 +125,7 @@
                 <div class="form-group">
                     <div class="col-md-10 col-lg-10 col-lg-offset-2">
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Submit</button> &nbsp;
-                        <a href="<?php echo site_url() . '/admin/profile/' . $row->researcher_id; ?>"><strong>Cancel</strong></a>
+                        <a href="<?php echo site_url() . 'admin/profile/' . $row->researcher_id; ?>"><strong>Cancel</strong></a>
                     </div>
                 </div>
 

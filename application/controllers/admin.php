@@ -49,11 +49,11 @@ class Admin extends CI_Controller {
         $keyword = $this->input->post('keyword');
         if (!empty($keyword)):
             $data['query'] = $this->admin_model->search_researcher($keyword);
-        $data['search_num_rows'] = $this->admin_model->get_search_numrow($keyword);
+            $data['search_num_rows'] = $this->admin_model->get_search_numrow($keyword);
         endif;
 
         $data['keyword'] = $keyword;
-        
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar', $data);
@@ -139,8 +139,9 @@ class Admin extends CI_Controller {
     // ---------------------------------------------------------------------
     // ========================= Profile ===================================
 
-    public function profile($research_id) {
-        $data['query'] = $this->admin_model->get_profile($research_id);
+    public function profile($researcher_id) {
+        $data['researcher_id'] = $researcher_id;
+        $data['query'] = $this->admin_model->get_profile($researcher_id);
         $data['title'] = 'Profile';
         foreach ($data['query'] as $pro) {
             $dob = $pro->dob;
@@ -148,6 +149,9 @@ class Admin extends CI_Controller {
         if (!empty($dob)):
             $data['age'] = $this->cal_age($dob);
         endif;
+
+        $data['q_user'] = $this->admin_model->get_user($researcher_id);
+
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
         $this->load->view('admin/profile', $data);
@@ -468,6 +472,20 @@ class Admin extends CI_Controller {
             //get age from date or birthdate
             return (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md") ? ((date("Y") - $birthDate[2]) - 1) : (date("Y") - $birthDate[2]));
         endif;
+    }
+
+    // =============== User management ==================== //
+
+    public function edit_user_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->admin_model->update_user();
+        redirect(site_url() . "admin/profile/$researcher_id#user_properties");
+    }
+
+    public function add_user_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->admin_model->add_new_user();
+        redirect(site_url() . "admin/profile/$researcher_id#user_properties");
     }
 
 }

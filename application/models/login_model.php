@@ -13,7 +13,7 @@ class Login_model extends CI_Model {
 
         // Prep the query
         $this->db->where('username', $username);
-        $this->db->where('password', sha1($password));
+        $this->db->where('password', $password);
         // Run the query
         $query = $this->db->get('res_user');
 
@@ -21,18 +21,19 @@ class Login_model extends CI_Model {
         if ($query->num_rows == 1) {
             $row = $query->row();
             date_default_timezone_set("Asia/Bangkok");
+            $recent_login = date("Y-m-d H:i:s");
+            $last_login = $row->recent_login;
             $data_update = array(
-                'recent_login' => date("Y-m-d H:i:s"),
-                'last_login' => $row->recent_login
+                'recent_login' => $recent_login,
+                'last_login' => $last_login
             );
             $where = "id = $row->id";
-            $str = $this->db->update_string('tb_new_user', $data_update, $where);
+            $str = $this->db->update_string('res_user', $data_update, $where);
             $this->db->query($str);
 
             // If there is a user, then create session data
             $this->db->where('username', $username);
-            $this->db->where('password', sha1($password));
-
+            $this->db->where('password', $password);
             $query = $this->db->get('res_user');
             $row = $query->row();
             $data = array(

@@ -475,7 +475,7 @@ class Admin_model extends CI_Model {
         $query = $this->db->get('res_profile');
         return $query->result();
     }
-    
+
     public function get_search_numrow($keyword) {
         $kw = $this->security->xss_clean($keyword);
         $this->db->like('firstname_en', $kw);
@@ -484,6 +484,61 @@ class Admin_model extends CI_Model {
         $this->db->or_like('lastname_th', $kw);
         $query = $this->db->get('res_profile');
         return $query->num_rows();
+    }
+
+    // ======================= User management ========================= //
+    public function get_user($researcher_id) {
+        $q_profile = $this->get_profile($researcher_id);
+        foreach ($q_profile as $profile):
+            $user_id = $profile->user_id;
+        endforeach;
+        if (!empty($user_id) && $user_id > 0):
+            $this->db->where('id', $user_id);
+            $q_user = $this->db->get('res_user');
+            if ($q_user->num_rows):
+                return $q_user->result();
+            else:
+                return FALSE;
+            endif;
+        else:
+            return FALSE;
+        endif;
+    }
+
+    public function add_new_user() {
+        $researcher_id = $this->input->post('researcher_id');
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $password = $this->security->xss_clean($this->input->post('password'));
+        $data = array(
+            'username' => $username,
+            'password' => $password,
+            'level' => 1,
+            'modified' => date("Y-m-d H:i:s"),
+            'sessionid' => '',
+            'recent_login' => '',
+            'last_login' => ''
+        );
+        $this->db->insert('res_user', $data);
+        $id = $this->db->insert_id();
+
+        $data_profile = array(
+            'user_id' => $id
+        );
+        $this->db->where('researcher_id', $researcher_id);
+        $this->db->update('res_profile', $data_profile);
+    }
+
+    public function update_user() {
+        $id = $this->input->post('id');
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $password = $this->security->xss_clean($this->input->post('password'));
+        $data = array(
+            'username' => $username,
+            'password' => $password,
+            'modified' => date("Y-m-d H:i:s")
+        );
+        $this->db->where('id', $id);
+        $this->db->update('res_user', $data);
     }
 
 }

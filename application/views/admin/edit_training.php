@@ -4,7 +4,7 @@
         <h2 style="text-align: center;"><?php echo $title; ?> <span class="glyphicon glyphicon-fire"></span></h2>
         <p>&nbsp;</p>
 
-        <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_training_process">
+        <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>admin/edit_training_process">
 
             <?php
 
@@ -65,9 +65,9 @@
                     
                     <div class="form-group">
                         <label class="col-lg-2 control-label"></label>
-                        <div class="col-lg-10">
-                            <button type="submit" class="btn btn-success">Submit</button> &nbsp;
-                            <a href="<?php echo site_url(); ?>/admin/training/<?php echo $row->researcher_id; ?>">Cancel</a>
+                        <div class="col-lg-10">                            
+                            <a class="btn btn-default" href="<?php echo site_url(); ?>admin/training/<?php echo $row->researcher_id; ?>">Cancel</a> &nbsp;
+                            <button type="submit" class="btn btn-primary">Confirm Edit</button>
                         </div>
                     </div>
 

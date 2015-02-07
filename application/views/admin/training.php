@@ -11,7 +11,7 @@
                 <div class="col-md-3">&nbsp;</div>
             </div>
 
-            <form method="post" action="<?php echo site_url(); ?>/admin/add_training">
+            <form method="post" action="<?php echo site_url(); ?>admin/add_training">
                 <div style="text-align: center;">
                     <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
                     <button class="btn btn-default">กรอกข้อมูล Training</button>
@@ -61,7 +61,7 @@
                         </td>
                         <td><?php echo $row->supervisor; ?></td>
                         <td style="text-align: center; min-width: 138px;">                            
-                            <a href="<?php echo site_url() ?>/admin/edit_training/<?php echo $row->training_id; ?>"
+                            <a href="<?php echo site_url() ?>admin/edit_training/<?php echo $row->training_id; ?>"
                                class="btn btn-primary">
                                 Edit
                             </a>                            
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>                            
-                                    <button type="button" class="btn btn-danger" onclick="window.location = '<?php echo site_url(); ?>/admin/delete_training/<?php echo $row->training_id; ?>'">Confirm Delete</button>
+                                    <button type="button" class="btn btn-danger" onclick="window.location = '<?php echo site_url(); ?>admin/delete_training/<?php echo $row->training_id; ?>'">Confirm Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
 
             </table>
 
-            <form role="form" method="post" action="<?php echo site_url(); ?>/admin/add_training">
+            <form role="form" method="post" action="<?php echo site_url(); ?>admin/add_training">
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add</button>
             </form>
@@ -100,6 +100,6 @@
 
     </div>
 
-    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
+    <a class="btn btn-default" href="<?php echo site_url(); ?>admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
 
 </div> <!-- /.container -->

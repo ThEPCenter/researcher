@@ -4,7 +4,7 @@
         <h2 style="text-align: center;"><?php echo $title; ?> <span class="glyphicon glyphicon-flash"></span></h2>
         <p>&nbsp;</p>
 
-        <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_expertise_process">
+        <form role="form" method="post" action="<?php echo site_url(); ?>admin/edit_expertise_process">
             <fieldset>
                 <?php
 
@@ -87,8 +87,9 @@
                         <input class="form-control" type="text" name="specific_topic" id="specific_topic" value="<?php echo $r->specific_topic; ?>">
                     </div>
 
-                    <button type="submit" class="btn btn-success">Submit</button> &nbsp;
-                    <a href="<?php echo site_url(); ?>/admin/expertise/<?php echo $r->researcher_id; ?>">Cancel</a>
+                    
+                    <a class="btn btn-default" href="<?php echo site_url(); ?>admin/expertise/<?php echo $r->researcher_id; ?>">Cancel</a> &nbsp;
+                    <button type="submit" class="btn btn-primary">Confirm Edit</button>
 
                 <?php endforeach; ?>
             </fieldset>

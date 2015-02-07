@@ -10,7 +10,7 @@
         }
         ?>
 
-        <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_publication_process">
+        <form role="form" method="post" action="<?php echo site_url(); ?>admin/edit_publication_process">
             <fieldset>
                 <?php foreach ($query as $row) : ?>
 
@@ -24,8 +24,8 @@
                             CKEDITOR.replace('content');
                         </script>
                     </div>
-                    <button type="submit" class="btn btn-success">Submit</button> &nbsp;
-                    <a href="<?php echo site_url(); ?>/admin/publication/<?php echo $row->researcher_id; ?>">Cancel</a>
+                    <a class="btn btn-default" href="<?php echo site_url(); ?>admin/publication/<?php echo $row->researcher_id; ?>">Cancel</a> &nbsp;
+                    <button type="submit" class="btn btn-primary">Confirm Edit</button>                    
 
                 <?php endforeach; ?>
             </fieldset>

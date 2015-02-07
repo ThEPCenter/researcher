@@ -124,8 +124,8 @@
 
                 <div class="form-group">
                     <div class="col-md-10 col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Submit</button> &nbsp;
-                        <a href="<?php echo site_url() . 'admin/profile/' . $row->researcher_id; ?>"><strong>Cancel</strong></a>
+                        <a class="btn btn-default" href="<?php echo site_url() . 'admin/profile/' . $row->researcher_id; ?>"><strong>Cancel</strong></a> &nbsp;
+                        <button type="submit" class="btn btn-primary">Confirm Edit</button>                        
                     </div>
                 </div>
 

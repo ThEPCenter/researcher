@@ -31,7 +31,11 @@ class Profile extends CI_Controller {
         $data['q_profile'] = $this->profile_model->get_user_profile($username);
         foreach ($data['q_profile'] as $profile):
             $data['researcher_id'] = $profile->researcher_id;
+            $dob = $profile->dob;
         endforeach;
+        if (!empty($dob)):
+            $data['age'] = $this->cal_age($dob);
+        endif;
         $data['q_education'] = $this->profile_model->get_education($data['researcher_id']);
         $data['q_employment'] = $this->profile_model->get_employment($data['researcher_id']);
         $data['q_training'] = $this->profile_model->get_training($data['researcher_id']);
@@ -135,6 +139,23 @@ class Profile extends CI_Controller {
         $this->profile_model->delete_old_pic();
         $this->profile_model->update_pic_url();
         redirect(site_url() . "profile#basic");
+    }
+
+    // ======================================================================== //
+    public function cal_age($dob_timestamp) {
+        if (version_compare(PHP_VERSION, '5.3.0') >= 0):
+            $birth_time = date("Y-m-d", $dob_timestamp);
+            $from = new DateTime($birth_time);
+            $to = new DateTime('today');
+            return $from->diff($to)->y;
+        else:
+            //date in mm/dd/yyyy format; or it can be in other formats as well
+            $birth_time = date("m/d/Y", $dob_timestamp);
+            //explode the date to get month, day and year
+            $birthDate = explode("/", $birth_time);
+            //get age from date or birthdate
+            return (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md") ? ((date("Y") - $birthDate[2]) - 1) : (date("Y") - $birthDate[2]));
+        endif;
     }
 
 }

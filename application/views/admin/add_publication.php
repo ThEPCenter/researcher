@@ -4,8 +4,7 @@
         <h2 style="text-align: center;"><?php echo $title; ?><span class="glyphicon glyphicon-flash"></span></h2>
         <p>&nbsp;</p>
 
-
-        <form role="form" method="post" action="<?php echo site_url(); ?>/admin/add_publication_process">
+        <form role="form" method="post" action="<?php echo site_url(); ?>admin/add_publication_process">
             <fieldset>
 
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
@@ -17,13 +16,11 @@
                         CKEDITOR.replace('content');
                     </script>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button> &nbsp;
-                <a href="<?php echo site_url(); ?>/admin/publication/<?php echo $researcher_id; ?>">Cancel</a>
 
+                <a class="btn btn-default" href="<?php echo site_url(); ?>admin/publication/<?php echo $researcher_id; ?>">Cancel</a> &nbsp;
+                <button type="submit" class="btn btn-primary">Confirm Add</button>
             </fieldset>
         </form>
 
-
     </div>
-</div>
-
+</div> <!-- /.container -->

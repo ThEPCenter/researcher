@@ -33,7 +33,7 @@
                         <td style="text-align: center;"><?php echo ucfirst($row->degree) . "'s degree"; ?></td>
                         <td style="text-align: center;"><?php echo $row->major; ?></td>
                         <td  style="text-align: center; width: 138px;">
-                            <a href="<?php echo site_url() ?>/admin/edit_education/<?php echo $row->education_id; ?>"
+                            <a href="<?php echo site_url() ?>admin/edit_education/<?php echo $row->education_id; ?>"
                                class="btn btn-primary">
                                 Edit
                             </a>
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>                            
-                                    <button type="button" class="btn btn-danger" onclick="window.location = '<?php echo site_url(); ?>/admin/delete_education/<?php echo $row->education_id; ?>'">Confirm Delete</button>
+                                    <button type="button" class="btn btn-danger" onclick="window.location = '<?php echo site_url(); ?>admin/delete_education/<?php echo $row->education_id; ?>'">Confirm Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                 ?>
             </table>
 
-            <form role="form" method="post" action="<?php echo site_url(); ?>/admin/add_education">
+            <form role="form" method="post" action="<?php echo site_url(); ?>admin/add_education">
                 <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add</button>
             </form>
@@ -73,6 +73,6 @@
         <?php endif; ?>
     </div>
 
-    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
+    <a class="btn btn-default" href="<?php echo site_url(); ?>admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
 
 </div>

@@ -13,7 +13,7 @@
                 <div class="col-md-6 alert alert-warning text-center"><strong style="color: red;">ขออภัย ไม่พบข้อมูล <?php echo $title; ?></strong></div>
                 <div class="col-md-3">&nbsp;</div>
             </div>
-            <form method="post" action="<?php echo site_url(); ?>/admin/add_publication">
+            <form method="post" action="<?php echo site_url(); ?>admin/add_publication">
                 <div style="text-align: center;">
                     <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
                     <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> เพิ่มข้อมูล <?php echo $title; ?></button>
@@ -28,7 +28,7 @@
                 <p>(in the last 10 years in order of most recent work)</p>
                 <div><?php echo htmlspecialchars_decode($row->content); ?></div>
 
-                <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_publication">
+                <form role="form" method="post" action="<?php echo site_url(); ?>admin/edit_publication">
                     <input type="hidden" name="publication_id" value="<?php echo $row->publication_id; ?>">
                     <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit Publication</button>
@@ -40,7 +40,7 @@
 
     </div>
 
-    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
+    <a class="btn btn-default" href="<?php echo site_url(); ?>admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
 
 
 </div> <!-- /.container -->

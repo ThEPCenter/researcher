@@ -4,7 +4,7 @@
         <h2 style="text-align: center;"><?php echo $title; ?> <span class="glyphicon glyphicon-briefcase"></span></h2>
         <p>&nbsp;</p>
 
-        <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/add_employment_process">
+        <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>admin/add_employment_process">
             <fieldset>
 
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
@@ -163,9 +163,9 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-success">Submit</button> &nbsp;
-                        <a href="<?php echo site_url() . "/admin/employment/" . $researcher_id; ?>"><strong>Cancel</strong></a>
+                    <div class="col-lg-10 col-lg-offset-2">                        
+                        <a class="btn btn-default" href="<?php echo site_url() . "admin/employment/" . $researcher_id; ?>"><strong>Cancel</strong></a> &nbsp;
+                        <button type="submit" class="btn btn-primary">Confirm Add</button>
                     </div>
                 </div>
             </fieldset>

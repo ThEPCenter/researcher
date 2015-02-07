@@ -5,7 +5,7 @@
 
         <p>&nbsp;</p>
 
-        <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_employment_process">
+        <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>admin/edit_employment_process">
             <fieldset>
                 <legend> </legend>
 
@@ -174,9 +174,9 @@
                 <?php endforeach; ?>                
 
                 <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-success">Submit</button> &nbsp;
-                        <a href="<?php echo site_url() . "/admin/employment/" . $row->researcher_id; ?>"><strong>Cancel</strong></a>
+                    <div class="col-lg-10 col-lg-offset-2">                        
+                        <a class="btn btn-default" href="<?php echo site_url() . "admin/employment/" . $row->researcher_id; ?>"><strong>Cancel</strong></a> &nbsp;
+                        <button type="submit" class="btn btn-primary">Confirm Edit</button>
                     </div>
                 </div>
             </fieldset>

@@ -42,10 +42,12 @@
                 <?php endif; ?>
 
                 <?php if (!empty($age)): ?>
+                    <div class="colsm-12 col-md-12"></div>
                     <div class="col-sm-2 col-md-2"><strong style="color: #89919c;">อายุ (age)</strong></div>
                     <div class="col-sm-10 col-md-10">
                         <?php echo $age; ?>
                     </div>
+                    <p>&nbsp;</p>
                 <?php endif; ?>    
 
 

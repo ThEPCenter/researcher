@@ -35,7 +35,7 @@
                         <tr>
                             <td><?php echo $i; ?></td>
                             <td>
-                                <a href="<?php echo site_url() . "/admin/profile/$row->researcher_id"; ?>">
+                                <a href="<?php echo site_url() . "admin/profile/$row->researcher_id"; ?>">
                                     <?php echo $row->firstname_en . ' ' . $row->lastname_en; ?> 
                                     <?php
                                     if (!empty($row->firstname_th)):

@@ -95,15 +95,15 @@
 
             <p>&nbsp;</p>
 
-            <form role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_employment">
+            <form role="form" method="post" action="<?php echo site_url(); ?>admin/edit_employment">
                 <input type="hidden" name="employment_id" value="<?php echo $row->employment_id; ?>">
                 <input type="hidden" name="researcher_id" value="<?php echo $row->researcher_id; ?>">
-                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit Employment</button>
             </form>
         <?php endif; ?>
     </div>
 
-    <a class="btn btn-default" href="<?php echo site_url(); ?>/admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
+    <a class="btn btn-default" href="<?php echo site_url(); ?>admin/profile/<?php echo $researcher_id; ?>"><span class="glyphicon glyphicon-arrow-left"></span> Back to Profile</a>
 
 </div> <!-- /.container -->
 

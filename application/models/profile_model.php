@@ -52,8 +52,7 @@ class Profile_model extends CI_Model {
         $phone = $this->security->xss_clean($this->input->post('phone'));
         $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));
         $email = $this->security->xss_clean($this->input->post('email'));
-        $website = $this->security->xss_clean($this->input->post('website'));
-        $pic_url = $this->security->xss_clean($this->input->post('pic_url'));
+        $website = $this->security->xss_clean($this->input->post('website'));        
         $updated = time();
 
         $data = array(
@@ -74,7 +73,6 @@ class Profile_model extends CI_Model {
             'mobile_phone' => $mobile_phone,
             'email' => $email,
             'website' => $website,
-            'pic_url' => $pic_url,
             'updated' => $updated
         );
 

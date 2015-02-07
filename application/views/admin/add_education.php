@@ -3,7 +3,7 @@
     <div class="row well">
         <h2 style="text-align: center;"><?php echo $title; ?> <span class="glyphicon glyphicon-book"></span></h2>
 
-        <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/add_education_process">
+        <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>admin/add_education_process">
             <fieldset>             
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
 
@@ -27,7 +27,7 @@
                             <option value="bachelor">Bachelor's degree</option>
                             <option value="master">Master's degree</option>
                             <option value="doctoral">Doctoral's degree</option>
-                            <option valur="diploma">Diploma</option>
+                            <option value="diploma">Diploma</option>
                         </select>
                     </div>
                 </div>
@@ -75,8 +75,8 @@
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-success">Submit</button> &nbsp;
-                        <a href="<?php echo site_url() . '/admin/education/' . $researcher_id; ?>"><strong>Cancel</strong></a>
+                        <a class="btn btn-default" href="<?php echo site_url() . 'admin/education/' . $researcher_id; ?>"><strong>Cancel</strong></a> &nbsp;
+                        <button type="submit" class="btn btn-success">Confirm Add</button>                       
                     </div>
                 </div>
 

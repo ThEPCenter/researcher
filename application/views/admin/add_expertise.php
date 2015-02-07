@@ -5,7 +5,7 @@
         <p>&nbsp;</p>
 
 
-        <form role="form" method="post" action="<?php echo site_url(); ?>/admin/add_expertise_process">
+        <form role="form" method="post" action="<?php echo site_url(); ?>admin/add_expertise_process">
             <fieldset>
 
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
@@ -73,9 +73,9 @@
                     <label for="specific_topic">Specific</label>                        
                     <input class="form-control" type="text" name="specific_topic" id="specific_topic">
                 </div>
+                <a class="btn btn-default" href="<?php echo site_url(); ?>admin/expertise/<?php echo $researcher_id; ?>">Cancel</a> &nbsp;
+                <button type="submit" class="btn btn-primary">Confirm Add</button>
 
-                <button type="submit" class="btn btn-default">Submit</button> &nbsp;
-                <a href="<?php echo site_url(); ?>/admin/expertise/<?php echo $researcher_id; ?>">Cancel</a>
 
 
             </fieldset>

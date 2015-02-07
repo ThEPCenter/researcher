@@ -56,17 +56,17 @@ class Admin extends CI_Controller {
 
 
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/navbar', $data);
+        $this->load->view('admin/navbar');
         $this->load->view('admin/search');
-        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/footer');
     }
 
     public function add_researcher() {
         $data['title'] = 'Add Researcher';
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/navbar', $data);
+        $this->load->view('admin/navbar');
         $this->load->view('admin/add_researcher');
-        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/footer');
     }
 
     public function check_name() {
@@ -86,7 +86,7 @@ class Admin extends CI_Controller {
     public function researcher_list($page_num = "") {
         // ========== Pagination ===================== //
         $data['num'] = $this->db->count_all_results('res_profile');
-        $config['base_url'] = site_url() . '/admin/researcher_list/';
+        $config['base_url'] = site_url() . 'admin/researcher_list/';
         $config['total_rows'] = $data['num'];
         $config['per_page'] = 20;       // rows per page
         $data['per_page'] = $config['per_page'];
@@ -132,7 +132,7 @@ class Admin extends CI_Controller {
         $data['title'] = 'Researcher List.';
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/researcher_list', $data);
+        $this->load->view('admin/researcher_list');
         $this->load->view('templates/footer');
     }
 
@@ -154,8 +154,8 @@ class Admin extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/profile', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('admin/profile');
+        $this->load->view('templates/footer');
     }
 
     public function edit_profile() {
@@ -165,14 +165,14 @@ class Admin extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/edit_profile', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('admin/edit_profile');
+        $this->load->view('templates/footer');
     }
 
     public function edit_profile_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->update_profile();
-        redirect(site_url() . "/admin/profile/$researcher_id");
+        redirect(site_url() . "admin/profile/$researcher_id");
     }
 
     // ---------------------------------------------------------------------
@@ -186,8 +186,8 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/education', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('admin/education');
+        $this->load->view('templates/footer');
     }
 
     public function add_education() {
@@ -198,14 +198,14 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/add_education', $data);
+        $this->load->view('admin/add_education');
         $this->load->view('templates/footer');
     }
 
     public function add_education_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->add_new_education();
-        redirect(site_url() . "/admin/education/$researcher_id");
+        redirect(site_url() . "admin/education/$researcher_id");
     }
 
     public function edit_education($education_id) {
@@ -216,22 +216,22 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/edit_education', $data);
+        $this->load->view('admin/edit_education');
         $this->load->view('templates/footer');
     }
 
     public function edit_education_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->update_education();
-        redirect(site_url() . "/admin/education/$researcher_id");
+        redirect(site_url() . "admin/education/$researcher_id");
     }
 
     public function delete_education($education_id) {
         $researcher_id = $this->admin_model->remove_education($education_id);
         if (!empty($researcher_id)) {
-            redirect(site_url() . "/admin/education/$researcher_id");
+            redirect(site_url() . "admin/education/$researcher_id");
         } else {
-            redirect(site_url() . "/admin");
+            redirect(site_url() . "admin");
         }
     }
 
@@ -247,8 +247,8 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/employment', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('admin/employment');
+        $this->load->view('templates/footer');
     }
 
     public function add_employment() {
@@ -259,14 +259,14 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/add_employment', $data);
+        $this->load->view('admin/add_employment');
         $this->load->view('templates/footer');
     }
 
     public function add_employment_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->add_new_employment();
-        redirect(site_url() . "/admin/employment/$researcher_id");
+        redirect(site_url() . "admin/employment/$researcher_id");
     }
 
     public function edit_employment() {
@@ -278,14 +278,14 @@ class Admin extends CI_Controller {
         $data['query'] = $this->admin_model->get_edit_employment();
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/edit_employment', $data);
+        $this->load->view('admin/edit_employment');
         $this->load->view('templates/footer');
     }
 
     public function edit_employment_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->update_employment();
-        redirect(site_url() . "/admin/employment/$researcher_id");
+        redirect(site_url() . "admin/employment/$researcher_id");
     }
 
     // ---------------------------------------------------------------------
@@ -300,8 +300,8 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/training', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('admin/training');
+        $this->load->view('templates/footer');
     }
 
     public function add_training() {
@@ -312,14 +312,14 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/add_training', $data);
+        $this->load->view('admin/add_training');
         $this->load->view('templates/footer');
     }
 
     public function add_training_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->add_new_training();
-        redirect(site_url() . "/admin/training/$researcher_id");
+        redirect(site_url() . "admin/training/$researcher_id");
     }
 
     public function edit_training($training_id) {
@@ -332,22 +332,22 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/edit_training', $data);
+        $this->load->view('admin/edit_training');
         $this->load->view('templates/footer');
     }
 
     public function edit_training_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->update_training();
-        redirect(site_url() . "/admin/training/$researcher_id");
+        redirect(site_url() . "admin/training/$researcher_id");
     }
 
     public function delete_training($training_id) {
         $researcher_id = $this->admin_model->remove_training($training_id);
         if (!empty($researcher_id)) {
-            redirect(site_url() . "/admin/training/$researcher_id");
+            redirect(site_url() . "admin/training/$researcher_id");
         } else {
-            redirect(site_url() . "/admin");
+            redirect(site_url() . "admin");
         }
     }
 
@@ -363,8 +363,8 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/expertise', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('admin/expertise');
+        $this->load->view('templates/footer');
     }
 
     public function add_expertise() {
@@ -375,14 +375,14 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/add_expertise', $data);
+        $this->load->view('admin/add_expertise');
         $this->load->view('templates/footer');
     }
 
     public function add_expertise_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->add_new_expertise();
-        redirect(site_url() . "/admin/expertise/$researcher_id");
+        redirect(site_url() . "admin/expertise/$researcher_id");
     }
 
     public function edit_expertise() {
@@ -394,14 +394,14 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/edit_expertise', $data);
+        $this->load->view('admin/edit_expertise');
         $this->load->view('templates/footer');
     }
 
     public function edit_expertise_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->update_expertise();
-        redirect(site_url() . "/admin/expertise/$researcher_id");
+        redirect(site_url() . "admin/expertise/$researcher_id");
     }
 
     // ---------------------------------------------------------------------
@@ -414,8 +414,8 @@ class Admin extends CI_Controller {
         $data['researcher_id'] = $researcher_id;
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/publication', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('admin/publication');
+        $this->load->view('templates/footer');
     }
 
     public function add_publication() {
@@ -426,14 +426,14 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/add_publication', $data);
+        $this->load->view('admin/add_publication');
         $this->load->view('templates/footer');
     }
 
     public function add_publication_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->add_new_publication();
-        redirect(site_url() . "/admin/publication/$researcher_id");
+        redirect(site_url() . "admin/publication/$researcher_id");
     }
 
     public function edit_publication() {
@@ -446,14 +446,14 @@ class Admin extends CI_Controller {
         }
         $this->load->view('templates/header', $data);
         $this->load->view('admin/navbar');
-        $this->load->view('admin/edit_publication', $data);
+        $this->load->view('admin/edit_publication');
         $this->load->view('templates/footer');
     }
 
     public function edit_publication_process() {
         $researcher_id = $this->input->post('researcher_id');
         $this->admin_model->update_publication();
-        redirect(site_url() . "/admin/publication/$researcher_id");
+        redirect(site_url() . "admin/publication/$researcher_id");
     }
 
     // ---------------------------------------------------------------------

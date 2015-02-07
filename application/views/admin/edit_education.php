@@ -20,7 +20,7 @@
             }
             ?>
 
-            <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>/admin/edit_education_process">
+            <form class="form-horizontal" role="form" method="post" action="<?php echo site_url(); ?>admin/edit_education_process">
                 <fieldset>
                     <?php foreach ($query as $row) : ?>                    
                         <input type="hidden" name="education_id" value="<?php echo $row->education_id; ?>">
@@ -95,9 +95,9 @@
                     <?php endforeach; ?>
 
                     <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-success">Submit</button> &nbsp;
-                            <a href="<?php echo site_url(); ?>/admin/education/<?php echo $row->researcher_id; ?>"><strong>Cancel</strong></a>                            
+                        <div class="col-lg-10 col-lg-offset-2">                             
+                            <a class="btn btn-default" href="<?php echo site_url(); ?>admin/education/<?php echo $row->researcher_id; ?>"><strong>Cancel</strong></a> &nbsp;
+                            <button type="submit" class="btn btn-primary">Confirm Edit</button>
                         </div>
                     </div>
 

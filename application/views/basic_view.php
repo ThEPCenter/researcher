@@ -109,7 +109,7 @@
             <div class="row">
                 <div class="col-xs-2 col-sm-2 col-md-2">
                     <p><img style="max-width: 100%;" src="<?php echo $profile->pic_url; ?>"></p>
-                    <p><a taget="_blank" href="upload"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> เปลี่ยนรูป</a></p>
+                    <p><a href="upload"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> เปลี่ยนรูป</a></p>
                 </div> <!-- /.col-md-2 -->
 
                 <div class="col-xs-10 col-sm-10 col-md-10">
@@ -118,10 +118,15 @@
                     <p><strong>วันเกิด (Date of birth):</strong> 
                         <?php
                         if (!empty($profile->dob)):
-                            echo date("F j, Y.", $profile->dob);
+                            echo date("F j, Y", $profile->dob);
                         endif;
                         ?>
                     </p>
+                    <?php if(!empty($profile->dob)): ?>
+                    <p><strong>อายุ (age): </strong>
+                        <?php echo $age; ?>
+                    </p>
+                    <?php endif; ?>
                     <p><strong>เพศ (gender) :</strong> 
                         <?php
                         if ($profile->gender == 'male'):

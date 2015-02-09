@@ -52,7 +52,7 @@ function option_select($value, $data) {
                                         <input type="hidden" name="researcher_id" value="<?php echo $edu->researcher_id; ?>">
 
                                         <div class="form-group">
-                                            <label for="">ปีที่จบ</label>
+                                            <label for="">ปีที่จบ (graduating year)</label>
                                             <select class="form-control" name="grad_year" id="grad_year">
                                                 <option value=""<?php echo option_select('', $edu->grad_year); ?>>---- Select Year ----</option>
                                                 <?php for ($y = 1950; $y <= date("Y"); $y++) : ?>
@@ -71,7 +71,7 @@ function option_select($value, $data) {
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">สถาบันการศึกษา<span style="color: red;">**</span></label>
+                                            <label for="">สถาบันการศึกษา (institute)<span style="color: red;">**</span></label>
                                             <input type="text" class="form-control" name="institute" id="institute" required value="<?php echo $edu->institute; ?>">
                                         </div>
 
@@ -81,7 +81,7 @@ function option_select($value, $data) {
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">ประเทศ<span style="color: red;">**</span></label>
+                                            <label for="exampleInputEmail1">ประเทศ (country)<span style="color: red;">**</span></label>
                                             <?php include 'country_array.php'; ?>
                                             <select class="form-control" name="country" id="country" required>
                                                 <option value="">---- Select Country ----</option>
@@ -92,12 +92,12 @@ function option_select($value, $data) {
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">หัวข้อวิทยานิพนธ์</label>                                            
+                                            <label for="">Thesis / Dissertation title</label>                                         
                                             <textarea class="form-control" name="thesis_title" rows="2" id="thesis_title"><?php echo $edu->thesis_title; ?></textarea>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Keywords วิทยานิพนธ์</label>
+                                            <label for="">Keywords</label>
                                             <textarea class="form-control" name="keyword" rows="2" id="keyword"><?php echo $edu->keyword; ?></textarea>
                                         </div>
                                     </div>
@@ -163,7 +163,7 @@ function option_select($value, $data) {
                         <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
 
                         <div class="form-group">
-                            <label for="">ปีที่จบ</label>
+                            <label for="">ปีที่จบ (graduating year)</label>
                             <select class="form-control" name="grad_year" id="grad_year">
                                 <option value="">---- Select Year ----</option>
                                 <?php for ($y = 1950; $y <= date("Y"); $y++) : ?>
@@ -182,7 +182,7 @@ function option_select($value, $data) {
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="">สถาบันการศึกษา</label>
+                            <label for="">สถาบันการศึกษา (institute)</label>
                             <input type="text" class="form-control" name="institute" id="institute" required>
                         </div>
 
@@ -192,7 +192,7 @@ function option_select($value, $data) {
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">ประเทศ<span style="color: red;">**</span></label>
+                            <label for="exampleInputEmail1">ประเทศ (country)<span style="color: red;">**</span></label>
                             <?php include 'country_array.php'; ?>
                             <select class="form-control" name="country" id="country" required>
                                 <option value="">---- Select Country ----</option>
@@ -203,12 +203,12 @@ function option_select($value, $data) {
                         </div>
 
                         <div class="form-group">
-                            <label for="">หัวข้อวิทยานิพนธ์</label>                                            
+                            <label for="">Thesis / Dissertation title</label>
                             <textarea class="form-control" name="thesis_title" rows="2" id="thesis_title"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Keywords วิทยานิพนธ์</label>
+                            <label for="">Keywords</label>
                             <textarea class="form-control" name="keyword" rows="2" id="keyword"></textarea>
                         </div>
                     </div>

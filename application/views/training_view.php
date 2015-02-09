@@ -1,7 +1,7 @@
 
 <?php
 
-function traing_select($value, $data) {
+function traning_select($value, $data) {
     if ($value == $data) {
         echo ' selected';
     }
@@ -43,69 +43,64 @@ function traing_select($value, $data) {
                 }
             }
 
-            foreach ($q_training as $row) :
+            foreach ($q_training as $training) :
                 ?>
                 <tr>
-                    <td><strong><?php training_type($row->training_type); ?></strong></td>
-                    <td><?php echo $row->institute; ?></td>
+                    <td><strong><?php training_type($training->training_type); ?></strong></td>
+                    <td><?php echo $training->institute; ?></td>
                     <td>
                         <?php
-                        if (!empty($row->training_start)) {
-                            echo date("F j, Y", strtotime($row->training_start));
+                        if (!empty($training->training_start)) {
+                            echo date("F j, Y", strtotime($training->training_start));
                         }
                         echo ' - ';
-                        if (!empty($row->training_end)) {
-                            echo date("F j, Y", strtotime($row->training_end));
+                        if (!empty($training->training_end)) {
+                            echo date("F j, Y", strtotime($training->training_end));
                         }
                         ?>
                     </td>
-                    <td><?php echo $row->supervisor; ?></td>
+                    <td><?php echo $training->supervisor; ?></td>
                     <td style="text-align: center; min-width: 146px;">                            
-                        <a href="<?php echo site_url() ?>/admin/edit_training/<?php echo $row->training_id; ?>"
-                           class="btn btn-primary" data-toggle="modal" data-target="#editTraining_<?php echo $row->training_id; ?>">
-                            Edit
-                        </a> &nbsp;
-                        <a class="btn btn-danger" data-toggle="modal" data-target="#delTraining_<?php echo $row->training_id; ?>">Delete</a>                            
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#editTraining_<?php echo $training->training_id; ?>">Edit</button> &nbsp;
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#delTraining_<?php echo $training->training_id; ?>">Delete</button>                            
                     </td>
-                </tr>                
-
-                <!-- #editTraining Modal -->
-                <div class="modal fade" id="editTraining_<?php echo $row->training_id; ?>" tabindex="-1" role="dialog" aria-labelledby="editTraining_<?php echo $row->training_id; ?>" aria-hidden="true">
+                    <!-- #editTraining Modal -->
+                <div class="modal fade" id="editTraining_<?php echo $training->training_id; ?>" tabindex="-1" role="dialog" aria-labelledby="editTraining_<?php echo $training->training_id; ?>" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Edit Training</h4>
                             </div>
-                            <form method="post" action="profile/edit_training_process">
-                                <input type="hidden" name="training_id" value="<?php echo $row->training_id; ?>">
+                            <form method="post" action="<?php echo site_url(); ?>profile/edit_training_process">
+                                <input type="hidden" name="training_id" value="<?php echo $training->training_id; ?>">
                                 <div class="modal-body">                              
 
                                     <div class="form-group">
                                         <label>Training type<span style="color: red;">**</span></label>
                                         <select class="form-control" name="training_type" id="training_type">
-                                            <option value=""<?php traing_select('', $row->training_type); ?>>---- Select Training ----</option>
-                                            <option value="postdoc"<?php traing_select('postdoc', $row->training_type); ?>>Postdoctoral Training</option>
-                                            <option value="short"<?php traing_select('short', $row->training_type); ?>>Research Training: Short Term (<3 months)</option>
-                                            <option value="long"<?php traing_select('long', $row->training_type); ?>>Research Training: Long Term (>3 months)</option>
+                                            <option value=""<?php traning_select('', $training->training_type); ?>>---- Select Training ----</option>
+                                            <option value="postdoc"<?php traning_select('postdoc', $training->training_type); ?>>Postdoctoral Training</option>
+                                            <option value="short"<?php traning_select('short', $training->training_type); ?>>Research Training: Short Term (<3 months)</option>
+                                            <option value="long"<?php traning_select('long', $training->training_type); ?>>Research Training: Long Term (>3 months)</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Institute / detail</label>
-                                        <input type="text" class="form-control" name="institute" id="institute" required value="<?php echo $row->institute; ?>">
+                                        <input type="text" class="form-control" name="institute" id="institute" required value="<?php echo $training->institute; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Period: </label>
                                         <input type="text" class="training_start form-date" name="training_start" 
                                                value="<?php
-                                               if (!empty($row->training_start)) {
-                                                   echo date("m/d/Y", strtotime($row->training_start));
+                                               if (!empty($training->training_start)) {
+                                                   echo date("m/d/Y", strtotime($training->training_start));
                                                }
                                                ?>"> - 
                                         <input type="text" class="training_end form-date" name="training_end" 
                                                value="<?php
-                                               if (!empty($row->training_end)) {
-                                                   echo date("m/d/Y", strtotime($row->training_end));
+                                               if (!empty($training->training_end)) {
+                                                   echo date("m/d/Y", strtotime($training->training_end));
                                                }
                                                ?>">
                                         <script>
@@ -118,9 +113,8 @@ function traing_select($value, $data) {
                                     </div>
                                     <div class="form-group">
                                         <label>Supervisor</label>
-                                        <input type="text" class="form-control" name="supervisor" id="supervisor" value="<?php echo $row->supervisor; ?>">
+                                        <input type="text" class="form-control" name="supervisor" id="supervisor" value="<?php echo $training->supervisor; ?>">
                                     </div>
-
 
                                 </div>
 
@@ -134,33 +128,33 @@ function traing_select($value, $data) {
                 </div> <!-- END Modal -->
 
                 <!-- #delTraining Modal -->
-                <div class="modal fade" id="delTraining_<?php echo $row->training_id; ?>" tabindex="-1" role="dialog" aria-labelledby="delTraining_<?php echo $row->training_id; ?>" aria-hidden="true">
+                <div class="modal fade" id="delTraining_<?php echo $training->training_id; ?>" tabindex="-1" role="dialog" aria-labelledby="delTraining_<?php echo $training->training_id; ?>" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color: #c12e2a; color: white;">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel_<?php echo $row->training_id; ?>">Delete Training data!</h4>
+                                <h4 class="modal-title" id="myModalLabel_<?php echo $training->training_id; ?>">Delete Training data!</h4>
                             </div>
                             <div class="modal-body">
                                 Do you really want to delete the training data?
-                                <br><strong>Training type: </strong><?php training_type($row->training_type); ?>
-                                <br><strong>Institute / detail: </strong><?php echo $row->institute; ?>
+                                <br><strong>Training type: </strong><?php training_type($training->training_type); ?>
+                                <br><strong>Institute / detail: </strong><?php echo $training->institute; ?>
                                 <br><strong>Period: </strong> 
                                 <?php
-                                if (!empty($row->training_start)) {
-                                    echo date("m/d/Y", strtotime($row->training_start));
+                                if (!empty($training->training_start)) {
+                                    echo date("m/d/Y", strtotime($training->training_start));
                                 }
                                 ?> - 
                                 <?php
-                                if (!empty($row->training_end)) {
-                                    echo date("m/d/Y", strtotime($row->training_end));
+                                if (!empty($training->training_end)) {
+                                    echo date("m/d/Y", strtotime($training->training_end));
                                 }
                                 ?>
-                                <br><strong>Supervisor: </strong><?php echo $row->supervisor; ?>
+                                <br><strong>Supervisor: </strong><?php echo $training->supervisor; ?>
                             </div>
                             <div class="modal-footer">
-                                <form method="post" action="profile/delete_training">
-                                    <input type="hidden" name="training_id" value="<?php echo $row->training_id; ?>">                                    
+                                <form method="post" action="<?php echo site_url(); ?>profile/delete_training">
+                                    <input type="hidden" name="training_id" value="<?php echo $training->training_id; ?>">                                    
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>                                
                                     <button type="submit" class="btn btn-danger">Confirm Delete</button>                                  
                                 </form>                                
@@ -169,6 +163,7 @@ function traing_select($value, $data) {
                     </div>
                 </div> <!-- END Modal -->
 
+                </tr>
 
             <?php endforeach; ?>
         </table>

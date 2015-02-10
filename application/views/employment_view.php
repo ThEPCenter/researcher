@@ -168,7 +168,7 @@
             <p><strong>ที่ติดต่อที่ทำงาน:</strong>
                 <?php
                 if (!empty($em->street_th)):
-                    echo $em->street_th;
+                    echo $em->street_th . ' ';
                 endif;
                 if (!empty($em->sub_district_th)):
                     if ($em->province_th == 'กรุงเทพมหานคร'):
@@ -176,7 +176,7 @@
                     else:
                         echo 'ตำบล';
                     endif;
-                    echo $em->sub_district_th;
+                    echo $em->sub_district_th . ' ';
                 endif;
                 if (!empty($em->district_th)):
                     if ($em->province_th == 'กรุงเทพมหานคร'):
@@ -184,13 +184,13 @@
                     else:
                         echo 'อำเภอ';
                     endif;
-                    echo $em->district_th;
+                    echo $em->district_th . ' ';
                 endif;
                 if (!empty($em->province_th)):
                     if ($em->province_th != 'กรุงเทพมหานคร'):
                         echo 'จังหวัด';
                     endif;
-                    echo $em->province_th;
+                    echo $em->province_th . ' ';
                 endif;
                 echo $em->postal_code;
                 ?>

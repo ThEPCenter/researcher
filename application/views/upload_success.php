@@ -60,7 +60,7 @@
             <form method="post" action="<?php echo site_url(); ?>profile/edit_pic_by_upload">
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
                 <input type="hidden" name="pic_url" value="<?php echo $new_pic_url; ?>">
-                <a href="<?php echo site_url(); ?>profile#basic" type="button" class="btn btn-default">Cancel</a> &nbsp;
+                <a href="<?php echo site_url(); ?>profile#basic" class="btn btn-default">Cancel</a> &nbsp;
                 <button type="submit" class="btn btn-primary">Save change</button>
             </form>
 

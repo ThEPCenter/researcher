@@ -27,4 +27,11 @@ class Help extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+    public function special_character() {
+        $data['title'] = 'Special Character';
+        $this->load->view('templates/header', $data);
+        $this->load->view('help/special_character');
+        $this->load->view('templates/footer');
+    }
+
 }

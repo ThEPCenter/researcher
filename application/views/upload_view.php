@@ -50,57 +50,48 @@
             <p>&nbsp;</p>
 
             <div style="color: red;"><?php echo $error; ?></div>
+            <form method="post" accept-charset="utf-8" enctype="multipart/form-data" action="<?php echo site_url(); ?>upload/do_upload">
+                <input type="file" name="userfile" required style="border: solid 1px #aaa;">
+                <p class="help-block">**ควร ใช้รูปแนวตั้ง และ มีความกว้าง (width) ไม่เกิน 600 พิกเซล (pixel), ความสูง (height) ไม่เกิน 800 พิกเซล และขนาดไฟล์ไม่เกิน 400 kB
+                    <br>**ไฟล์ภาพต้องมีสกุลเป็น jpg, png หรือ gif เท่านั้น
+                    <br>**จำกัดการ upload ไฟล์ ไม่เกิน 10 ไฟล์ต่อท่าน หากต้องการ upload ไฟล์เพิ่มเติมกรุณาติตต่อผู้ดูแลระบบ
+                </p>
+                
+                <a href="<?php echo site_url(); ?>profile#basic" class="btn btn-default">Cancel</a> &nbsp;
+                <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+            </form>
 
-            <?php echo form_open_multipart('upload/do_upload'); ?>
+            <hr>        
 
-            <input type="file" name="userfile" size="20" required>
-            <p class="help-block">**ควร ใช้รูปแนวตั้ง และ มีความกว้าง (width) ไม่เกิน 600 พิกเซล (pixel) และ ความสูง (height) ไม่เกิน 800 พิกเซล และขนาดไฟล์ไม่เกิน 800 kB
-                <br>**ไฟล์ภาพต้องมีสกุลเป็น jpg, png หรือ gif เท่านั้น
-            </p>
+            <h3>หรือ</h3>
+            <h3>- เปลี่ยนรูปโดยกรอกลิงค์ของรูป (picture's url) ในอินเทอร์เน็ต</h3>
+            <form method="post" action="<?php echo site_url(); ?>profile/edit_pic_url">
+
+                <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
+
+                <div class="form-group">
+                    <label>Picture's url:</label>
+                    <input type="text" class="form-control" name="pic_url" id="pic_url" required value="<?php echo $pic_url; ?>" placeholder="เช่น http://www.example.com/pic.jpg">                
+                </div>                                       
+                <div class="form-group">
+                    <label>Picture sample:</label>
+                    <div id="show-pic">
+                        <img src="<?php echo $pic_url; ?>" >
+                    </div>
+                </div> 
+                <script>
+                    $(function () {
+                        $("#pic_url").blur(function () {
+                            var pic_url = $("#pic_url").val();
+                            $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
+                        });
+
+                    });
+                </script>
+
+                <a href="<?php echo site_url(); ?>profile#basic" class="btn btn-default">Cancel</a> &nbsp;
+                <button type="submit" class="btn btn-primary">Save change</button>
+            </form>
 
             <p>&nbsp;</p>
-
-            <a href="<?php echo site_url(); ?>profile#basic" type="button" class="btn btn-default">Cancel</a> &nbsp;
-            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-
-        </form>
-
-        <hr>        
-
-        <h3>หรือ</h3>
-        <h3>- เปลี่ยนรูปโดยกรอกลิงค์ของรูป (picture's url) ในอินเทอร์เน็ต</h3>
-        <form method="post" action="<?php echo site_url(); ?>profile/edit_pic_url">
-
-            <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
-
-            <div class="form-group">
-                <label>Picture's url:</label>
-                <input type="text" class="form-control" name="pic_url" id="pic_url" required value="<?php echo $pic_url; ?>" placeholder="เช่น http://www.example.com/pic.jpg">                
-            </div>                                       
-            <div class="form-group">
-                <label>Picture sample:</label>
-                <div id="show-pic">
-                    <img src="<?php echo $pic_url; ?>" >
-                </div>
-            </div> 
-            <script>
-                $(function () {
-                    $("#pic_url").blur(function () {
-                        var pic_url = $("#pic_url").val();
-                        $("#show-pic").html("<img src=\"" + pic_url + "\" style=\"max-width: 100%; height: auto;\">");
-                    });
-
-                });
-            </script>
-
-            <a href="<?php echo site_url(); ?>profile#basic" type="button" class="btn btn-default">Cancel</a> &nbsp;
-            <button type="submit" class="btn btn-primary">Save change</button>
-        </form>
-
-        <p>&nbsp;</p>
-    </div> <!-- /.container -->
-
-
-
-</body>
-</html>
+        </div> <!-- /.container -->

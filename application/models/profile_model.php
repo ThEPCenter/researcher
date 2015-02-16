@@ -52,7 +52,7 @@ class Profile_model extends CI_Model {
         $phone = $this->security->xss_clean($this->input->post('phone'));
         $mobile_phone = $this->security->xss_clean($this->input->post('mobile_phone'));
         $email = $this->security->xss_clean($this->input->post('email'));
-        $website = $this->security->xss_clean($this->input->post('website'));        
+        $website = $this->security->xss_clean($this->input->post('website'));
         $updated = time();
 
         $data = array(
@@ -439,7 +439,8 @@ class Profile_model extends CI_Model {
             $pic_url = $profile->pic_url;
         endforeach;
         $file_name = basename($pic_url);
-        if (!empty($pic_url)):
+
+        if (is_file('./upload_picture/' . $file_name)):
             delete_files('./upload_picture/' . $file_name);
         endif;
     }

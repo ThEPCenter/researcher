@@ -24,7 +24,7 @@ class Table_model extends CI_Model {
         $this->dbforge->create_table($table_name, TRUE);
     }
 
-    private $res_upload_fields = [
+    private $res_upload_fields = array(
         'upload_id' => array('type' => 'INT', 'constraint' => 11, 'null' => FALSE, 'auto_increment' => TRUE),
         'file_name' => array('type' => 'VARCHAR', 'constraint' => 255, 'null' => FALSE),
         'file_size' => array('type' => 'FLOAT', 'null' => FALSE),
@@ -32,6 +32,6 @@ class Table_model extends CI_Model {
         'user_id' => array('type' => 'INT', 'constraint' => 11, 'null' => FALSE),
         'created' => array('type' => 'VARCHAR', 'constraint' => 255, 'null' => FALSE),
         'updated' => array('type' => 'VARCHAR', 'constraint' => 255, 'null' => FALSE)
-    ];
+    );
 
 }

@@ -8,7 +8,6 @@ class Search extends CI_Controller {
         // ======== Helper ======== //
         $this->load->helper('url');
         $this->load->helper('html');
-        
     }
 
     public function index() {

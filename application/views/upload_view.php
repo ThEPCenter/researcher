@@ -54,9 +54,9 @@
                 <input type="file" name="userfile" required style="border: solid 1px #aaa;">
                 <p class="help-block">**ควร ใช้รูปแนวตั้ง และ มีความกว้าง (width) ไม่เกิน 600 พิกเซล (pixel), ความสูง (height) ไม่เกิน 800 พิกเซล และขนาดไฟล์ไม่เกิน 400 kB
                     <br>**ไฟล์ภาพต้องมีสกุลเป็น jpg, png หรือ gif เท่านั้น
-                    <br>**จำกัดการ upload ไฟล์ ไม่เกิน 10 ไฟล์ต่อท่าน หากต้องการ upload ไฟล์เพิ่มเติมกรุณาติตต่อผู้ดูแลระบบ
+                    <br>**จำกัดการ upload ไฟล์ ไม่เกิน 5 ไฟล์ต่อท่าน หากต้องการ upload ไฟล์เพิ่มเติมกรุณาติตต่อผู้ดูแลระบบ
                 </p>
-                
+
                 <a href="<?php echo site_url(); ?>profile#basic" class="btn btn-default">Cancel</a> &nbsp;
                 <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
             </form>
@@ -64,7 +64,7 @@
             <hr>        
 
             <h3>หรือ</h3>
-            <h3>- เปลี่ยนรูปโดยกรอกลิงค์ของรูป (picture's url) ในอินเทอร์เน็ต</h3>
+            <h3>- เปลี่ยนรูปโดยกรอกที่อยู่ของไฟล์รูป (picture's url) ในอินเทอร์เน็ต</h3>
             <form method="post" action="<?php echo site_url(); ?>profile/edit_pic_url">
 
                 <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">

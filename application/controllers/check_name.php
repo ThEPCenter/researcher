@@ -5,17 +5,14 @@ class Check_name extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-// ======== Library ========//
+        // ======== Library ========//
         $this->load->library('session');
-
-// ======== Driver ======== //
+        // ======== Driver ======== //
         $this->load->database();
-
-// ======== Helper ======== //
+        // ======== Helper ======== //
         $this->load->helper('url');
         $this->load->helper('html');
-
-// ======== Models ======== //
+        // ======== Models ======== //
         $this->load->model('profile_model');
 
         if (!($this->session->userdata('validated'))) {

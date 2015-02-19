@@ -165,7 +165,7 @@ class Profile_model extends CI_Model {
             'street_en' => $this->security->xss_clean($this->input->post('street_en')), 'street_th' => $this->security->xss_clean($this->input->post('street_th')),
             'sub_district_en' => $this->security->xss_clean($this->input->post('sub_district_en')), 'sub_district_th' => $this->security->xss_clean($this->input->post('sub_district_th')),
             'district_en' => $this->security->xss_clean($this->input->post('district_en')), 'district_th' => $this->security->xss_clean($this->input->post('district_th')),
-            'province_en' => $this->security->xss_clean($this->input->post('province_en')), 'province_th' => $this->security->xss_clean($this->input->post('province_eth')),
+            'province_en' => $this->security->xss_clean($this->input->post('province_en')), 'province_th' => $this->security->xss_clean($this->input->post('province_th')),
             'postal_code' => $this->security->xss_clean($this->input->post('postal_code')),
             'phone' => $this->security->xss_clean($this->input->post('phone')), 'mobile_phone' => $this->security->xss_clean($this->input->post('mobile_phone')),
             'email' => $this->security->xss_clean($this->input->post('email')),

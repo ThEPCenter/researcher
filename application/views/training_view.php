@@ -74,6 +74,7 @@ function traning_select($value, $data) {
                             </div>
                             <form method="post" action="<?php echo site_url(); ?>profile/edit_training_process">
                                 <input type="hidden" name="training_id" value="<?php echo $training->training_id; ?>">
+                                <input type="hidden" name="researcher_id" value="<?php echo $training->researcher_id; ?>">
                                 <div class="modal-body">                              
 
                                     <div class="form-group">
@@ -181,11 +182,9 @@ function traning_select($value, $data) {
                 </div>
 
                 <form class="form-horizontal" role="form" method="post" action="profile/add_training_process">
+                    <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
 
                     <div class="modal-body">
-
-                        <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
-
                         <div class="form-group">
                             <label for="training_type" class="col-lg-2 control-label">Training type<span style="color: red;">**</span></label>
                             <div class="col-lg-10">
@@ -197,7 +196,6 @@ function traning_select($value, $data) {
                                 </select>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="institute" class="col-lg-2 control-label">Institute / detail<span style="color: red;">**</span></label>
                             <div class="col-lg-10">

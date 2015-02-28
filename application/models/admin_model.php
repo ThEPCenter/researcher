@@ -511,7 +511,7 @@ class Admin_model extends CI_Model {
         $password = $this->security->xss_clean($this->input->post('password'));
         $data = array(
             'username' => $username,
-            'password' => $password,
+            'password' => sha1($password),
             'level' => 1,
             'modified' => date("Y-m-d H:i:s"),
             'sessionid' => '',
@@ -534,7 +534,29 @@ class Admin_model extends CI_Model {
         $password = $this->security->xss_clean($this->input->post('password'));
         $data = array(
             'username' => $username,
-            'password' => $password,
+            'password' => sha1($password),
+            'modified' => date("Y-m-d H:i:s")
+        );
+        $this->db->where('id', $id);
+        $this->db->update('res_user', $data);
+    }
+
+    public function update_username() {
+        $id = $this->input->post('id');
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $data = array(
+            'username' => $username,
+            'modified' => date("Y-m-d H:i:s")
+        );
+        $this->db->where('id', $id);
+        $this->db->update('res_user', $data);
+    }
+
+    public function update_password() {
+        $id = $this->input->post('id');
+        $password = $this->security->xss_clean($this->input->post('password'));
+        $data = array(
+            'password' => sha1($password),
             'modified' => date("Y-m-d H:i:s")
         );
         $this->db->where('id', $id);

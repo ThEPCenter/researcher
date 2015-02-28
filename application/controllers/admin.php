@@ -474,7 +474,13 @@ class Admin extends CI_Controller {
         endif;
     }
 
-    // =============== User management ==================== //
+    // =============== User management ==================== //    
+
+    public function add_user_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->admin_model->add_new_user();
+        redirect(site_url() . "admin/profile/$researcher_id#user_properties");
+    }
 
     public function edit_user_process() {
         $researcher_id = $this->input->post('researcher_id');
@@ -482,9 +488,15 @@ class Admin extends CI_Controller {
         redirect(site_url() . "admin/profile/$researcher_id#user_properties");
     }
 
-    public function add_user_process() {
+    public function edit_username_process() {
         $researcher_id = $this->input->post('researcher_id');
-        $this->admin_model->add_new_user();
+        $this->admin_model->update_username();
+        redirect(site_url() . "admin/profile/$researcher_id#user_properties");
+    }
+    
+    public function reset_password_process() {
+        $researcher_id = $this->input->post('researcher_id');
+        $this->admin_model->update_password();
         redirect(site_url() . "admin/profile/$researcher_id#user_properties");
     }
 

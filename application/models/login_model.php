@@ -13,7 +13,7 @@ class Login_model extends CI_Model {
 
         // Prep the query
         $this->db->where('username', $username);
-        $this->db->where('password', $password);
+        $this->db->where('password', sha1($password));
         // Run the query
         $query = $this->db->get('res_user');
 
@@ -33,7 +33,7 @@ class Login_model extends CI_Model {
 
             // If there is a user, then create session data
             $this->db->where('username', $username);
-            $this->db->where('password', $password);
+            $this->db->where('password', sha1($password));
             $query = $this->db->get('res_user');
             $row = $query->row();
             $data = array(

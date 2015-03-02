@@ -153,8 +153,7 @@ class Profile_model extends CI_Model {
     }
 
     public function employment_post_reciever() {
-        $data = array(
-            'employment_id' => $this->input->post('employment_id'),
+        $data = array(            
             'researcher_id' => $this->input->post('researcher_id'),
             'academic' => $this->security->xss_clean($this->input->post('academic')),
             'administrative' => $this->security->xss_clean($this->input->post('administrative')),

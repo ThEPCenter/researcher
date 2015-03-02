@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="text" class="form-control" required name="password">
+                                                <input type="text" class="form-control" required name="password" disabled value="<?php echo substr(sha1(microtime()), rand(0, 26), 10); ?>">
                                             </div>
 
                                         </div>
@@ -142,20 +142,13 @@
                             <p><strong>Username: </strong>
                                 <?php echo $user->username; ?>
                             </p>
-                            <p><strong>Password: </strong> <span id="show_pw" style="display: none;">**********</span> 
-                                &nbsp;<a id="view_pw" href="#">View password</a>
+                            <p><strong>Password: </strong> 
+                                **********
                             </p>
-                            <script>
-                                $(function () {
-                                    $("#view_pw").click(function () {
-                                        $("#show_pw").html('<span style="border: solid 1px black; padding: 8px 15px;"><?php echo $user->password; ?></span>');
-                                        $("#show_pw").toggle();
-                                    });
-                                });
-                            </script>
 
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUser">Edit Username / Password</button>
-                            <!-- editUser Modal -->
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUser">Edit Username</button> &nbsp;
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#resetPassword">Reset Password</button>
+                            <!-- editUsername Modal -->
                             <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="editUserLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -163,7 +156,7 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             <h4 class="modal-title" id="myModalLabel">Edit User of <?php echo $row->firstname_en . ' ' . $row->lastname_en; ?></h4>
                                         </div>
-                                        <form method="post" action="<?php echo site_url(); ?>admin/edit_user_process">
+                                        <form method="post" action="<?php echo site_url(); ?>admin/edit_username_process">
                                             <input type="hidden" name="id" value="<?php echo $user->id; ?>">
                                             <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
                                             <div class="modal-body">                                                
@@ -171,9 +164,31 @@
                                                     <label>Username</label>
                                                     <input type="text" class="form-control" name="username" value="<?php echo $user->username; ?>">
                                                 </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> <!-- END editUsername Modal -->
+
+                            <!-- resetPassword Modal -->
+                            <div class="modal fade" id="resetPassword" tabindex="-1" role="dialog" aria-labelledby="editUserLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="resetPasswordLabel">Reset Password - <?php echo $row->firstname_en . ' ' . $row->lastname_en; ?></h4>
+                                        </div>
+                                        <form method="post" action="<?php echo site_url(); ?>admin/reset_password_process">
+                                            <input type="hidden" name="id" value="<?php echo $user->id; ?>">
+                                            <input type="hidden" name="researcher_id" value="<?php echo $researcher_id; ?>">
+                                            <div class="modal-body">                                            
                                                 <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input type="text" class="form-control" name="password" value="<?php echo $user->password; ?>" placeholder="Password">
+                                                    <label>New Password</label>
+                                                    <input type="text" class="form-control" name="password" value="<?php echo substr(sha1(microtime()), rand(0, 26), 10); ?>" placeholder="Password">
                                                 </div>
 
                                             </div>
@@ -184,7 +199,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div> <!-- END Modal -->
+                            </div> <!-- END resetPassword Modal -->
 
                             <p>&nbsp;</p>
 

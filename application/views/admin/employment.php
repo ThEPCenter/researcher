@@ -1,10 +1,7 @@
 <div class="container">
     <div class="row well">
-
-
         <h2 style="text-align: center;"><span class="glyphicon glyphicon-briefcase"></span> <?php echo $title; ?></h2>
         <p>&nbsp;</p>
-
 
         <?php if (!$query) : ?>
             <div class="row">

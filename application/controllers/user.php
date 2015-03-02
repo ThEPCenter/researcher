@@ -1,0 +1,68 @@
+<?php
+
+class User extends CI_Controller {
+
+    public function __construct() {
+        parent::__construct();
+
+        // ======== Library ========//
+        $this->load->library('session');
+
+        // ======== Driver ======== //
+        $this->load->database();
+
+        // ======== Helper ======== //
+        $this->load->helper('url');
+        $this->load->helper('html');
+        $this->load->helper('file');
+
+        // ======== Models ======== //
+        $this->load->model('user_model');
+
+        if (!($this->session->userdata('validated'))) {
+            redirect('login');
+        }
+    }
+
+    public function index() {
+        
+    }
+
+    public function setting() {
+        $data['user_id'] = $this->session->userdata('user_id');
+        $data['username'] = $this->session->userdata('username');
+
+        $data['title'] = 'User Seeting';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar');
+        $this->load->view('user/setting_view');
+        $this->load->view('templates/footer');
+    }
+
+    public function check_new_password() {
+        $newPassword = $this->security->xss_clean($this->input->get('new_password'));
+        $renew_password = $this->security->xss_clean($this->input->get('renew_password'));
+        if (!empty($newPassword) || !empty($renew_password)):
+            if ($newPassword == $renew_password):
+                $data['message'] = '<span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
+            else:
+                $data['message'] = '<span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
+            endif;
+        else:
+            $data['message'] = '';
+        endif;
+
+        $this->load->view('user/check_new_password', $data);
+    }
+
+    public function check_old_password() {
+        $check_password = $this->user_model->check_password();
+        if ($check_password) {
+            $data['message'] = '<span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
+        } else {
+            $data['message'] = '<span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
+        }
+        $this->load->view('user/check_password', $data);
+    }
+
+}

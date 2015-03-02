@@ -92,6 +92,7 @@ class Admin_model extends CI_Model {
             'mobile_phone' => $this->security->xss_clean($this->input->post('mobile_phone')),
             'email' => $this->security->xss_clean($this->input->post('email')),
             'website' => $this->security->xss_clean($this->input->post('website')),
+            'pic_url' => $this->security->xss_clean($this->input->post('pic_url')),
             'updated' => time()
         );
         return $data;
@@ -165,12 +166,12 @@ class Admin_model extends CI_Model {
     }
 
     public function add_new_employment() {
-        $data = $this->employment_post_reciever(); 
+        $data = $this->employment_post_reciever();
         $this->db->insert('res_employment', $data);
     }
 
     public function employment_post_reciever() {
-        $data = array(            
+        $data = array(
             'researcher_id' => $this->input->post('researcher_id'),
             'academic' => $this->security->xss_clean($this->input->post('academic')),
             'administrative' => $this->security->xss_clean($this->input->post('administrative')),
@@ -319,7 +320,7 @@ class Admin_model extends CI_Model {
         $this->db->where('publication_id', $publication_id);
         $this->db->update('res_publication', $data);
     }
-    
+
     // =============== Search Researcher ============================ //
     public function search_researcher($keyword) {
         $kw = $this->security->xss_clean($keyword);
@@ -361,9 +362,9 @@ class Admin_model extends CI_Model {
     }
 
     public function add_new_user() {
-        $researcher_id = $this->input->post('researcher_id');        
+        $researcher_id = $this->input->post('researcher_id');
         $username = $this->security->xss_clean($this->input->post('username'));
-        $password = $this->security->xss_clean($this->input->post('password'));        
+        $password = $this->security->xss_clean($this->input->post('password'));
         $data = array(
             'username' => $username,
             'password' => sha1($password),

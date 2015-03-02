@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="text" class="form-control" required name="password" disabled value="<?php echo substr(sha1(microtime()), rand(0, 26), 10); ?>">
+                                                <input type="text" class="form-control" required name="password" disabled value="<?php echo substr(sha1($row->firstname_en . $row->lastname_en . microtime()), rand(0, 26), 10); ?>">
                                             </div>
 
                                         </div>

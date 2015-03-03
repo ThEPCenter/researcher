@@ -34,4 +34,15 @@ class User_model extends CI_Model {
         endif;
     }
 
+    public function update_password() {
+        $id = $this->input->post('user_id');
+        $password = $this->security->xss_clean($this->input->post('newPassword'));
+        $data = array(
+            'password' => sha1($password),
+            'modified' => date("Y-m-d H:i:s")
+        );
+        $this->db->where('id', $id);
+        $this->db->update('res_user', $data);
+    }
+
 }

@@ -39,30 +39,42 @@ class User extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function check_new_password() {
-        $newPassword = $this->security->xss_clean($this->input->get('new_password'));
-        $renew_password = $this->security->xss_clean($this->input->get('renew_password'));
-        if (!empty($newPassword) || !empty($renew_password)):
-            if ($newPassword == $renew_password):
-                $data['message'] = '<span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
-            else:
-                $data['message'] = '<span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
-            endif;
-        else:
-            $data['message'] = '';
+    public function check_old_password() {
+        $check_old = $this->user_model->check_password();
+        if ($check_old):
+            $data['message'] = '<span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
+        else :
+            $data['message'] = '<span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
         endif;
-
-        $this->load->view('user/check_new_password', $data);
+        $this->load->view('user/check_password', $data);
     }
 
-    public function check_old_password() {
-        $check_password = $this->user_model->check_password();
-        if ($check_password) {
+    public function check_new_password() {
+        $new_password = $this->input->post('new_password');
+        $renew_password = $this->input->post('renew_password');
+        if (!empty($new_password) && $new_password === $renew_password):
             $data['message'] = '<span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
-        } else {
+        else :
             $data['message'] = '<span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
-        }
+        endif;
         $this->load->view('user/check_password', $data);
+    }
+
+    public function check_enable_button() {
+        $new_password = $this->input->post('new_password');
+        $renew_password = $this->input->post('renew_password');
+        $check_old = $this->user_model->check_password();
+        if ($check_old && !empty($new_password) && $new_password === $renew_password):
+            $data['message'] = 'enable';
+        else:
+            $data['message'] = 'disable';
+        endif;
+        $this->load->view('user/check_password', $data);
+    }
+
+    public function reset_password_process() {
+        $this->user_model->update_password();
+        redirect(site_url() . "user/setting");
     }
 
 }

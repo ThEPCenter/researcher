@@ -17,7 +17,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="resetPasswordLabel">Reset Password</h4>
                 </div>
-                <form>
+                <form method="post" action="<?php echo site_url(); ?>user/reset_password_process">
                     <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
                     <div class="modal-body">
                         <p><strong>Old Password: </strong><input type="password" id="oldPassword" name="oldPassword" required style="width: 50%;"> <span id="old_result"></span></p>
@@ -26,43 +26,14 @@
                         <p id="ajax_result">&nbsp;</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <span id="saveResetWrap"><button id="saveReset" type="button" class="btn btn-primary" disabled="disabled">Save changes</button></span>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> &nbsp;
+                        <span id="saveResetWrap"><button id="saveReset" type="submit" class="btn btn-primary" disabled="disabled">Save changes</button></span>
                     </div>
                 </form>
             </div>
         </div>
         <script>
-            function checkOldPassword() {
-                var new_pass_word = $("#newPassword").val();
-                var renew_password = $("#reNewPassword").val();
-                $.ajax({
-                    url: 'check_old_password',
-                    type: "POST",
-                    data: {
-                        old_password: $("#oldPassword").val()
-                    },
-                    success: function (data) {
-                        if (new_pass_word && renew_password) {
-                            if (new_pass_word === renew_password) {
-                                if (data === '<span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>') {
-                                    $("#saveResetWrap").html('<button id="saveReset" type="button" class="btn btn-primary">Save changes</button>');
-                                } else {
-                                    $("#saveReset").attr('disabled', 'disabled');
-                                }
-                            } else {
-                                $("#saveReset").attr('disabled', 'disabled');
-                            }
-                        } else {
-                            $("#saveReset").attr('disabled', 'disabled');
-                        }
-                        $("#old_result").html(data);
-                    }
-                });
-            }
-
             $(function () {
-
                 var base_url = "<?php echo base_url(); ?>";
                 $(document).ajaxStart(function () {
                     $("#ajax_result").html("<img src=\"" + base_url + "images/demo_wait.gif\">");
@@ -72,48 +43,66 @@
                 });
 
                 $("#oldPassword").keyup(function () {
+                    isEnableButton();
                     checkOldPassword();
                 });
-
-                $("#newPassword").keyup(function () {
-                    $.ajax({
-                        url: 'check_new_password',
-                        data: {
-                            new_password: $("#newPassword").val(),
-                            renew_password: $("#reNewPassword").val()
-                        },
-                        success: function (data) {
-                            if (data === '<span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>') {
-                                $("#saveResetWrap").html('<button id="saveReset" type="button" class="btn btn-primary">Save changes</button>');
-                            } else {
-                                $("#saveReset").attr('disabled', 'disabled');
-                            }
-                            $("#new_result, #renew_result").html(data);
-                        }
-                    });
-                    checkOldPassword();
+                $("#newPassword, #reNewPassword").keyup(function () {
+                    isEnableButton();
+                    checkNewPassword();
                 });
-
-                $("#reNewPassword").keyup(function () {
-                    $.ajax({
-                        url: 'check_new_password',
-                        data: {
-                            new_password: $("#newPassword").val(),
-                            renew_password: $("#reNewPassword").val()
-                        },
-                        success: function (data) {
-                            if (data === '<span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>') {
-                                $("#saveResetWrap").html('<button id="saveReset" type="button" class="btn btn-primary">Save changes</button>');
-                            } else {
-                                $("#saveReset").attr('disabled', 'disabled');
-                            }
-                            $("#new_result, #renew_result").html(data);
-                        }
-                    });
-                    checkOldPassword();
-                });
-
             });
+
+            function checkOldPassword() {
+                var oldPassword = $("#oldPassword").val();
+                $.ajax({
+                    url: 'check_old_password',
+                    type: "POST",
+                    data: {
+                        old_password: oldPassword
+                    },
+                    success: function (data) {
+                        $("#old_result").html(data);
+                    }
+                });
+            }
+
+            function checkNewPassword() {
+                var newPassword = $("#newPassword").val();
+                var reNewPassword = $("#reNewPassword").val();
+                $.ajax({
+                    url: 'check_new_password',
+                    type: "POST",
+                    data: {
+                        new_password: newPassword,
+                        renew_password: reNewPassword
+                    },
+                    success: function (data) {
+                        $("#new_result, #renew_result").html(data);
+                    }
+                });
+            }
+
+            function isEnableButton() {
+                var oldPassword = $("#oldPassword").val();
+                var newPassword = $("#newPassword").val();
+                var reNewPassword = $("#reNewPassword").val();
+                $.ajax({
+                    url: 'check_enable_button',
+                    type: "POST",
+                    data: {
+                        old_password: oldPassword,
+                        new_password: newPassword,
+                        renew_password: reNewPassword
+                    },
+                    success: function (data) {
+                        if (data === 'enable') {
+                            $("#saveResetWrap").html('<button id="saveReset" type="submit" class="btn btn-primary">Save changes</button>');
+                        } else {
+                            $("#saveReset").attr('disabled', 'disabled');
+                        }
+                    }
+                });
+            }
         </script>
 
     </div> <!-- END resetPassword -->

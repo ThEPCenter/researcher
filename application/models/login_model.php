@@ -10,13 +10,11 @@ class Login_model extends CI_Model {
         // grab user input
         $username = $this->security->xss_clean($this->input->post('username'));
         $password = $this->security->xss_clean($this->input->post('password'));
-
         // Prep the query
         $this->db->where('username', $username);
         $this->db->where('password', sha1($password));
         // Run the query
         $query = $this->db->get('res_user');
-
         // Let's check if there are any results        
         if ($query->num_rows == 1) {
             $row = $query->row();
@@ -45,9 +43,7 @@ class Login_model extends CI_Model {
                 'level' => $row->level,
                 'validated' => true
             );
-
             $this->session->set_userdata($data);
-
             return true;
         }
     }

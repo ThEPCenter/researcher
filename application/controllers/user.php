@@ -25,13 +25,12 @@ class User extends CI_Controller {
     }
 
     public function index() {
-        
+        redirect(site_url() . 'user/setting');
     }
 
     public function setting() {
         $data['user_id'] = $this->session->userdata('user_id');
         $data['username'] = $this->session->userdata('username');
-
         $data['title'] = 'User Seeting';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');

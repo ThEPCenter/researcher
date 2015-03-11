@@ -1,10 +1,8 @@
 
 <div class="container">
-
     <h1>User Setting</h1>
     <p><strong>Username: </strong><?php echo $username; ?></p>
     <p><strong>Password: </strong>**********</p>
-
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resetPassword">
         Reset Password
     </button>
@@ -22,7 +20,7 @@
                     <div class="modal-body">
                         <p><strong>Old Password: </strong><input type="password" id="oldPassword" name="oldPassword" required style="width: 50%;"> <span id="old_result"></span></p>
                         <p><strong>New Password: </strong><input type="password" id="newPassword" name="newPassword" required style="width: 50%;"> <span id="new_result"></span></p>
-                        <p><strong>Re-type New Password: </strong><input type="password" id="reNewPassword" name="reNewPassword" required style="width: 50%;"> <span id="renew_result"></span></p>
+                        <p><strong>Retype New Password: </strong><input type="password" id="reNewPassword" name="reNewPassword" required style="width: 50%;"> <span id="renew_result"></span></p>
                         <p id="ajax_result">&nbsp;</p>
                     </div>
                     <div class="modal-footer">

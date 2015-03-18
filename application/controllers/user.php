@@ -31,7 +31,7 @@ class User extends CI_Controller {
     public function setting() {
         $data['user_id'] = $this->session->userdata('user_id');
         $data['username'] = $this->session->userdata('username');
-        $data['title'] = 'User Seeting';
+        $data['title'] = 'User Setting - ThEP Researcher Database Management System';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
         $this->load->view('user/setting_view');

@@ -27,7 +27,7 @@ class Home extends CI_Controller {
     }
 
     public function index() {
-        $data['title'] = 'Home';
+        $data['title'] = 'Home - ThEP Researcher Database Management System';
         $data['username'] = $this->session->userdata('username');
         $data['recent_login'] = date("F j, Y. g:i:s a.", strtotime($this->session->userdata('recent_login')));
         $data['last_login'] = date("F j, Y. g:i:s a.", strtotime($this->session->userdata('last_login')));

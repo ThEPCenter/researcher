@@ -21,7 +21,7 @@ class Login extends CI_Controller {
     }
 
     public function index() {
-        $data['title'] = "Login";
+        $data['title'] = "Login - ThEP Researcher Database Management System";
         $this->load->view('templates/header', $data);
         $this->load->view('login_view', $data);
         $this->load->view('templates/footer');

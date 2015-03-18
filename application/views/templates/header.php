@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="description" content="ThEP Researcher Database Management System, ระบบจัดการฐานข้อมูลนักวิจัย">
+        <meta name="author" content="Thailand Center of Excellence in Physics. ศูนย์ความเป็นเลิศด้านฟิสิกส์">
         <link rel="shortcut icon" href="">
         <title><?php echo $title; ?></title>
         <!-- Bootstrap core CSS -->

@@ -1,6 +1,7 @@
 
 <div class="container">
-    <h1 class="text-center">ThEP Researcher Database Management</h1>
+    <h1 class="text-center">ThEP Researcher Database Management System</h1>
+    <h2 class="text-center">(ระบบจัดการฐานข้อมูลนักวิจัย)</h2>
     <form class="form-login" role="form" method="post" action="<?php echo site_url(); ?>login/process">
         <h2 class="form-signin-heading">Please log in</h2>
         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>

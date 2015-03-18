@@ -1,6 +1,8 @@
 
 <div class="container">
     <h1>User Setting</h1>
+    <p>&nbsp;</p>
+    
     <p><strong>Username: </strong><?php echo $username; ?></p>
     <p><strong>Password: </strong>**********</p>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resetPassword">
@@ -24,7 +26,7 @@
                         <p id="ajax_result">&nbsp;</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> &nbsp;
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> &nbsp;
                         <span id="saveResetWrap"><button id="saveReset" type="submit" class="btn btn-primary" disabled="disabled">Save changes</button></span>
                     </div>
                 </form>
